@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Makeup Day — Book Your Artist in Abuja</title>
+<title>Makeup Day: Book Your Artist in Abuja</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --ink:#0A0A0A;--ink2:#3C3C3C;--ink3:#8A8A8A;
-  --pink:#E8175A;--pink2:#FF4D7D;--pink-bg:#FFF0F4;
+  --pink:#9B7B5A;--pink2:#B89572;--pink-bg:#F5EDDF;
   --gold:#C9963A;--gold-bg:#FDF5E6;
   --green:#00C48C;--red:#FF3B30;
-  --bg:#F7F5F2;--white:#FFFFFF;--border:#EBEBEB;
+  --bg:#EDE7DC;--white:#FFFFFF;--border:#DDD5C5;
   --r:18px;--r2:28px;
   --shadow:0 4px 24px rgba(10,10,10,.08);
   --shadow2:0 16px 56px rgba(10,10,10,.14);
@@ -27,13 +27,13 @@ a{text-decoration:none;color:inherit}
 /* Use standard CSS — avoids switching Mac to classic (space-consuming) scrollbar mode */
 html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 /* Thin horizontal scrollbars only for overflow-x scroll containers */
-.qb-chips::-webkit-scrollbar,.aesthetics-scroll::-webkit-scrollbar,
+.aesthetics-scroll::-webkit-scrollbar,
 .brand-scroll::-webkit-scrollbar,.date-row::-webkit-scrollbar,
 .rev-list::-webkit-scrollbar,.artist-box::-webkit-scrollbar{height:4px;width:4px}
-.qb-chips::-webkit-scrollbar-track,.aesthetics-scroll::-webkit-scrollbar-track,
+.aesthetics-scroll::-webkit-scrollbar-track,
 .brand-scroll::-webkit-scrollbar-track,.date-row::-webkit-scrollbar-track,
 .rev-list::-webkit-scrollbar-track,.artist-box::-webkit-scrollbar-track{background:transparent}
-.qb-chips::-webkit-scrollbar-thumb,.aesthetics-scroll::-webkit-scrollbar-thumb,
+.aesthetics-scroll::-webkit-scrollbar-thumb,
 .brand-scroll::-webkit-scrollbar-thumb,.date-row::-webkit-scrollbar-thumb,
 .rev-list::-webkit-scrollbar-thumb,.artist-box::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
@@ -44,20 +44,25 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .reveal-left.visible{opacity:1;transform:none}
 .tag{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
 .section-title{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);font-style:italic;line-height:1.15;color:var(--ink)}
-.no-scroll{overflow:hidden}
+.no-scroll{overflow:hidden;position:fixed;width:100%;}
 
 /* ─── NAV ─── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:0 20px;height:66px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
-#nav.solid{background:rgba(247,245,242,.92);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
-.nav-logo{font-size:1.25rem;font-weight:700;letter-spacing:-.5px;color:var(--ink)}
+#nav{position:fixed;top:14px;left:20px;right:20px;z-index:90;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s,border-color .3s;border-radius:20px;background:rgba(237,231,220,.18);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.22)}
+#nav.solid{background:rgba(237,231,220,.88);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(10,10,10,.08);border-color:rgba(235,235,235,.8)}
+.nav-left{display:flex;align-items:center}
+.nav-logo{position:absolute;left:50%;transform:translateX(-50%);font-size:1.25rem;font-weight:700;letter-spacing:-.5px;color:var(--ink);white-space:nowrap;pointer-events:none}
 .nav-logo span{color:var(--pink)}
 .nav-loc{display:flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:7px 14px;font-size:.82rem;font-weight:500;cursor:pointer;transition:border-color .2s}
 .nav-loc:hover{border-color:var(--pink)}
 .nav-loc .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,196,140,.4);animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,196,140,.45)}70%{box-shadow:0 0 0 8px rgba(0,196,140,0)}100%{box-shadow:0 0 0 0 rgba(0,196,140,0)}}
 .nav-right{display:flex;align-items:center;gap:10px}
-.nav-btn{background:var(--pink);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600;transition:opacity .2s,transform .2s}
+.nav-btn{background:var(--pink);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600;transition:opacity .2s,transform .2s;cursor:pointer}
 .nav-btn:hover{opacity:.88;transform:translateY(-1px)}
+.nav-arrow{animation:arrowNudge 1.4s ease-in-out infinite}
+@keyframes arrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.nav-btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border);padding:8px 18px;border-radius:50px;font-size:.83rem;font-weight:600;cursor:pointer;transition:border-color .2s,transform .2s}
+.nav-btn-outline:hover{border-color:var(--pink);transform:translateY(-1px)}
 .nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--border);border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer}
 /* hamburger button */
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;background:none;border:none;cursor:pointer;gap:5px;padding:4px;border-radius:10px;transition:background .18s}
@@ -91,7 +96,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .drawer-cta-signin:hover{border-color:var(--pink);color:var(--pink)}
 
 /* ─── HERO ─── */
-#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;width:100vw;background:#0A0A0A}
+#hero{position:relative;height:80svh;min-height:520px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;width:100vw;background:#0A0A0A;padding-top:90px;border-radius:0 0 32px 32px}
 .hero-slides{position:absolute;inset:0;width:100%;height:100%;background:#0A0A0A}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center top;opacity:0;transform:scale(1.12);animation:slideShow 28s infinite}
 .hero-slide:nth-child(1){animation-delay:0s;background-image:url('https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=1600&q=90&fit=crop&crop=top')}
@@ -121,21 +126,14 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .hero-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
 .hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s,width .3s}
 .hero-dot.active{background:#fff;width:20px;border-radius:4px}
-.hero-scroll-hint{position:absolute;bottom:24px;right:32px;z-index:2;display:flex;align-items:center;gap:6px;font-size:.75rem;color:rgba(255,255,255,.5);font-weight:500}
 .hero-scroll-icon{width:22px;height:34px;border:2px solid rgba(255,255,255,.3);border-radius:12px;position:relative;display:flex;justify-content:center;padding-top:5px}
 .hero-scroll-icon::after{content:'';width:4px;height:6px;background:rgba(255,255,255,.6);border-radius:2px;animation:scrollDot 1.5s infinite}
 @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}80%{transform:translateY(8px);opacity:0}}
 
 /* ─── QUICK BOOK ─── */
-#quickbook{background:var(--white);padding:28px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
-.qb-label{font-size:.8rem;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
-.qb-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;-ms-overflow-style:none;scrollbar-width:none}
-.qb-chips::-webkit-scrollbar{display:none}
-.qb-chip{flex-shrink:0;background:var(--bg);border:1.5px solid var(--border);color:var(--ink2);padding:8px 18px;border-radius:50px;font-size:.83rem;font-weight:500;cursor:pointer;transition:all .18s}
-.qb-chip:hover,.qb-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* ─── AESTHETICS ─── */
-#aesthetics{padding:60px 0 60px 32px;background:var(--white)}
+#aesthetics{padding:60px 0 60px 32px;background:#D9CFC0}
 .aesthetics-head{padding-right:32px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end}
 .see-all{font-size:.83rem;font-weight:600;color:var(--pink);cursor:pointer}
 .aesthetics-scroll{display:flex;gap:14px;overflow-x:auto;padding-right:32px;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
@@ -151,17 +149,18 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .aes-card.selected::after{content:'✓';position:absolute;top:10px;right:10px;background:var(--pink);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}
 
 /* ─── BRANDS ─── */
-#brands{padding:60px 32px;background:var(--bg)}
+.brands-wrap{background:#D9CFC0;padding:40px 20px}
+#brands{padding:60px 32px;background:rgba(255,255,255,.45);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.7);border-radius:28px;box-shadow:0 8px 40px rgba(10,10,10,.07)}
 .brands-head{margin-bottom:32px}
 .brand-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
 .brand-scroll::-webkit-scrollbar{display:none}
-.brand-tile{flex-shrink:0;background:var(--white);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;text-align:center;transition:all .22s;width:110px}
-.brand-tile:hover,.brand-tile.active{border-color:var(--pink);box-shadow:0 6px 20px rgba(232,23,90,.14);transform:translateY(-3px)}
+.brand-tile{flex-shrink:0;background:#D9CFC0;border:1.5px solid rgba(0,0,0,.06);border-radius:18px;overflow:hidden;cursor:pointer;text-align:center;transition:all .22s;width:110px}
+.brand-tile:hover,.brand-tile.active{border-color:var(--pink);box-shadow:0 6px 20px rgba(155,123,90,.14);transform:translateY(-3px)}
 .brand-mark{height:64px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase}
 .brand-tile .b-name{font-size:.7rem;font-weight:600;color:var(--ink);padding:8px 8px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand-tile .b-count{font-size:.65rem;color:var(--ink3);padding:0 8px 10px}
 .brand-tile.active .b-name{color:var(--pink)}
-.brand-tile.active .b-count{color:rgba(232,23,90,.6)}
+.brand-tile.active .b-count{color:rgba(155,123,90,.6)}
 /* ─── ARTISTS ─── */
 #artists{padding:60px 32px;background:var(--white)}
 .artists-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;gap:16px;flex-wrap:wrap}
@@ -202,8 +201,6 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .a-book{width:100%;background:var(--ink);color:#fff;border:none;padding:12px;border-radius:50px;font-size:.88rem;font-weight:700;transition:background .2s,transform .2s;letter-spacing:.3px}
 .a-book:hover{background:var(--pink)}
 
-/* ─── HOW IT WORKS ─── */
-#how{padding:80px 32px;background:var(--bg)}
 .how-inner{max-width:900px;margin:0 auto}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
 .how-step{background:var(--white);border-radius:var(--r2);padding:32px 24px;position:relative;border:1.5px solid var(--border)}
@@ -212,46 +209,32 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .how-step p{font-size:.85rem;color:var(--ink3);line-height:1.65}
 
 /* ─── TESTIMONIALS ─── */
-#reviews{padding:80px 32px;background:var(--ink);color:#fff}
+#reviews{padding:80px 32px;background:#D9CFC0;color:var(--ink)}
 .reviews-head{margin-bottom:40px}
-.reviews-head .section-title{color:#fff}
+.reviews-head .section-title{color:var(--ink)}
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.r-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r2);padding:26px;transition:background .25s}
-.r-card:hover{background:rgba(255,255,255,.1)}
-.r-stars{color:#F59E0B;font-size:.85rem;margin-bottom:14px;letter-spacing:1px}
-.r-text{font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.82);font-style:italic;margin-bottom:20px}
+.r-card{background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.7);border-radius:var(--r2);padding:26px;transition:background .25s}
+.r-card:hover{background:rgba(255,255,255,.65)}
+.r-stars{color:#C8860A;font-size:.85rem;margin-bottom:14px;letter-spacing:1px}
+.r-text{font-size:.88rem;line-height:1.7;color:var(--ink2);font-style:italic;margin-bottom:20px}
 .r-author{display:flex;align-items:center;gap:12px}
-.r-av{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(232,23,90,.4)}
-.r-name{font-size:.85rem;font-weight:700;color:#fff}
-.r-detail{font-size:.75rem;color:rgba(255,255,255,.45)}
+.r-av{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(155,123,90,.4)}
+.r-name{font-size:.85rem;font-weight:700;color:var(--ink)}
+.r-detail{font-size:.75rem;color:var(--ink3)}
 
 /* ─── CTA STRIP ─── */
-#cta{background:var(--pink);padding:60px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-.cta-text h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-style:italic;color:#fff;margin-bottom:8px}
-.cta-text p{font-size:.95rem;color:rgba(255,255,255,.8);max-width:380px;line-height:1.6}
-.cta-btns{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
-.cta-btn-white{background:#fff;color:var(--pink);border:none;padding:14px 32px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
-.cta-btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
-.cta-btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);padding:14px 32px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
-.cta-btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
 
 /* ─── FOOTER ─── */
-footer{background:#0A0A0A;color:rgba(255,255,255,.6);padding:56px 32px 100px}
-.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
-.foot-logo{font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:12px}
+footer{background:#C4B5A0;color:rgba(10,10,10,.55);padding:0}
+.foot-simple{text-align:center;padding:20px 24px 16px;display:flex;flex-direction:column;gap:5px}
+.foot-logo{font-size:1rem;font-weight:700;color:var(--ink)}
 .foot-logo span{color:var(--pink)}
-.foot-tagline{font-size:.83rem;line-height:1.7;max-width:220px}
-.foot-social{display:flex;gap:10px;margin-top:20px}
-.foot-soc{width:36px;height:36px;background:rgba(255,255,255,.07);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;cursor:pointer;transition:background .2s}
-.foot-soc:hover{background:rgba(232,23,90,.3)}
-.foot-col h4{font-size:.8rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;margin-bottom:16px}
-.foot-col ul{list-style:none}
-.foot-col li{margin-bottom:10px}
-.foot-col a{font-size:.83rem;color:rgba(255,255,255,.5);transition:color .2s}
-.foot-col a:hover{color:#fff}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.foot-bottom p{font-size:.78rem}
-.foot-bottom a{color:rgba(232,23,90,.8)}
+.foot-tagline{font-size:.75rem;color:rgba(10,10,10,.55)}
+.foot-links{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.75rem}
+.foot-links a{color:rgba(10,10,10,.45);text-decoration:none;transition:color .18s}
+.foot-links a:hover{color:var(--ink)}
+.foot-links span{color:rgba(10,10,10,.25)}
+.foot-copy{font-size:.7rem;color:rgba(10,10,10,.4)}
 
 /* ─── MOBILE BOTTOM NAV ─── */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:12px 0 20px}
@@ -335,7 +318,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .tone-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .tone-btn{width:36px;height:36px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;flex-shrink:0}
 .tone-btn:hover{transform:scale(1.15)}
-.tone-btn.selected{border-color:var(--pink);box-shadow:0 0 0 3px rgba(232,23,90,.25);transform:scale(1.18)}
+.tone-btn.selected{border-color:var(--pink);box-shadow:0 0 0 3px rgba(155,123,90,.25);transform:scale(1.18)}
 .sheet-total{display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-radius:14px;padding:14px 16px;margin-top:16px;margin-bottom:20px}
 .sheet-total .tot-label{font-size:.82rem;color:var(--ink3)}
 .sheet-total .tot-price{font-size:1.1rem;font-weight:700;color:var(--ink)}
@@ -344,50 +327,52 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  #nav{padding:0 20px;height:60px}
-  .nav-links{display:none}
+  #nav{top:10px;left:14px;right:14px;height:54px;padding:0 16px}
   .nav-right{display:none}
   .nav-hamburger{display:flex}
-  .nav-loc{display:none}
   #hero .hero-content{padding:0 20px}
-  #aesthetics,#brands,#artists,#how,#reviews,#cta,footer{padding-left:20px;padding-right:20px}
+  #aesthetics,#reviews,footer{padding-left:20px;padding-right:20px}
+  .brands-wrap{padding:28px 12px}
+  #brands{padding-left:20px;padding-right:20px}
   #aesthetics{padding-left:0}
   .aesthetics-head{padding:0 20px}
   .aesthetics-scroll{padding-right:20px}
   .how-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
   .mob-nav{display:block}
-  #quickbook{padding:20px}
 }
 @media(max-width:600px){
   .how-grid{grid-template-columns:1fr}
   .reviews-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr}
-  #cta{flex-direction:column}
   .artists-grid{grid-template-columns:1fr}
 }
 
 /* ─── AUTH MODAL ─── */
-#authModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:16px}
+#authModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.12);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:flex-start;justify-content:flex-end;padding:80px 20px 0;opacity:0;pointer-events:none;transition:opacity .3s,backdrop-filter .3s}
 #authModal.open{opacity:1;pointer-events:all}
-.auth-box{background:#fff;border-radius:28px;width:100%;max-width:430px;position:relative;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1)}
-#authModal.open .auth-box{transform:translateY(0)}
-.auth-close-btn{position:absolute;top:14px;right:14px;background:var(--bg);border:none;width:34px;height:34px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);z-index:2;transition:background .18s}
-.auth-close-btn:hover{background:var(--border)}
+.auth-box{background:rgba(255,255,255,.82);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(255,255,255,.6);box-shadow:0 24px 64px rgba(10,10,10,.2),0 4px 16px rgba(10,10,10,.1);border-radius:28px;width:100%;max-width:360px;position:relative;overflow:hidden;transform:translateY(-14px) scale(.96);transform-origin:top right;transition:transform .32s cubic-bezier(.32,0,.15,1)}
+#authModal.open .auth-box{transform:translateY(0) scale(1)}
+.auth-close-btn{position:absolute;top:14px;right:14px;background:rgba(237,231,220,.6);border:none;width:34px;height:34px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);z-index:4;transition:background .18s}
+.auth-close-btn:hover{background:rgba(235,235,235,.7)}
+/* ─── AUTH MAKEUP ANIMATION ─── */
+.auth-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px;pointer-events:none;z-index:0}
+.mk-blob{position:absolute;border-radius:50%;filter:blur(34px);animation:mkPulse ease-in-out infinite}
+.mk-sparkle{position:absolute;width:5px;height:5px;border-radius:50%;animation:mkFloat linear infinite;opacity:0}
+@keyframes mkPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.8}}
+@keyframes mkFloat{0%{transform:translateY(0) scale(0);opacity:0}15%{opacity:.85;transform:translateY(-14px) scale(1)}80%{opacity:.35;transform:translateY(-88px) scale(.7)}100%{transform:translateY(-130px) scale(0);opacity:0}}
 .auth-header{padding:32px 32px 0;text-align:center}
 .auth-brand{font-size:1rem;font-weight:700;letter-spacing:-.3px;margin-bottom:16px;color:var(--ink)}
 .auth-brand span{color:var(--pink)}
 .auth-panel-title{font-family:'Instrument Serif',serif;font-size:1.65rem;font-style:italic;color:var(--ink);margin-bottom:5px}
 .auth-panel-sub{font-size:.82rem;color:var(--ink3);line-height:1.5}
-.auth-tabs{display:flex;border-bottom:1px solid var(--border);margin:20px 32px 0}
+.auth-tabs{display:flex;border-bottom:1px solid rgba(235,235,235,.6);margin:20px 32px 0}
 .auth-tab{flex:1;background:none;border:none;border-bottom:2.5px solid transparent;padding:11px 8px;font-family:inherit;font-size:.85rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;margin-bottom:-1px}
 .auth-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
 .auth-body{padding:22px 32px 32px}
 .auth-panel{display:none}
 .auth-panel.active{display:block}
 .a-field-label{font-size:.74rem;font-weight:600;color:var(--ink2);letter-spacing:.3px;margin-bottom:5px;display:block}
-.a-field{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:var(--bg);outline:none;transition:border-color .18s;margin-bottom:12px;display:block}
-.a-field:focus{border-color:var(--pink)}
+.a-field{width:100%;border:1.5px solid rgba(235,235,235,.7);border-radius:12px;padding:12px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:rgba(255,255,255,.55);outline:none;transition:border-color .18s,background .18s;margin-bottom:12px;display:block}
+.a-field:focus{border-color:var(--pink);background:rgba(255,255,255,.8)}
 .a-field::placeholder{color:#BCBCBC}
 .auth-forgot-link{font-size:.79rem;color:var(--pink);cursor:pointer;text-align:right;margin:-4px 0 14px;display:block}
 .auth-forgot-link:hover{text-decoration:underline}
@@ -442,21 +427,136 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 /* ─── TOAST ─── */
 .md-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);padding:11px 22px;border-radius:50px;font-size:.84rem;font-weight:600;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.18);pointer-events:none;transition:opacity .3s}
+
+/* ─── BOOKING FLOW MODAL ─── */
+#bookingFlow{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+#bookingFlow.open{opacity:1;pointer-events:all}
+.bf-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);position:relative;overflow:hidden}
+.bf-splash{position:absolute;inset:0;z-index:10;border-radius:28px 28px 0 0;overflow:hidden;flex-direction:column}
+.bf-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px 28px 0 0;pointer-events:none;z-index:0}
+#bookingFlow.open .bf-box{transform:none}
+.bf-handle{width:40px;height:4px;background:var(--border);border-radius:2px;flex-shrink:0}
+.bf-header{padding:0 24px 10px;border-bottom:1px solid rgba(235,235,235,.5);position:sticky;top:0;background:rgba(237,231,220,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:2;flex-shrink:0;border-radius:28px 28px 0 0}
+.bf-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.bf-title{font-size:.95rem;font-weight:700;color:var(--ink)}
+.bf-close{background:var(--bg);border:none;width:34px;height:34px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:background .18s}
+.bf-close:hover{background:var(--border)}
+.bf-steps{display:flex;gap:5px;margin-bottom:14px}
+.bf-step-dot{flex:1;height:3px;background:var(--border);border-radius:2px;transition:background .3s}
+.bf-step-dot.done{background:var(--green)}
+.bf-step-dot.active{background:var(--pink)}
+.bf-body{padding:24px;overflow-y:auto;flex:1}
+.bf-body::-webkit-scrollbar{width:3px}
+.bf-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.bf-panel{display:none}
+.bf-panel.active{display:block}
+.bf-panel-fill.active{display:flex!important;flex-direction:column;height:100%;overflow:hidden}
+.bf-fill-scroll{flex:1;min-height:0;overflow-y:auto;padding:2px 4px 0}
+.bf-panel-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:4px}
+.bf-panel-sub{font-size:.84rem;color:var(--ink3);margin-bottom:22px;line-height:1.5}
+/* Tones */
+.bf-tones{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px;padding:8px 12px 0}
+.bf-tone-btn{aspect-ratio:1;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;width:100%;background:none}
+.bf-tone-btn:hover{transform:scale(1.12)}
+.bf-tone-btn.selected{border-color:var(--pink);box-shadow:0 0 0 4px rgba(155,123,90,.22);transform:scale(1.15)}
+/* Date + time */
+.bf-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding:0 2px}
+.bf-cal-month-lbl{font-weight:700;font-size:1.08rem;color:var(--ink);letter-spacing:-.2px}
+.bf-cal-nav{background:rgba(155,123,90,.09);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1.15rem;display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:background .15s;flex-shrink:0}
+.bf-cal-nav:hover:not(:disabled){background:rgba(155,123,90,.18)}
+.bf-cal-nav:disabled{opacity:.2;cursor:default}
+.bf-cal-dow{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:6px}
+.bf-cal-dow span{font-size:.65rem;font-weight:600;color:var(--ink3);padding:4px 0;letter-spacing:.5px}
+.bf-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-bottom:18px}
+.bf-cal-day{aspect-ratio:1;border:none;background:none;border-radius:50%;font-size:.9rem;cursor:pointer;font-family:inherit;color:var(--ink);transition:background .14s;display:flex;align-items:center;justify-content:center;width:100%;position:relative}
+.bf-cal-day:hover:not(:disabled):not(.active){background:rgba(155,123,90,.1)}
+.bf-cal-day.active{background:var(--pink);color:#fff;font-weight:600}
+.bf-cal-day.today:not(.active)::after{content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--pink)}
+.bf-cal-day:disabled{color:rgba(0,0,0,.18);cursor:default}
+.bf-time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.bf-t-slot{border:1.5px solid var(--border);border-radius:10px;padding:9px 6px;text-align:center;font-size:.8rem;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .18s}
+.bf-t-slot:hover,.bf-t-slot.active{border-color:var(--pink);background:var(--pink-bg);color:var(--pink)}
+/* Prestige slider */
+.bf-prestige-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.bf-prestige-tab{flex:1;min-width:0;background:var(--border);border:none;border-radius:50px;padding:7px 4px;font-family:inherit;font-size:.68rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;white-space:nowrap;text-align:center}
+.bf-prestige-tab.active{background:var(--pink);color:#fff}
+.bf-brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow-y:auto;flex:1;min-height:0;padding-bottom:8px}
+.bf-brand-card{border-radius:16px;min-height:160px;background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.bf-brand-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,rgba(5,5,5,.3) 55%,rgba(5,5,5,.05) 100%)}
+.bf-brand-inner{position:relative;z-index:1;padding:12px 12px}
+.bf-brand-name{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:4px}
+.bf-brand-about{font-size:.71rem;color:rgba(255,255,255,.65);line-height:1.45}
+/* Style grid */
+.bf-style-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding-bottom:8px}
+.bf-style-card{border-radius:18px;padding:18px 16px 16px;cursor:pointer;border:2.5px solid transparent;transition:border-color .22s,box-shadow .22s,transform .22s;position:relative;overflow:hidden;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center}
+.bf-style-card:hover{transform:scale(1.02)}
+.bf-style-card.selected{border-color:rgba(255,255,255,.9);box-shadow:0 0 0 3px var(--pink)}
+.bf-style-name{font-size:.88rem;font-weight:700;color:#fff;position:relative;z-index:1;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.bf-style-desc{font-size:.7rem;color:rgba(255,255,255,.78);position:relative;z-index:1;margin-top:2px;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+.bf-style-check{position:absolute;top:10px;right:10px;width:22px;height:22px;background:rgba(0,0,0,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;z-index:1;transition:background .2s;color:#fff}
+.bf-style-card.selected .bf-style-check{background:var(--pink)}
+/* Assignment */
+.bf-assign-grid{display:flex;flex-direction:column;gap:10px;padding-bottom:8px}
+.bf-assign-card{border-radius:18px;cursor:pointer;transition:border-color .22s,box-shadow .22s;position:relative;overflow:hidden;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center;border:2.5px solid transparent}
+.bf-assign-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.bf-assign-card.selected{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink)}
+.bf-assign-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.88) 0%,rgba(5,5,5,.3) 55%,rgba(5,5,5,.08) 100%)}
+.bf-assign-inner{position:relative;z-index:1;padding:14px 16px}
+.bf-assign-name{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:3px}
+.bf-assign-desc{font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.4}
+/* Custom artist list */
+.bf-sort-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.bf-sort-chip{background:var(--bg);border:1.5px solid var(--border);color:var(--ink2);padding:6px 12px;border-radius:50px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .18s}
+.bf-sort-chip.active{background:var(--pink-bg);border-color:var(--pink);color:var(--pink)}
+.bf-artist-list{display:flex;flex-direction:column;gap:12px}
+.bf-a-card{border:1.5px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;transition:all .22s;display:flex}
+.bf-a-card:hover{border-color:var(--pink);box-shadow:0 4px 20px rgba(155,123,90,.12);transform:translateY(-2px)}
+.bf-a-card.selected{border-color:var(--pink);background:var(--pink-bg)}
+.bf-a-img{width:88px;flex-shrink:0;position:relative}
+.bf-a-img img{width:100%;height:100%;object-fit:cover;display:block}
+.bf-a-avail{position:absolute;bottom:6px;left:6px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.58);color:#fff;padding:3px 8px;border-radius:20px;font-size:.62rem;font-weight:600}
+.bf-a-body{flex:1;padding:13px 14px 13px 14px}
+.bf-a-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
+.bf-a-name{font-size:.92rem;font-weight:700;color:var(--ink)}
+.bf-a-price{font-size:.82rem;font-weight:700;color:var(--pink)}
+.bf-a-spec{font-size:.72rem;color:var(--ink3);margin-bottom:6px}
+.bf-a-row{display:flex;align-items:center;gap:10px;font-size:.73rem;flex-wrap:wrap;margin-bottom:10px}
+.bf-a-rating{font-weight:600;color:var(--ink)}
+.bf-a-dist{color:var(--ink3)}
+.bf-a-select-btn{width:100%;background:var(--ink);color:#fff;border:none;padding:8px;border-radius:50px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;transition:background .2s}
+.bf-a-select-btn:hover,.bf-a-card.selected .bf-a-select-btn{background:var(--pink)}
+/* Confirmation */
+.bf-confirm-artist{display:flex;gap:14px;align-items:center;background:var(--bg);border-radius:18px;padding:16px;margin-bottom:18px}
+.bf-confirm-img{width:68px;height:68px;border-radius:12px;object-fit:cover;flex-shrink:0}
+.bf-confirm-name{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:2px}
+.bf-confirm-spec{font-size:.76rem;color:var(--ink3)}
+.bf-confirm-rating{font-size:.78rem;color:var(--ink);font-weight:600;margin-top:5px}
+.bf-summary-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.bf-summary-label{color:var(--ink3)}
+.bf-summary-val{font-weight:600;color:var(--ink);text-align:right;max-width:55%}
+.bf-confirm-btn{width:100%;background:var(--pink);color:#fff;border:none;padding:16px;border-radius:50px;font-family:inherit;font-size:.95rem;font-weight:700;margin-top:22px;cursor:pointer;transition:opacity .2s}
+.bf-confirm-btn:hover{opacity:.88}
+.bf-nav-btns{display:flex;gap:10px;margin-top:24px}
+.bf-back-btn{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
+.bf-back-btn:hover{border-color:var(--ink)}
+.bf-next-btn{flex:2;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:opacity .2s}
+.bf-next-btn:hover{opacity:.88}
+.bf-next-btn:disabled{opacity:.5;cursor:default}
+.bf-section-lbl{font-size:.75rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:block}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">Makeup<span>Day</span></div>
-  <div class="nav-loc" onclick="alert('Location services coming soon!')">
-    <span class="pulse"></span>
-    <span>Abuja, Nigeria</span>
-    <span style="font-size:.7rem;color:var(--ink3)">▾</span>
+  <div class="nav-left">
+    <button class="nav-btn" id="navBookBtn" onclick="openBookingFlow()" style="opacity:0;pointer-events:none;transition:opacity .3s;display:inline-flex;align-items:center;gap:7px">
+      Book Now <svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
   </div>
+  <div class="nav-logo">Makeup<span>Day</span></div>
   <div class="nav-right">
-    <button class="nav-btn" onclick="document.getElementById('artists').scrollIntoView({behavior:'smooth'})">Book Now</button>
-    <div class="nav-avatar" onclick="openAuth('signin')" title="Sign In / Sign Up" style="cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <button class="nav-btn" id="navJoinBtn" onclick="openAuth('artist')" style="opacity:0;pointer-events:none;transition:opacity .3s">Join as Artist</button>
   </div>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleDrawer()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -470,13 +570,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     <div class="drawer-logo">Makeup<span>Day</span></div>
     <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
-  <div class="drawer-loc" onclick="alert('Location services coming soon!')">
-    <span class="pulse" style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite"></span>
-    <span>Abuja, Nigeria</span>
-    <span style="font-size:.7rem;color:var(--ink3);margin-left:auto">▾</span>
-  </div>
   <div class="drawer-links">
-    <a class="drawer-link" onclick="scrollTo_('artists');closeDrawer()">
+    <a class="drawer-link" onclick="openBookingFlow();closeDrawer()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       Browse Artists
     </a>
@@ -488,10 +583,6 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       Browse by Brand
     </a>
-    <a class="drawer-link" onclick="scrollTo_('how');closeDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      How it Works
-    </a>
     <div class="drawer-divider"></div>
     <a class="drawer-link" onclick="openAuth('artist');closeDrawer()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -499,7 +590,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     </a>
   </div>
   <div class="drawer-cta">
-    <button class="drawer-cta-book" onclick="scrollTo_('artists');closeDrawer()">Book an Artist →</button>
+    <button class="drawer-cta-book" onclick="openBookingFlow();closeDrawer()">Book an Artist →</button>
     <button class="drawer-cta-signin" onclick="openAuth('signin');closeDrawer()">Sign In / Sign Up</button>
   </div>
 </div>
@@ -514,14 +605,18 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   </div>
   <div class="hero-overlay" id="heroOverlay"></div>
   <div class="hero-content" id="heroContent">
-    <div class="hero-live"><span class="dot"></span>47 artists available right now</div>
     <h1 class="hero-h1">
       Your <span class="word" id="cycleWord">Owambe</span><br/>look, sorted.
     </h1>
-    <p class="hero-sub">Book a certified makeup artist near you in Abuja — pick by the brands they use, the looks they slay.</p>
-    <div class="hero-search-bar">
-      <input type="text" id="heroSearch" placeholder="Wuse 2, Maitama, Gwarinpa…" />
-      <button onclick="document.getElementById('artists').scrollIntoView({behavior:'smooth'})">Find Artists →</button>
+    <p class="hero-sub">Book a certified makeup artist near you. Pick by the brands they use, the looks they slay.</p>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <button onclick="openBookingFlow()" style="display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:#fff;border:none;padding:18px 36px;border-radius:60px;font-family:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(155,123,90,.45);transition:all .22s;letter-spacing:.2px" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(155,123,90,.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(155,123,90,.45)'">
+        Book Now
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <button onclick="openAuth('artist')" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:16px 28px;border-radius:60px;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;transition:all .22s" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">
+        Join as Artist
+      </button>
     </div>
   </div>
   <div class="hero-dots" id="heroDots">
@@ -530,23 +625,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     <div class="hero-dot"></div>
     <div class="hero-dot"></div>
   </div>
-  <div class="hero-scroll-hint">
-    <div class="hero-scroll-icon"></div>
-    <span>Scroll</span>
-  </div>
 </section>
-
-<!-- QUICK BOOK -->
-<div id="quickbook">
-  <span class="qb-label">Book for</span>
-  <div class="qb-chips">
-    <button class="qb-chip active">Today</button>
-    <button class="qb-chip">Tonight</button>
-    <button class="qb-chip">This Weekend</button>
-    <button class="qb-chip">Custom Date</button>
-    <button class="qb-chip">Early Morning</button>
-  </div>
-</div>
 
 <!-- BROWSE BY AESTHETIC -->
 <section id="aesthetics">
@@ -559,7 +638,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   </div>
   <div class="aesthetics-scroll" id="aesScroll">
 
-    <div class="aes-card" data-style="owambe" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="owambe" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80" alt="Owambe Glam" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -568,7 +647,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="bridal" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="bridal" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80" alt="Bridal" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -577,7 +656,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="editorial" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="editorial" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1648671095483-254807669fcd?w=400&q=80" alt="Editorial" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -586,7 +665,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="natural" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="natural" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=400&q=80" alt="Clean Natural" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -595,7 +674,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="glam" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="glam" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" alt="Full Glam" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -604,7 +683,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="asoebi" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="asoebi" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=400&q=80" alt="Aso-ebi Ready" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -613,7 +692,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="traditional" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="traditional" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80" alt="Traditional" loading="lazy" style="filter:sepia(.45) brightness(.9)"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -622,7 +701,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="softglam" onclick="filterByStyle(this)">
+    <div class="aes-card" data-style="softglam" onclick="openBookingFlow(this.dataset.style)">
       <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80" alt="Soft Glam" loading="lazy" style="filter:brightness(1.05) saturate(1.15)"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
@@ -635,6 +714,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </section>
 
 <!-- BROWSE BY BRAND -->
+<div class="brands-wrap">
 <section id="brands">
   <div class="brands-head reveal">
     <div class="tag">Browse by brand</div>
@@ -643,73 +723,73 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   </div>
   <div class="brand-scroll" id="brandsGrid">
 
-    <button class="brand-tile active" data-brand="all" onclick="filterByBrand(this)">
+    <button class="brand-tile active" data-brand="all" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:var(--ink);color:#fff;font-size:.7rem">ALL</div>
       <div class="b-name">All Brands</div>
       <div class="b-count">200+ artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="mac" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="mac" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#0A0A0A;color:#fff;font-size:.78rem;letter-spacing:3px">M·A·C</div>
       <div class="b-name">MAC</div>
       <div class="b-count">24 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="fenty" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="fenty" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#F2E6D9;color:#1A0E06;font-size:.72rem;letter-spacing:2px">FENTY</div>
       <div class="b-name">Fenty Beauty</div>
       <div class="b-count">18 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="zaron" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="zaron" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#B04010;color:#fff;font-size:1.2rem;font-style:italic;letter-spacing:1px">Z</div>
       <div class="b-name">Zaron</div>
       <div class="b-count">31 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="tara" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="tara" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#5C2E14;color:#E8C88A;font-size:.68rem;letter-spacing:2px">H·O·T</div>
       <div class="b-name">House of Tara</div>
       <div class="b-count">22 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="bmpro" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="bmpro" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#1A2F4A;color:#fff;font-size:.78rem;letter-spacing:2px">BM PRO</div>
       <div class="b-name">BM Pro</div>
       <div class="b-count">19 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="charlotte" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="charlotte" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:linear-gradient(135deg,#C4956A,#E8C4A0);color:#fff;font-size:.82rem;letter-spacing:2px">CT</div>
       <div class="b-name">Charlotte Tilbury</div>
       <div class="b-count">12 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="huda" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="huda" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#F4A6B5;color:#fff;font-size:.72rem;letter-spacing:2px">HUDA</div>
       <div class="b-name">Huda Beauty</div>
       <div class="b-count">14 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="nars" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="nars" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#111111;color:#fff;font-size:.88rem;letter-spacing:3px">NARS</div>
       <div class="b-name">NARS</div>
       <div class="b-count">9 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="nyx" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="nyx" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#CC0022;color:#fff;font-size:.98rem;letter-spacing:3px">NYX</div>
       <div class="b-name">NYX</div>
       <div class="b-count">20 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="pat" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="pat" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#1C0A2A;color:#D4AF6A;font-size:.72rem;letter-spacing:1.5px">PMG</div>
       <div class="b-name">Pat McGrath</div>
       <div class="b-count">7 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="black-opal" onclick="filterByBrand(this)">
+    <button class="brand-tile" data-brand="black-opal" onclick="openBookingFlow(null,this.dataset.brand)">
       <div class="brand-mark" style="background:#2A1209;color:#C9963A;font-size:.65rem;letter-spacing:1.5px">OPAL</div>
       <div class="b-name">Black Opal</div>
       <div class="b-count">16 artists</div>
@@ -718,222 +798,12 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   </div>
   </div>
 </section>
-
-<!-- ARTISTS -->
-<section id="artists">
-  <div class="artists-head">
-    <div class="artists-head-left reveal-left">
-      <div class="tag">Live near you</div>
-      <h2 class="section-title">Available <em style="color:var(--pink)">now</em></h2>
-      <p class="artists-meta" id="artistsMeta">Showing 6 artists in Abuja</p>
-    </div>
-  </div>
-  <div class="sort-row">
-    <span class="sort-label">Sort:</span>
-    <button class="sort-chip active" onclick="sortArtists('nearest',this)">Nearest</button>
-    <button class="sort-chip" onclick="sortArtists('rating',this)">Top Rated</button>
-    <button class="sort-chip" onclick="sortArtists('price',this)">Price</button>
-    <button class="sort-chip" onclick="sortArtists('available',this)">Available Now</button>
-  </div>
-
-  <div class="artists-grid" id="artistsGrid">
-
-    <!-- ARTIST 1 -->
-    <div class="a-card reveal" data-brand="fenty mac" data-style="owambe glam" data-dist="0.4" data-rating="4.97" data-price="18000" data-avail="now"
-         onclick="openSheet('Chidinma Okafor','Full Glam & Owambe','₦18,000','4.97','312','Maitama, 0.4 km away',['Fenty Beauty','MAC','Charlotte Tilbury'],'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=600&q=80')">
-      <div class="a-card-img">
-        <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=500&q=80" alt="Chidinma Okafor" loading="lazy"/>
-        <div class="a-avail"><span class="dot"></span>Available · 5 min</div>
-        <button class="a-heart" onclick="event.stopPropagation();toggleHeart(this)">♡</button>
-      </div>
-      <div class="a-card-body">
-        <div class="a-card-top">
-          <div class="a-name">Chidinma Okafor</div>
-          <div class="a-price">₦18,000/hr</div>
-        </div>
-        <div class="a-spec">Full Glam · Owambe Specialist</div>
-        <div class="a-row">
-          <div class="a-rating"><span class="star">★</span> 4.97 <span class="rev">(312)</span></div>
-          <div class="a-dist">Maitama · 0.4 km</div>
-        </div>
-        <div class="a-brands">
-          <span class="a-brand lux">Fenty Beauty</span>
-          <span class="a-brand lux">Charlotte Tilbury</span>
-          <span class="a-brand">MAC</span>
-        </div>
-        <button class="a-book" onclick="event.stopPropagation(); openSheet('Chidinma Okafor','Full Glam & Owambe','₦18,000','4.97','312','Maitama, 0.4 km away',['Fenty Beauty','MAC','Charlotte Tilbury'],'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=600&q=80')">Book Chidinma</button>
-      </div>
-    </div>
-
-    <!-- ARTIST 2 -->
-    <div class="a-card reveal" data-brand="zaron tara bmpro" data-style="bridal traditional owambe" data-dist="0.7" data-rating="5.0" data-price="25000" data-avail="now"
-         onclick="openSheet('Fatima Al-Hassan','Bridal & Traditional','₦25,000','5.0','98','Wuse 2, 0.7 km away',['Zaron','House of Tara','BM Pro'],'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=600&q=80')">
-      <div class="a-card-img">
-        <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=500&q=80" alt="Fatima Al-Hassan" loading="lazy"/>
-        <div class="a-avail"><span class="dot"></span>Available · 8 min</div>
-        <button class="a-heart" onclick="event.stopPropagation();toggleHeart(this)">♡</button>
-      </div>
-      <div class="a-card-body">
-        <div class="a-card-top">
-          <div class="a-name">Fatima Al-Hassan</div>
-          <div class="a-price">₦25,000/hr</div>
-        </div>
-        <div class="a-spec">Bridal · Traditional · Northern</div>
-        <div class="a-row">
-          <div class="a-rating"><span class="star">★</span> 5.0 <span class="rev">(98)</span></div>
-          <div class="a-dist">Wuse 2 · 0.7 km</div>
-        </div>
-        <div class="a-brands">
-          <span class="a-brand lux">Zaron</span>
-          <span class="a-brand">House of Tara</span>
-          <span class="a-brand">BM Pro</span>
-        </div>
-        <button class="a-book" onclick="event.stopPropagation(); openSheet('Fatima Al-Hassan','Bridal & Traditional','₦25,000','5.0','98','Wuse 2, 0.7 km away',['Zaron','House of Tara','BM Pro'],'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=600&q=80')">Book Fatima</button>
-      </div>
-    </div>
-
-    <!-- ARTIST 3 -->
-    <div class="a-card reveal" data-brand="mac nars black-opal" data-style="editorial natural" data-dist="1.1" data-rating="4.91" data-price="15000" data-avail="now"
-         onclick="openSheet('Blessing Eze','Editorial & Natural Glam','₦15,000','4.91','243','Garki, 1.1 km away',['MAC','NARS','Black Opal'],'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=600&q=80')">
-      <div class="a-card-img">
-        <img src="https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80" alt="Blessing Eze" loading="lazy"/>
-        <div class="a-avail busy"><span class="dot" style="background:#FF9500;animation:none"></span>Busy · 25 min</div>
-        <button class="a-heart" onclick="event.stopPropagation();toggleHeart(this)">♡</button>
-      </div>
-      <div class="a-card-body">
-        <div class="a-card-top">
-          <div class="a-name">Blessing Eze</div>
-          <div class="a-price">₦15,000/hr</div>
-        </div>
-        <div class="a-spec">Editorial · Natural Glow</div>
-        <div class="a-row">
-          <div class="a-rating"><span class="star">★</span> 4.91 <span class="rev">(243)</span></div>
-          <div class="a-dist">Garki · 1.1 km</div>
-        </div>
-        <div class="a-brands">
-          <span class="a-brand lux">NARS</span>
-          <span class="a-brand">MAC</span>
-          <span class="a-brand">Black Opal</span>
-        </div>
-        <button class="a-book" onclick="event.stopPropagation(); openSheet('Blessing Eze','Editorial & Natural Glam','₦15,000','4.91','243','Garki, 1.1 km away',['MAC','NARS','Black Opal'],'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=600&q=80')">Book Blessing</button>
-      </div>
-    </div>
-
-    <!-- ARTIST 4 -->
-    <div class="a-card reveal" data-brand="charlotte pat huda" data-style="glam bridal" data-dist="1.4" data-rating="4.95" data-price="30000" data-avail="now"
-         onclick="openSheet('Adaeze Nwachukwu','Luxury Bridal & Glam','₦30,000','4.95','156','Asokoro, 1.4 km away',['Charlotte Tilbury','Pat McGrath','Huda Beauty'],'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=600&q=80')">
-      <div class="a-card-img">
-        <img src="https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80" alt="Adaeze Nwachukwu" loading="lazy"/>
-        <div class="a-avail"><span class="dot"></span>Available · 12 min</div>
-        <button class="a-heart" onclick="event.stopPropagation();toggleHeart(this)">♡</button>
-      </div>
-      <div class="a-card-body">
-        <div class="a-card-top">
-          <div class="a-name">Adaeze Nwachukwu</div>
-          <div class="a-price">₦30,000/hr</div>
-        </div>
-        <div class="a-spec">Luxury Bridal · High Glam</div>
-        <div class="a-row">
-          <div class="a-rating"><span class="star">★</span> 4.95 <span class="rev">(156)</span></div>
-          <div class="a-dist">Asokoro · 1.4 km</div>
-        </div>
-        <div class="a-brands">
-          <span class="a-brand lux">Pat McGrath</span>
-          <span class="a-brand lux">Charlotte Tilbury</span>
-          <span class="a-brand lux">Huda Beauty</span>
-        </div>
-        <button class="a-book" onclick="event.stopPropagation(); openSheet('Adaeze Nwachukwu','Luxury Bridal & Glam','₦30,000','4.95','156','Asokoro, 1.4 km away',['Charlotte Tilbury','Pat McGrath','Huda Beauty'],'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=600&q=80')">Book Adaeze</button>
-      </div>
-    </div>
-
-    <!-- ARTIST 5 -->
-    <div class="a-card reveal" data-brand="zaron nyx tara" data-style="asoebi owambe softglam" data-dist="1.9" data-rating="4.88" data-price="12000" data-avail="now"
-         onclick="openSheet('Ngozi Adeyemi','Aso-ebi & Soft Glam','₦12,000','4.88','187','Utako, 1.9 km away',['Zaron','NYX','House of Tara'],'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=600&q=80')">
-      <div class="a-card-img">
-        <img src="https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80" alt="Ngozi Adeyemi" loading="lazy"/>
-        <div class="a-avail"><span class="dot"></span>Available · 3 min</div>
-        <button class="a-heart" onclick="event.stopPropagation();toggleHeart(this)">♡</button>
-      </div>
-      <div class="a-card-body">
-        <div class="a-card-top">
-          <div class="a-name">Ngozi Adeyemi</div>
-          <div class="a-price">₦12,000/hr</div>
-        </div>
-        <div class="a-spec">Aso-ebi · Soft Glam</div>
-        <div class="a-row">
-          <div class="a-rating"><span class="star">★</span> 4.88 <span class="rev">(187)</span></div>
-          <div class="a-dist">Utako · 1.9 km</div>
-        </div>
-        <div class="a-brands">
-          <span class="a-brand lux">Zaron</span>
-          <span class="a-brand">NYX</span>
-          <span class="a-brand">House of Tara</span>
-        </div>
-        <button class="a-book" onclick="event.stopPropagation(); openSheet('Ngozi Adeyemi','Aso-ebi & Soft Glam','₦12,000','4.88','187','Utako, 1.9 km away',['Zaron','NYX','House of Tara'],'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=600&q=80')">Book Ngozi</button>
-      </div>
-    </div>
-
-    <!-- ARTIST 6 -->
-    <div class="a-card reveal" data-brand="fenty bmpro black-opal" data-style="natural editorial softglam" data-dist="2.1" data-rating="4.93" data-price="20000" data-avail="now"
-         onclick="openSheet('Aisha Musa','Natural Glow & Editorial','₦20,000','4.93','204','Jabi, 2.1 km away',['Fenty Beauty','BM Pro','Black Opal'],'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80')">
-      <div class="a-card-img">
-        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80" alt="Aisha Musa" loading="lazy"/>
-        <div class="a-avail"><span class="dot"></span>Available · 15 min</div>
-        <button class="a-heart" onclick="event.stopPropagation();toggleHeart(this)">♡</button>
-      </div>
-      <div class="a-card-body">
-        <div class="a-card-top">
-          <div class="a-name">Aisha Musa</div>
-          <div class="a-price">₦20,000/hr</div>
-        </div>
-        <div class="a-spec">Natural Glow · Editorial</div>
-        <div class="a-row">
-          <div class="a-rating"><span class="star">★</span> 4.93 <span class="rev">(204)</span></div>
-          <div class="a-dist">Jabi · 2.1 km</div>
-        </div>
-        <div class="a-brands">
-          <span class="a-brand lux">Fenty Beauty</span>
-          <span class="a-brand">BM Pro</span>
-          <span class="a-brand">Black Opal</span>
-        </div>
-        <button class="a-book" onclick="event.stopPropagation(); openSheet('Aisha Musa','Natural Glow & Editorial','₦20,000','4.93','204','Jabi, 2.1 km away',['Fenty Beauty','BM Pro','Black Opal'],'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80')">Book Aisha</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="how-inner">
-    <div class="reveal" style="text-align:center;margin-bottom:8px">
-      <div class="tag" style="justify-content:center">Dead simple</div>
-      <h2 class="section-title">How it works</h2>
-    </div>
-    <div class="how-grid">
-      <div class="how-step reveal">
-        <div class="how-num">01</div>
-        <h3>Drop your location</h3>
-        <p>Enter your area in Abuja — Wuse, Maitama, Gwarinpa, Garki — and we find who's nearby and ready.</p>
-      </div>
-      <div class="how-step reveal">
-        <div class="how-num">02</div>
-        <h3>Filter to your taste</h3>
-        <p>Pick the vibe (Owambe? Bridal? Editorial?) and filter by brand. Fenty only? Charlotte Tilbury certified? Done.</p>
-      </div>
-      <div class="how-step reveal">
-        <div class="how-num">03</div>
-        <h3>Book, done.</h3>
-        <p>Pick a time, confirm your services, and pay securely. Your artist shows up, you walk out flawless.</p>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- TESTIMONIALS -->
 <section id="reviews">
   <div class="reviews-head reveal">
-    <div class="tag" style="color:rgba(232,23,90,.8)">Real people, real glam</div>
+    <div class="tag" style="color:rgba(155,123,90,.8)">Real people, real glam</div>
     <h2 class="section-title">They booked. They slayed.</h2>
   </div>
   <div class="reviews-grid">
@@ -950,7 +820,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     </div>
     <div class="r-card reveal">
       <div class="r-stars">★★★★★</div>
-      <p class="r-text">"My sister's traditional wedding needed four bridesmaids done. We used the group booking feature and Fatima came with her full kit — full House of Tara and Zaron setup. Everyone was done in under 3 hours. She understood the aesthetic immediately."</p>
+      <p class="r-text">"My sister's traditional wedding needed four bridesmaids done. We used the group booking feature and Fatima came with her full kit including full House of Tara and Zaron setup. Everyone was done in under 3 hours. She understood the aesthetic immediately."</p>
       <div class="r-author">
         <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kemi&backgroundColor=e8d5f5" alt="Kemi" style="background:#e8d5f5"/>
         <div>
@@ -961,7 +831,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     </div>
     <div class="r-card reveal">
       <div class="r-stars">★★★★★</div>
-      <p class="r-text">"I travel to Abuja for work every month. Makeup Day is now my first download when I land. Searched 'Garki, editorial' and Blessing came up. Looked incredible for my pitch. The live availability dot is everything — no back-and-forth DMs."</p>
+      <p class="r-text">"I travel to Abuja for work every month. Makeup Day is now my first download when I land. Searched 'Garki, editorial' and Blessing came up. Looked incredible for my pitch. The live availability dot is everything. No back and forth DMs."</p>
       <div class="r-author">
         <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Zainab&backgroundColor=d5f5e3" alt="Zainab" style="background:#d5f5e3"/>
         <div>
@@ -973,65 +843,17 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   </div>
 </section>
 
-<!-- CTA -->
-<div id="cta">
-  <div class="cta-text reveal-left">
-    <h2>Are you a makeup artist<br/>in Abuja?</h2>
-    <p>Join 200+ verified MUAs earning consistently through Makeup Day. Set your own rates, own your calendar.</p>
-  </div>
-  <div class="cta-btns reveal">
-    <button class="cta-btn-white" onclick="openAuth('artist')">Join as Artist</button>
-    <button class="cta-btn-outline">Learn More</button>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer>
-  <div class="foot-grid">
-    <div>
-      <div class="foot-logo">Makeup<span>Day</span></div>
-      <p class="foot-tagline">Abuja's first makeup artist booking platform. Book by brand, book by vibe, book in minutes.</p>
-      <div class="foot-social">
-        <div class="foot-soc">𝕏</div>
-        <div class="foot-soc">ig</div>
-        <div class="foot-soc">tt</div>
-        <div class="foot-soc">wa</div>
-      </div>
+  <div class="foot-simple">
+    <div class="foot-logo">Makeup<span>Day</span></div>
+    <p class="foot-tagline">Abuja's first makeup artist booking platform.</p>
+    <div class="foot-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <span>·</span>
+      <a href="terms.html">Terms of Service</a>
     </div>
-    <div class="foot-col">
-      <h4>For Clients</h4>
-      <ul>
-        <li><a href="#">Browse Artists</a></li>
-        <li><a href="#">Browse by Brand</a></li>
-        <li><a href="#">Browse by Style</a></li>
-        <li><a href="#">Gift a Session</a></li>
-        <li><a href="#">Group Bookings</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>For Artists</h4>
-      <ul>
-        <li><a href="#">Join Makeup Day</a></li>
-        <li><a href="#">Artist Dashboard</a></li>
-        <li><a href="#">Earnings</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Community</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Press</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <p>© 2026 Makeup Day Ltd · Abuja, Nigeria</p>
-    <p><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Cookie Settings</a></p>
+    <p class="foot-copy">© <span id="footYear"></span> Makeup Day Ltd</p>
   </div>
 </footer>
 
@@ -1046,8 +868,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div class="mob-tab-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       <div class="mob-tab-label">Browse</div>
     </div>
-    <div class="mob-tab" onclick="mobTab(this,'book')">
-      <div class="mob-tab-icon" style="background:var(--pink);border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin-top:-18px;box-shadow:0 4px 16px rgba(232,23,90,.4);color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    <div class="mob-tab" onclick="openBookingFlow()">
+      <div class="mob-tab-icon" style="background:var(--pink);border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin-top:-18px;box-shadow:0 4px 16px rgba(155,123,90,.4);color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       <div class="mob-tab-label">Book</div>
     </div>
     <div class="mob-tab" onclick="mobTab(this,'bookings')">
@@ -1064,17 +886,27 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 <!-- AUTH MODAL -->
 <div id="authModal">
   <div class="auth-box">
-    <button class="auth-close-btn" onclick="closeAuth()">✕</button>
-    <div class="auth-header">
+    <div class="auth-makeup-bg">
+      <div class="mk-blob" style="width:210px;height:210px;background:rgba(155,123,90,.1);top:-80px;right:-50px;animation-duration:7s;animation-delay:0s"></div>
+      <div class="mk-blob" style="width:160px;height:160px;background:rgba(255,110,160,.08);bottom:-55px;left:-35px;animation-duration:9s;animation-delay:-3.5s"></div>
+      <div class="mk-blob" style="width:110px;height:110px;background:rgba(220,50,110,.07);top:45%;left:15%;animation-duration:11s;animation-delay:-5s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:22%;left:28%;animation-duration:4.2s;animation-delay:0s"></div>
+      <div class="mk-sparkle" style="background:#C4956A;top:55%;left:62%;animation-duration:5.1s;animation-delay:-1.6s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:72%;left:42%;animation-duration:3.7s;animation-delay:-2.2s"></div>
+      <div class="mk-sparkle" style="background:#D4B896;top:35%;left:78%;animation-duration:6s;animation-delay:-.7s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:65%;left:18%;animation-duration:4.8s;animation-delay:-3.1s"></div>
+      <div class="mk-sparkle" style="background:#B88C6A;top:12%;left:55%;animation-duration:5.5s;animation-delay:-1s"></div>
+    </div>
+    <div class="auth-header" style="position:relative;z-index:1">
       <div class="auth-brand">Makeup<span>Day</span></div>
       <div class="auth-panel-title" id="authTitle">Welcome back</div>
       <p class="auth-panel-sub" id="authSub">Sign in to book your artist</p>
     </div>
-    <div class="auth-tabs">
+    <div class="auth-tabs" style="position:relative;z-index:1">
       <button class="auth-tab active" id="tabSignIn" onclick="switchAuthTab('signin')">Sign In</button>
       <button class="auth-tab" id="tabSignUp" onclick="switchAuthTab('signup')">Sign Up</button>
     </div>
-    <div class="auth-body">
+    <div class="auth-body" style="position:relative;z-index:1">
 
       <!-- SIGN IN -->
       <div class="auth-panel active" id="panelSignIn">
@@ -1164,9 +996,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <select class="a-select" id="artExperience">
           <option value="">Select…</option>
           <option value="0-1">Less than 1 year</option>
-          <option value="1-2">1 – 2 years</option>
-          <option value="2-5">2 – 5 years</option>
-          <option value="5-10">5 – 10 years</option>
+          <option value="1-2">1 to 2 years</option>
+          <option value="2-5">2 to 5 years</option>
+          <option value="5-10">5 to 10 years</option>
           <option value="10+">10+ years</option>
         </select>
 
@@ -1220,7 +1052,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
         <label class="a-field-label">Do you have your own kit?</label>
         <div class="a-radio-group" id="kitRadio">
-          <div class="a-radio-btn" onclick="selectRadio('kitRadio',this,'Yes — full kit')">Yes, full kit</div>
+          <div class="a-radio-btn" onclick="selectRadio('kitRadio',this,'Yes, full kit')">Yes, full kit</div>
           <div class="a-radio-btn" onclick="selectRadio('kitRadio',this,'Partial kit')">Partial kit</div>
           <div class="a-radio-btn" onclick="selectRadio('kitRadio',this,'No kit yet')">No kit yet</div>
         </div>
@@ -1257,6 +1089,208 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
           <p style="font-size:.77rem;color:var(--ink3);margin-top:8px">Check your email for a verification link.</p>
           <button class="auth-submit-btn" style="margin-top:22px" onclick="closeArtistModal()">Done →</button>
         </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING FLOW -->
+<div id="bookingFlow" onclick="bfBackdropClick(event)">
+  <div class="bf-box">
+
+    <!-- SPLASH STEP 0: Welcome — covers entire card -->
+    <div class="bf-panel bf-splash" id="bfStep0" style="display:none">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80');background-size:cover;background-position:center"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.94) 0%,rgba(5,5,5,.55) 45%,rgba(5,5,5,.18) 100%)"></div>
+      <div style="position:relative;z-index:1;padding:40px 32px 40px;display:flex;flex-direction:column;height:100%">
+        <div>
+          <button onclick="closeBookingFlow();openAuth('signin')" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.28);color:#fff;padding:8px 16px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Sign In
+          </button>
+        </div>
+        <div style="flex:1"></div>
+        <div style="font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px">Makeup<span style="color:var(--pink)">Day</span></div>
+        <div style="font-family:'Instrument Serif',serif;font-size:2.2rem;font-style:italic;color:#fff;line-height:1.15;margin-bottom:18px">Book your artist<br/>in minutes.</div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:36px;max-width:340px">Tell us your skin tone, date, brand preferences and the look you want and we will match you with a verified makeup artist near you.</p>
+        <button class="bf-next-btn" style="flex:none;background:#fff;color:var(--ink);font-size:1rem;padding:18px" onclick="bfGoToStep('0b')">Get Started →</button>
+      </div>
+    </div>
+
+    <!-- SPLASH STEP 0b: Location — covers entire card -->
+    <div class="bf-panel bf-splash" id="bfStep0b" style="display:none">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1612892483236-52d32a0e0ac1?w=800&q=80');background-size:cover;background-position:center top"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.96) 0%,rgba(5,5,5,.65) 42%,rgba(5,5,5,.18) 100%)"></div>
+      <div style="position:relative;z-index:1;padding:40px 32px 32px;display:flex;flex-direction:column;height:100%">
+        <div style="display:flex;justify-content:center">
+          <div style="display:inline-flex;align-items:center;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 14px;border-radius:50px;font-size:.77rem;font-weight:600;width:fit-content">
+            Currently serving Abuja
+          </div>
+        </div>
+        <div style="flex:1"></div>
+        <div style="font-family:'Instrument Serif',serif;font-size:2rem;font-style:italic;color:#fff;line-height:1.15;margin-bottom:12px">Where should your<br/>artist come to?</div>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:20px">You're browsing from <strong style="color:#fff" id="bfLocationLabel">your location</strong>. Makeup Day operates in Abuja — enter the address where you'd like your artist to arrive.</p>
+        <div style="margin-bottom:24px">
+          <input id="bfAbujaAddress" type="text" placeholder="e.g. 14 Adetokunbo Ademola Cres, Wuse 2" style="width:100%;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;padding:15px 18px;font-family:inherit;font-size:.9rem;color:#fff;outline:none;transition:border-color .18s" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'"/>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.42);margin-top:8px;line-height:1.5">Street address, area, or landmark in Abuja</p>
+        </div>
+        <div style="margin-top:auto">
+          <button class="bf-next-btn" style="width:100%;flex:none" onclick="bfSaveAddress()">Continue →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Makeup animation layer — sits behind all card content -->
+    <div class="bf-makeup-bg">
+      <div class="mk-blob" style="width:280px;height:280px;background:rgba(155,123,90,.08);top:-100px;right:-80px;animation-duration:9s;animation-delay:0s"></div>
+      <div class="mk-blob" style="width:200px;height:200px;background:rgba(255,100,150,.06);bottom:-70px;left:-50px;animation-duration:11s;animation-delay:-4s"></div>
+      <div class="mk-blob" style="width:140px;height:140px;background:rgba(220,50,110,.05);top:50%;left:10%;animation-duration:13s;animation-delay:-6s"></div>
+      <div class="mk-blob" style="width:120px;height:120px;background:rgba(255,160,190,.06);top:30%;right:5%;animation-duration:10s;animation-delay:-2s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:18%;left:25%;animation-duration:5s;animation-delay:0s"></div>
+      <div class="mk-sparkle" style="background:#C4956A;top:45%;left:70%;animation-duration:6.2s;animation-delay:-2s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:68%;left:38%;animation-duration:4.5s;animation-delay:-1s"></div>
+      <div class="mk-sparkle" style="background:#D4B896;top:28%;left:82%;animation-duration:7s;animation-delay:-3s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:58%;left:12%;animation-duration:5.8s;animation-delay:-4s"></div>
+      <div class="mk-sparkle" style="background:#B88C6A;top:82%;left:55%;animation-duration:4.8s;animation-delay:-.5s"></div>
+      <div class="mk-sparkle" style="background:#9B7B5A;top:10%;left:60%;animation-duration:6.5s;animation-delay:-1.8s"></div>
+    </div>
+
+    <div class="bf-header" style="position:relative;z-index:3">
+      <div class="bf-handle" style="margin:8px auto 8px"></div>
+      <div class="bf-header-top">
+        <span class="bf-title" id="bfHeaderTitle">Book an Artist</span>
+      </div>
+      <div class="bf-steps" id="bfSteps"></div>
+    </div>
+    <div class="bf-body" style="position:relative;z-index:1">
+
+      <!-- STEP 1: Skin Tone -->
+      <div class="bf-panel bf-panel-fill" id="bfStep1">
+        <div class="bf-panel-title">What's your skin tone?</div>
+        <p class="bf-panel-sub">Your artist comes prepared with the right foundation shade. We'll remember this for next time.</p>
+        <div class="bf-fill-scroll">
+          <div class="bf-tones" id="bfTones"></div>
+          <p style="font-size:.72rem;color:var(--ink3);margin-top:10px">Tap a swatch · you can change this anytime</p>
+        </div>
+        <div class="bf-nav-btns" style="padding-top:20px">
+          <button class="bf-back-btn" onclick="bfPrevStep(1)">← Back</button>
+          <button class="bf-next-btn" onclick="bfNextStep(1)">Next: Date &amp; Time →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Date & Time -->
+      <div class="bf-panel bf-panel-fill" id="bfStep2">
+        <div class="bf-panel-title">When do you need your artist?</div>
+        <p class="bf-panel-sub">Pick your date and a time slot.</p>
+        <div class="bf-fill-scroll">
+          <div id="bfDateRow"></div>
+          <span class="bf-section-lbl">Time</span>
+          <div class="bf-time-grid" id="bfTimeGrid"></div>
+        </div>
+        <div class="bf-nav-btns" style="padding-top:20px">
+          <button class="bf-back-btn" onclick="bfPrevStep(2)">← Back</button>
+          <button class="bf-next-btn" onclick="bfNextStep(2)">Next: Brand →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Brand Prestige -->
+      <div class="bf-panel bf-panel-fill" id="bfStep3">
+        <div class="bf-panel-title">What brands should they use?</div>
+        <p class="bf-panel-sub">Pick a tier to filter artists by kit quality.</p>
+        <div class="bf-prestige-tabs" id="bfPrestigeLabels"></div>
+        <div class="bf-brand-grid" id="bfBrandGrid"></div>
+        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+          <button class="bf-back-btn" onclick="bfPrevStep(3)">← Back</button>
+          <button class="bf-next-btn" onclick="bfNextStep(3)">Next: Style →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Makeup Style -->
+      <div class="bf-panel bf-panel-fill" id="bfStep4">
+        <div class="bf-panel-title">What's the look?</div>
+        <p class="bf-panel-sub">Pick one or more styles and we'll match you with artists who specialise in them.</p>
+        <div class="bf-fill-scroll">
+          <div class="bf-style-grid" id="bfStyleGrid"></div>
+        </div>
+        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+          <button class="bf-back-btn" onclick="bfPrevStep(4)">← Back</button>
+          <button class="bf-next-btn" onclick="bfNextStep(4)">Next: Assignment →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Assignment -->
+      <div class="bf-panel bf-panel-fill" id="bfStep5">
+        <div class="bf-panel-title">How should we pick your artist?</div>
+        <p class="bf-panel-sub">Let us find someone perfect, or browse and pick yourself.</p>
+        <div class="bf-fill-scroll">
+          <div class="bf-assign-grid">
+            <div class="bf-assign-card" id="assignFastest" onclick="bfChooseAssignment('fastest')" style="background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=700&q=80');background-color:#1a1a1a">
+              <div class="bf-assign-inner">
+                <div class="bf-assign-name">Fastest Arrival</div>
+                <div class="bf-assign-desc">Nearest available artist who matches your preferences, dispatched immediately.</div>
+              </div>
+            </div>
+            <div class="bf-assign-card" id="assignRated" onclick="bfChooseAssignment('rated')" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80');background-color:#1a1a1a">
+              <div class="bf-assign-inner">
+                <div class="bf-assign-name">Highest Rated</div>
+                <div class="bf-assign-desc">Top-rated artist near you who matches your style and brand level.</div>
+              </div>
+            </div>
+            <div class="bf-assign-card" id="assignCheapest" onclick="bfChooseAssignment('cheapest')" style="background-image:url('https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=700&q=80');background-color:#1a1a1a">
+              <div class="bf-assign-inner">
+                <div class="bf-assign-name">Most Affordable</div>
+                <div class="bf-assign-desc">Best-value artist matching your preferences, lowest rate in your area.</div>
+              </div>
+            </div>
+            <div class="bf-assign-card" id="assignCostliest" onclick="bfChooseAssignment('costliest')" style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80');background-color:#1a1a1a">
+              <div class="bf-assign-inner">
+                <div class="bf-assign-name">Most Expensive</div>
+                <div class="bf-assign-desc">The highest-priced artist near you — premium kit, premium finish.</div>
+              </div>
+            </div>
+            <div class="bf-assign-card" id="assignCustom" onclick="bfChooseAssignment('custom')" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&q=80');background-color:#1a1a1a">
+              <div class="bf-assign-inner">
+                <div class="bf-assign-name">Custom Select</div>
+                <div class="bf-assign-desc">Browse matching artists and choose exactly who you want.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+          <button class="bf-back-btn" onclick="bfPrevStep(5)">← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Custom Artist Select -->
+      <div class="bf-panel bf-panel-fill" id="bfStep6">
+        <div class="bf-panel-title">Choose your artist</div>
+        <p class="bf-panel-sub">Filtered by your style and brand preferences.</p>
+        <div class="bf-sort-row">
+          <button class="bf-sort-chip active" onclick="bfSort('nearest',this)">Nearest</button>
+          <button class="bf-sort-chip" onclick="bfSort('rating',this)">Top Rated</button>
+          <button class="bf-sort-chip" onclick="bfSort('price',this)">Price ↑</button>
+          <button class="bf-sort-chip" onclick="bfSort('available',this)">Available Now</button>
+        </div>
+        <div class="bf-fill-scroll">
+          <div class="bf-artist-list" id="bfArtistList"></div>
+        </div>
+        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+          <button class="bf-back-btn" onclick="bfPrevStep(6)">← Back</button>
+          <button class="bf-next-btn" id="bfSelectArtistBtn" onclick="bfNextStep(6)" disabled>Confirm Artist →</button>
+        </div>
+      </div>
+
+      <!-- STEP 7: Confirmation -->
+      <div class="bf-panel" id="bfStep7">
+        <div class="bf-panel-title">Your booking summary</div>
+        <p class="bf-panel-sub">Review everything below before confirming.</p>
+        <div class="bf-confirm-artist" id="bfConfirmArtist"></div>
+        <div id="bfSummaryRows"></div>
+        <div class="bf-nav-btns" style="margin-bottom:12px">
+          <button class="bf-back-btn" onclick="bfPrevStep(7)">← Back</button>
+        </div>
+        <button class="bf-confirm-btn" onclick="bfConfirm()">Confirm &amp; Book →</button>
       </div>
 
     </div>
@@ -1406,6 +1440,19 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </div>
 
 <script>
+// ── SCROLL LOCK ──
+let _savedScrollY = 0;
+function lockScroll() {
+  _savedScrollY = window.scrollY;
+  document.body.style.top = '-' + _savedScrollY + 'px';
+  document.body.classList.add('no-scroll');
+}
+function unlockScroll() {
+  document.body.classList.remove('no-scroll');
+  document.body.style.top = '';
+  window.scrollTo(0, _savedScrollY);
+}
+
 // ── HERO CYCLING WORD ──
 const words = ['Owambe','Bridal','Editorial','Aso-ebi','Everyday'];
 let wi = 0;
@@ -1422,9 +1469,11 @@ setInterval(() => {
 }, 2800);
 
 // ── HERO PARALLAX (mouse) ──
+document.getElementById('footYear').textContent = new Date().getFullYear();
 const heroContent = document.getElementById('heroContent');
 const heroSlides = document.querySelectorAll('.hero-slide');
 document.addEventListener('mousemove', e => {
+  if (document.body.classList.contains('no-scroll')) return;
   const x = (e.clientX / window.innerWidth - .5) * 18;
   const y = (e.clientY / window.innerHeight - .5) * 10;
   heroSlides.forEach(s => {
@@ -1435,12 +1484,18 @@ document.addEventListener('mousemove', e => {
 
 // ── SCROLL PARALLAX + NAV ──
 const nav = document.getElementById('nav');
+const navBookBtn = document.getElementById('navBookBtn');
+const navJoinBtn = document.getElementById('navJoinBtn');
 window.addEventListener('scroll', () => {
+  if (document.body.classList.contains('no-scroll')) return;
   const s = window.scrollY;
   nav.classList.toggle('solid', s > 40);
-  if (heroContent) {
-    heroContent.style.opacity = Math.max(0, 1 - s / 420);
-    heroContent.style.transform = `translateY(${s * .35}px)`;
+  if (navBookBtn) {
+    const heroH = document.getElementById('hero').offsetHeight;
+    const past = s > heroH * 0.6;
+    navBookBtn.style.opacity = past ? '1' : '0';
+    navBookBtn.style.pointerEvents = past ? 'all' : 'none';
+    if (navJoinBtn) { navJoinBtn.style.opacity = past ? '1' : '0'; navJoinBtn.style.pointerEvents = past ? 'all' : 'none'; }
   }
 });
 
@@ -1453,13 +1508,6 @@ setInterval(() => {
   dots[dotIdx].classList.add('active');
 }, 7000);
 
-// ── QUICK BOOK CHIPS ──
-document.querySelectorAll('.qb-chip').forEach(c => {
-  c.addEventListener('click', function() {
-    document.querySelectorAll('.qb-chip').forEach(x => x.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
 
 // ── REVEAL ON SCROLL ──
 const io = new IntersectionObserver((entries) => {
@@ -1467,63 +1515,453 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: .12 });
 document.querySelectorAll('.reveal,.reveal-left').forEach(el => io.observe(el));
 
-// ── AESTHETIC FILTER ──
-let activeStyle = null;
-function filterByStyle(card) {
-  document.querySelectorAll('.aes-card').forEach(c => c.classList.remove('selected'));
-  const style = card.dataset.style;
-  if (activeStyle === style) {
-    activeStyle = null;
-    updateArtistFilter();
-    return;
+// ── BOOKING FLOW DATA ──
+const PRESTIGE_DATA = [
+  { label:'Everyday', sub:'Great quality, accessible', brands:[
+    { name:'NYX',            about:'Cult-favourite pigments and bold colour at prices that make sense. Huge hit in Lagos beauty stores.',              img:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80' },
+    { name:'e.l.f.',         about:'Cruelty-free and wallet-friendly. A go-to for clean looks without breaking the bank.',                           img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80' },
+    { name:'Black Opal',     about:'Formulated for deeper skin tones. Rich, true-match shades that celebrate Nigerian complexions.',                  img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=500&q=80' },
+    { name:'Sleek',          about:'Award-winning UK brand popular in Nigerian beauty markets for intense pigmentation at everyday prices.',          img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
+    { name:'Milani',         about:'Drugstore brand with serious staying power. The Conceal + Perfect foundation is a bestseller among MUAs.',       img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' },
+    { name:'Ruby\'s Organics', about:'Natural, skin-safe formulas gaining ground in Abuja for everyday wear and sensitive-skin clients.',           img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
+    { name:'LA Girl',        about:'Long-wear HD formulas loved for their rich coverage and shade range for melanin-rich skin.',                    img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
+    { name:'Wet n Wild',     about:'Surprisingly professional finish at market prices. Artists love the Photo Focus foundation for photoshoots.',   img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
+    { name:'Nuban Beauty',   about:'Nigerian-owned brand crafted for Afro-textured skin with pigments that truly read on deeper tones.',            img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
+    { name:'Flori Roberts',  about:'A legacy brand formulated exclusively for women of colour. Trusted by Nigerian brides for decades.',            img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' },
+    { name:'Black Up',       about:'French brand engineered for darker skin tones. Rich texture and true pigment that won\'t look ashy.',           img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=500&q=80' }
+  ]},
+  { label:'Mid-range', sub:'Trusted local and imported', brands:[
+    { name:'Zaron',          about:'Nigeria\'s leading homegrown cosmetics brand, built for African skin tones and made to last Owambe nights.',    img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=500&q=80' },
+    { name:'House of Tara',  about:'Africa\'s flagship beauty brand by Tara Fela-Durotoye. Rich pigments, lasting wear, proudly Nigerian.',         img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
+    { name:'BM Pro',         about:'Professional-grade formulas trusted by working makeup artists across Nigeria and West Africa.',                  img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
+    { name:'Inglot',         about:'Polish brand famed for Freedom System palettes. Widely available at Jabi Mall and online in Nigeria.',          img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' },
+    { name:'Makeup Forever', about:'Professional staple used in Nollywood productions and bridal suites across Lagos and Abuja.',                   img:'https://images.unsplash.com/photo-1599948128020-9a44a85f88d4?w=500&q=80' },
+    { name:'Smashbox',       about:'LA studio-born brand known for Photo Finish primer. A favourite for TV appearances and red carpet moments.',    img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80' },
+    { name:'NYX Professional',about:'NYX\'s Pro line steps up pigment density and longevity. A favourite for editorial looks in Nigerian studios.', img:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80' },
+    { name:'Morphe',         about:'Highly pigmented palettes and brushes loved by Abuja MUAs for dramatic blends and bold eye looks.',             img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=500&q=80' },
+    { name:'ColourPop',      about:'Affordable prestige feel. Nigerian artists swear by the Super Shock shadows for Aso-ebi glam.',                 img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
+    { name:'Sigma Beauty',   about:'Best-in-class brushes trusted by professionals. Pairs beautifully with any mid-range or prestige product.',    img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
+    { name:'Urban Decay',    about:'Naked palettes are a staple in Nigerian bridal kits. Long-lasting eyeshadow that holds through all-day events.',img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' }
+  ]},
+  { label:'Prestige', sub:'Professional grade', brands:[
+    { name:'MAC',            about:'The global industry standard. Used backstage at Fashion Week and in Nollywood studios. Every MUA owns it.',     img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
+    { name:'NARS',           about:'Iconic Sheer Glow foundation and Orgasm blush. Effortless, luminous skin loved by Nigerian beauty influencers.',img:'https://images.unsplash.com/photo-1599948128020-9a44a85f88d4?w=500&q=80' },
+    { name:'Fenty Beauty',   about:'40+ foundation shades. Rihanna redefined inclusive beauty — and Nigerian skin tones finally had a match.',      img:'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=500&q=80' },
+    { name:'Too Faced',      about:'Born This Way foundation is a go-to for bridal prep in Abuja. Dewy coverage that photographs beautifully.',    img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80' },
+    { name:'Bobbi Brown',    about:'Foundation shades built for real women. The Skin Long-Wear Weightless formula is a Nigerian bridal bestseller.', img:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80' },
+    { name:'Estée Lauder',   about:'Double Wear foundation is legendary for 24-hour hold — essential for Owambe events that go till morning.',     img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
+    { name:'Benefit',        about:'Hoola bronzer and Gimme Brow are staples in Nigerian artist kits for natural-to-glam transitions.',            img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=500&q=80' },
+    { name:'Lancôme',        about:'Teint Idôle Ultra Wear is the prestige pick for photographers and TV productions across Nigeria.',              img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
+    { name:'Laura Mercier',  about:'Translucent setting powder has a cult following among top Nigerian MUAs who need the perfect bake.',            img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
+    { name:'Rare Beauty',    about:'Selena Gomez\'s inclusive brand. Soft Pinch blushes and Liquid Touch foundation — light but buildable.',       img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' }
+  ]},
+  { label:'Luxury', sub:'Premium formulas', brands:[
+    { name:'Charlotte Tilbury',about:'The secret weapon of A-list celebrities. Magic Skin Blur and Pillow Talk are legendary. Flown in for top Abuja weddings.', img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
+    { name:'Huda Beauty',     about:'Dubai\'s most glamorous export. Intense pigment, long-lasting, and always editorial. A favourite for high society events.', img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80' },
+    { name:'Armani Beauty',   about:'Luminous Silk foundation is the gold standard for radiant, second-skin coverage. Preferred by Nigeria\'s top bridal MUAs.',img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' },
+    { name:'YSL Beauty',      about:'All Hours foundation and Touche Éclat concealer are luxury staples on the Abuja red carpet.',                 img:'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=500&q=80' },
+    { name:'Givenchy Beauty', about:'Prisme Libre setting powder delivers an ultra-refined finish for high-fashion editorial and luxury weddings.', img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
+    { name:'Chanel Beauty',   about:'Les Beiges and Vitalumière foundation embody timeless French elegance, popular for understated luxury looks.', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80' },
+    { name:'Dior Beauty',     about:'French elegance in every formula. Rouge Dior lipstick and Forever foundation are timeless icons.',            img:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80' },
+    { name:'Guerlain',        about:'Parisian heritage brand. Terracotta bronzer is beloved for warming up melanin-rich skin without oxidising.',   img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
+    { name:'Sisley Paris',    about:'Phyto-Teint Nude foundation blends skincare and makeup for a flawless, barely-there veil of perfection.',     img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
+    { name:'Hourglass',       about:'Ambient Lighting powder transforms any look with a lit-from-within glow — a luxury studio staple.',           img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' }
+  ]},
+  { label:'Ultra-luxury', sub:'The finest in the world', brands:[
+    { name:'Pat McGrath',    about:'The most influential MUA on the planet. Every product is a collector\'s piece. Used by the world\'s top artists.', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80' },
+    { name:'Tom Ford',       about:'Synonymous with opulence. Traceless foundation and Shade & Illuminate contour are bold and unapologetic.',    img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=500&q=80' },
+    { name:'La Mer',         about:'Skincare-meets-makeup. The Soft Fluid foundation delivers a luminous finish while actively treating skin.',    img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
+    { name:'Clé de Peau',    about:'Japan\'s most prestigious beauty brand. Each product is engineered with radical precision and rare ingredients.', img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80' },
+    { name:'Westman Atelier',about:'Clean luxury from Gucci Westman. Vital Skin foundation is the choice of fashion editors and quiet-money brides.', img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
+    { name:'Serge Lutens',   about:'Parisian artisan luxury. Ultra-rare formulas sought by collectors and elite beauty connoisseurs worldwide.',    img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' },
+    { name:'Chantecaille',   about:'Botanical luxury skincare-makeup hybrid. Future Skin foundation is as rare as it is radiant.',                 img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
+    { name:'SUQQU',          about:'Japanese precision beauty. Flawless, featherlight formulas used by high-fashion makeup artists globally.',     img:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80' },
+    { name:'Victoria Beckham Beauty', about:'Understated British luxury. Satin Kajal liner and Cell Rejuvenating Power Serum set the standard.', img:'https://images.unsplash.com/photo-1599948128020-9a44a85f88d4?w=500&q=80' },
+    { name:'Kjaer Weis',     about:'Organic luxury from Denmark. Refillable compacts and clean formulas for clients who want prestige without compromise.', img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' }
+  ]}
+];
+
+const STYLE_DATA = [
+  { id:'owambe',     name:'Owambe Glam',     desc:'Bold, dramatic, party ready',       img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=600&q=80' },
+  { id:'bridal',     name:'Bridal',          desc:'Soft, romantic, timeless',          img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=600&q=80' },
+  { id:'editorial',  name:'Editorial',       desc:'Artistic, creative, fierce',        img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=600&q=80' },
+  { id:'natural',    name:'Natural Glow',    desc:'Minimal, skin first, fresh',        img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=600&q=80' },
+  { id:'traditional',name:'Traditional',     desc:'Cultural, vibrant, ceremonial',     img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=600&q=80' },
+  { id:'softglam',   name:'Soft Glam',       desc:'Warm tones, subtle drama',          img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80' },
+  { id:'fullglam',   name:'Full Glam',       desc:'Contoured, striking, camera ready', img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=600&q=80' },
+  { id:'asoebi',     name:'Aso-ebi Ready',   desc:'Vibrant, celebratory matching',     img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=600&q=80' },
+  { id:'everyday',   name:'Everyday / Work', desc:'Clean, professional, versatile',    img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80' },
+  { id:'party',      name:'Glitter & Party', desc:'Shimmer, sparkle, night out',       img:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&q=80' }
+];
+
+const ARTIST_DATA = [
+  { name:'Chidinma Okafor',  spec:'Full Glam · Owambe Specialist',    price:'₦18,000', priceNum:18000, rating:4.97, revs:312, dist:0.4, area:'Maitama', brands:['Fenty Beauty','MAC','Charlotte Tilbury'], styles:['owambe','fullglam','party'],         prestige:[3,4], avail:'now',  availText:'Available · 5 min',  img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=300&q=80' },
+  { name:'Fatima Al-Hassan', spec:'Bridal · Traditional · Northern',  price:'₦25,000', priceNum:25000, rating:5.0,  revs:98,  dist:0.7, area:'Wuse 2',  brands:['Zaron','House of Tara','BM Pro'],         styles:['bridal','traditional','owambe'],       prestige:[2],   avail:'now',  availText:'Available · 8 min',  img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=300&q=80' },
+  { name:'Blessing Eze',     spec:'Editorial · Natural Glow',         price:'₦15,000', priceNum:15000, rating:4.91, revs:243, dist:1.1, area:'Garki',   brands:['MAC','NARS','Black Opal'],               styles:['editorial','natural','everyday'],       prestige:[3],   avail:'busy', availText:'Busy · 25 min',      img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=300&q=80' },
+  { name:'Adaeze Nwachukwu', spec:'Luxury Bridal · High Glam',        price:'₦30,000', priceNum:30000, rating:4.95, revs:156, dist:1.4, area:'Asokoro', brands:['Charlotte Tilbury','Pat McGrath','Huda Beauty'], styles:['bridal','fullglam','editorial'], prestige:[4,5], avail:'now',  availText:'Available · 12 min', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=300&q=80' },
+  { name:'Ngozi Adeyemi',    spec:'Aso-ebi · Soft Glam',              price:'₦12,000', priceNum:12000, rating:4.88, revs:187, dist:1.9, area:'Utako',   brands:['Zaron','NYX','House of Tara'],           styles:['asoebi','owambe','softglam'],          prestige:[1,2], avail:'now',  availText:'Available · 3 min',  img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=300&q=80' },
+  { name:'Aisha Musa',       spec:'Natural Glow · Editorial',         price:'₦20,000', priceNum:20000, rating:4.93, revs:204, dist:2.1, area:'Jabi',    brands:['Fenty Beauty','BM Pro','Black Opal'],    styles:['natural','editorial','softglam'],      prestige:[2,3], avail:'now',  availText:'Available · 15 min', img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&q=80' }
+];
+
+const SKIN_TONES = [
+  {tone:1, bg:'#1A0A00'},{tone:2, bg:'#271005'},{tone:3, bg:'#351608'},{tone:4, bg:'#4A2408'},
+  {tone:5, bg:'#5E3010'},{tone:6, bg:'#6B3A12'},{tone:7, bg:'#7E4818'},{tone:8, bg:'#8C5022'},
+  {tone:9, bg:'#AA6B30'},{tone:10,bg:'#C08440'},{tone:11,bg:'#CA9550'},{tone:12,bg:'#D4A060'},
+  {tone:13,bg:'#DDB87A'},{tone:14,bg:'#E8BF88'},{tone:15,bg:'#EDD0A0'},{tone:16,bg:'#F2D8B0'}
+];
+
+// Booking flow state
+let bfState = { tone:null, date:null, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null };
+
+function bfSaveState() {
+  const s = bfState;
+  if (s.tone != null) localStorage.setItem('mday_tone', s.tone);
+  if (s.date) localStorage.setItem('mday_bf_date', s.date);
+  if (s.time) localStorage.setItem('mday_bf_time', s.time);
+  localStorage.setItem('mday_bf_prestige', s.prestige);
+  if (s.styles.length) localStorage.setItem('mday_bf_styles', JSON.stringify(s.styles));
+  if (s.address) localStorage.setItem('mday_bf_address', s.address);
+}
+
+function bfRestoreState() {
+  const tone = localStorage.getItem('mday_tone');
+  if (tone) bfState.tone = +tone;
+  const date = localStorage.getItem('mday_bf_date');
+  if (date) bfState.date = date;
+  const time = localStorage.getItem('mday_bf_time');
+  if (time) bfState.time = time;
+  const prestige = localStorage.getItem('mday_bf_prestige');
+  if (prestige != null) bfState.prestige = +prestige;
+  const styles = localStorage.getItem('mday_bf_styles');
+  if (styles) try { bfState.styles = JSON.parse(styles); } catch(e) {}
+  const address = localStorage.getItem('mday_bf_address');
+  if (address) { bfState.address = address; const inp = document.getElementById('bfAbujaAddress'); if (inp) inp.value = address; }
+}
+
+function openBookingFlow(preStyle, preBrand) {
+  bfRestoreState();
+  if (preStyle && !bfState.styles.includes(preStyle)) bfState.styles = [preStyle];
+  bfState.assignment = null; bfState.artist = null;
+  bfInitTones(); bfInitDates(); bfInitTimeSlots(); bfInitPrestige(); bfInitStyles();
+  document.getElementById('bookingFlow').classList.add('open');
+  lockScroll();
+  bfGoToStep('0');
+  bfDetectLocation();
+}
+
+function closeBookingFlow() {
+  document.getElementById('bookingFlow').classList.remove('open');
+  unlockScroll();
+}
+
+function bfBackdropClick(e) {
+  if (e.target === document.getElementById('bookingFlow')) closeBookingFlow();
+}
+
+function bfGoToStep(step) {
+  document.querySelectorAll('.bf-panel').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = '';
+  });
+  const panel = document.getElementById('bfStep' + step);
+  if (panel) {
+    panel.classList.add('active');
+    if (step === '0' || step === '0b') panel.style.display = 'flex';
   }
-  card.classList.add('selected');
-  activeStyle = style;
-  updateArtistFilter();
-}
-
-// ── BRAND FILTER ──
-let activeBrand = 'all';
-function filterByBrand(btn) {
-  document.querySelectorAll('.brand-tile').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activeBrand = btn.dataset.brand;
-  updateArtistFilter();
-}
-
-function updateArtistFilter() {
-  const cards = document.querySelectorAll('.a-card');
-  let shown = 0;
-  cards.forEach(c => {
-    const brands = c.dataset.brand || '';
-    const styles = c.dataset.style || '';
-    const brandOk = activeBrand === 'all' || brands.includes(activeBrand);
-    const styleOk = !activeStyle || styles.includes(activeStyle);
-    if (brandOk && styleOk) {
-      c.classList.remove('hidden');
-      shown++;
-    } else {
-      c.classList.add('hidden');
+  const isSplash = step === '0' || step === '0b';
+  document.querySelector('.bf-header').style.display = isSplash ? 'none' : '';
+  const titles = {'0':'','0b':'',1:'Skin Tone',2:'Date & Time',3:'Brand Prestige',4:'Makeup Style',5:'Assignment',6:'Choose Artist',7:'Confirm Booking'};
+  document.getElementById('bfHeaderTitle').textContent = titles[step] || 'Book an Artist';
+  const dotsEl = document.getElementById('bfSteps');
+  dotsEl.innerHTML = '';
+  if (!isSplash) {
+    for (let i = 1; i <= 5; i++) {
+      const d = document.createElement('div');
+      d.className = 'bf-step-dot' + (i < step ? ' done' : i === step ? ' active' : '');
+      dotsEl.appendChild(d);
     }
-  });
-  document.getElementById('artistsMeta').textContent =
-    `Showing ${shown} artist${shown !== 1 ? 's' : ''} in Abuja`;
+  }
+  document.querySelector('.bf-box').scrollTo({top:0,behavior:'smooth'});
 }
 
-// ── SORT ──
-function sortArtists(by, btn) {
-  document.querySelectorAll('.sort-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const grid = document.getElementById('artistsGrid');
-  const cards = [...grid.querySelectorAll('.a-card')];
-  cards.sort((a, b) => {
-    if (by === 'nearest') return +a.dataset.dist - +b.dataset.dist;
-    if (by === 'rating')  return +b.dataset.rating - +a.dataset.rating;
-    if (by === 'price')   return +a.dataset.price - +b.dataset.price;
-    if (by === 'available') return a.dataset.avail === 'now' ? -1 : 1;
-    return 0;
+function bfDetectLocation() {
+  const lbl = document.getElementById('bfLocationLabel');
+  if (!lbl) return;
+  fetch('https://ipapi.co/json/')
+    .then(r => r.json())
+    .then(d => {
+      const city = d.city || '';
+      const region = d.region || '';
+      lbl.textContent = [city, region].filter(Boolean).join(', ') || 'your location';
+    })
+    .catch(() => { lbl.textContent = 'your location'; });
+}
+
+function bfSaveAddress() {
+  const addr = document.getElementById('bfAbujaAddress').value.trim();
+  if (!addr) { showToast('Please enter your Abuja address', true); return; }
+  bfState.address = addr;
+  bfSaveState();
+  bfGoToStep(1);
+}
+
+function bfNextStep(from) {
+  if (from === 1) {
+    bfSaveState();
+    bfGoToStep(2);
+  } else if (from === 2) {
+    if (!bfState.date) { showToast('Please select a date', true); return; }
+    if (!bfState.time) { showToast('Please pick a time slot', true); return; }
+    bfSaveState();
+    bfGoToStep(3);
+  } else if (from === 3) {
+    bfSaveState();
+    bfGoToStep(4);
+  } else if (from === 4) {
+    if (!bfState.styles.length) { showToast('Select at least one style', true); return; }
+    bfSaveState();
+    bfGoToStep(5);
+  } else if (from === 6) {
+    if (!bfState.artist) { showToast('Please select an artist', true); return; }
+    bfBuildConfirmation(); bfGoToStep(7);
+  }
+}
+
+function bfPrevStep(from) {
+  if (from === 1) { bfGoToStep('0b'); return; }
+  if (from === 7) { bfGoToStep(bfState.assignment === 'custom' ? 6 : 5); return; }
+  bfGoToStep(from === 6 ? 5 : from - 1);
+}
+
+// Step 1: Skin Tone
+function bfInitTones() {
+  document.getElementById('bfTones').innerHTML = SKIN_TONES.map(t =>
+    `<button class="bf-tone-btn${bfState.tone===t.tone?' selected':''}" style="background:${t.bg}" data-tone="${t.tone}" title="Shade ${t.tone}" onclick="bfSelectTone(this)"></button>`
+  ).join('');
+}
+
+function bfSelectTone(btn) {
+  document.querySelectorAll('.bf-tone-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  bfState.tone = +btn.dataset.tone;
+}
+
+// Step 2: Date & Time
+let _bfCalY, _bfCalM;
+function bfInitDates() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  if (bfState.date) {
+    const d = new Date(bfState.date);
+    _bfCalY = d.getFullYear(); _bfCalM = d.getMonth();
+  } else {
+    _bfCalY = today.getFullYear(); _bfCalM = today.getMonth();
+    bfState.date = today.toDateString();
+  }
+  bfRenderCal();
+}
+function bfRenderCal() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const maxDate = new Date(today); maxDate.setFullYear(maxDate.getFullYear() + 1);
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const y = _bfCalY, m = _bfCalM;
+  const firstDow = new Date(y, m, 1).getDay();
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const canPrev = new Date(y, m - 1, 1) >= new Date(today.getFullYear(), today.getMonth(), 1);
+  const canNext = new Date(y, m + 1, 1) <= new Date(today.getFullYear() + 1, today.getMonth(), 1);
+  const sel = bfState.date ? new Date(bfState.date) : null;
+  let html = `<div class="bf-cal-header">
+    <button class="bf-cal-nav" onclick="bfCalNav(-1)" ${canPrev?'':'disabled'}>‹</button>
+    <span class="bf-cal-month-lbl">${MONTHS[m]} ${y}</span>
+    <button class="bf-cal-nav" onclick="bfCalNav(1)" ${canNext?'':'disabled'}>›</button>
+  </div>
+  <div class="bf-cal-dow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+  <div class="bf-cal-grid">`;
+  for (let i = 0; i < firstDow; i++) html += `<div></div>`;
+  for (let day = 1; day <= daysInMonth; day++) {
+    const d = new Date(y, m, day); d.setHours(0,0,0,0);
+    const past = d < today, future = d > maxDate;
+    const isToday = d.getTime() === today.getTime();
+    const active = sel && d.toDateString() === sel.toDateString();
+    html += `<button class="bf-cal-day${isToday?' today':''}${active?' active':''}" ${past||future?'disabled':''} onclick="bfSelectCalDate('${d.toDateString()}')">${day}</button>`;
+  }
+  html += `</div>`;
+  document.getElementById('bfDateRow').innerHTML = html;
+}
+function bfCalNav(dir) {
+  _bfCalM += dir;
+  if (_bfCalM < 0) { _bfCalM = 11; _bfCalY--; }
+  if (_bfCalM > 11) { _bfCalM = 0; _bfCalY++; }
+  bfRenderCal();
+}
+function bfSelectCalDate(dateStr) {
+  bfState.date = dateStr;
+  bfRenderCal();
+}
+
+function bfInitTimeSlots() {
+  const slots = [
+    '6:00 am','7:00 am','8:00 am','9:00 am','10:00 am','11:00 am',
+    '12:00 pm','1:00 pm','2:00 pm','3:00 pm','4:00 pm','5:00 pm',
+    '6:00 pm','7:00 pm','8:00 pm','9:00 pm'
+  ];
+  const saved = bfState.time;
+  document.getElementById('bfTimeGrid').innerHTML = slots.map(t =>
+    `<div class="bf-t-slot${saved===t?' active':''}" onclick="bfSelectTime(this,'${t}')">${t}</div>`
+  ).join('');
+}
+
+function bfSelectTime(el, time) {
+  document.querySelectorAll('.bf-t-slot').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active'); bfState.time = time;
+}
+
+// Step 3: Prestige
+function bfInitPrestige() {
+  document.getElementById('bfPrestigeLabels').innerHTML = PRESTIGE_DATA.map((p,i) =>
+    `<button class="bf-prestige-tab${i===bfState.prestige?' active':''}" onclick="bfSetPrestige(${i})">${p.label}</button>`
+  ).join('');
+  bfRenderBrandGrid();
+}
+
+function bfSetPrestige(idx) {
+  bfState.prestige = idx;
+  document.querySelectorAll('.bf-prestige-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  bfRenderBrandGrid();
+}
+
+function bfRenderBrandGrid() {
+  const pd = PRESTIGE_DATA[bfState.prestige];
+  document.getElementById('bfBrandGrid').innerHTML = pd.brands.map(b =>
+    `<div class="bf-brand-card" style="background-image:url('${b.img}');background-color:#111">
+      <div class="bf-brand-inner">
+        <div class="bf-brand-name">${b.name}</div>
+        <div class="bf-brand-about">${b.about}</div>
+      </div>
+    </div>`
+  ).join('');
+}
+
+// Step 4: Styles
+function bfInitStyles() {
+  document.getElementById('bfStyleGrid').innerHTML = STYLE_DATA.map(s =>
+    `<div class="bf-style-card${bfState.styles.includes(s.id)?' selected':''}" data-id="${s.id}" onclick="bfToggleStyle('${s.id}',this)"
+      style="background-image:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.38) 55%,rgba(0,0,0,.12) 100%),url('${s.img}');background-color:#111">
+      <div class="bf-style-check">${bfState.styles.includes(s.id)?'✓':''}</div>
+      <div class="bf-style-name">${s.name}</div>
+      <div class="bf-style-desc">${s.desc}</div>
+    </div>`
+  ).join('');
+}
+
+function bfToggleStyle(id, card) {
+  if (bfState.styles.includes(id)) {
+    bfState.styles = bfState.styles.filter(s=>s!==id);
+    card.classList.remove('selected'); card.querySelector('.bf-style-check').textContent='';
+  } else {
+    bfState.styles.push(id);
+    card.classList.add('selected'); card.querySelector('.bf-style-check').textContent='✓';
+  }
+}
+
+// Step 5: Assignment
+function bfChooseAssignment(type) {
+  bfState.assignment = type;
+  document.querySelectorAll('.bf-assign-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById({fastest:'assignFastest',rated:'assignRated',cheapest:'assignCheapest',costliest:'assignCostliest',custom:'assignCustom'}[type]).classList.add('selected');
+  setTimeout(() => {
+    if (type === 'custom') { bfPopulateArtists(); bfGoToStep(6); }
+    else { bfAutoAssign(type); }
+  }, 280);
+}
+
+// Step 6: Custom select
+function bfFilteredArtists() {
+  let list = ARTIST_DATA.filter(a => {
+    const styleOk = !bfState.styles.length || bfState.styles.some(s=>a.styles.includes(s));
+    const lvl = bfState.prestige + 1;
+    const prestigeOk = a.prestige.some(p => Math.abs(p - lvl) <= 1);
+    return styleOk && prestigeOk;
   });
-  cards.forEach(c => grid.appendChild(c));
+  return list.length ? list : [...ARTIST_DATA];
+}
+
+function bfPopulateArtists(sortBy) {
+  let artists = bfFilteredArtists();
+  if (sortBy === 'rating') artists.sort((a,b)=>b.rating-a.rating);
+  else if (sortBy === 'price') artists.sort((a,b)=>a.priceNum-b.priceNum);
+  else if (sortBy === 'available') artists.sort((a,b)=>a.avail==='now'?-1:1);
+  else artists.sort((a,b)=>a.dist-b.dist);
+
+  document.getElementById('bfArtistList').innerHTML = artists.map(a => {
+    const idx = ARTIST_DATA.indexOf(a);
+    const dotColor = a.avail==='now'?'#00C48C':'#FF9500';
+    return `<div class="bf-a-card${bfState.artist===a?' selected':''}" onclick="bfSelectArtist(${idx},this)">
+      <div class="bf-a-img">
+        <img src="${a.img}" alt="${a.name}" loading="lazy"/>
+        <div class="bf-a-avail"><span style="width:6px;height:6px;border-radius:50%;background:${dotColor};flex-shrink:0;display:inline-block"></span>${a.availText}</div>
+      </div>
+      <div class="bf-a-body">
+        <div class="bf-a-top"><div class="bf-a-name">${a.name}</div><div class="bf-a-price">${a.price}</div></div>
+        <div class="bf-a-spec">${a.spec}</div>
+        <div class="bf-a-row">
+          <span class="bf-a-rating">★ ${a.rating} <span style="font-weight:400;color:var(--ink3)">(${a.revs})</span></span>
+          <span class="bf-a-dist">${a.area} · ${a.dist} km</span>
+        </div>
+        <button class="bf-a-select-btn">Select ${a.name.split(' ')[0]} →</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function bfSelectArtist(idx, card) {
+  document.querySelectorAll('.bf-a-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  bfState.artist = ARTIST_DATA[idx];
+  document.getElementById('bfSelectArtistBtn').disabled = false;
+}
+
+function bfSort(by, btn) {
+  document.querySelectorAll('.bf-sort-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); bfPopulateArtists(by);
+}
+
+function bfAutoAssign(type) {
+  let artists = bfFilteredArtists();
+  if (type === 'fastest') artists.sort((a,b)=>a.dist-b.dist);
+  else if (type === 'cheapest') artists.sort((a,b)=>a.priceNum-b.priceNum);
+  else if (type === 'costliest') artists.sort((a,b)=>b.priceNum-a.priceNum);
+  else artists.sort((a,b)=>b.rating-a.rating);
+  bfState.artist = artists[0];
+  bfBuildConfirmation(); bfGoToStep(7);
+}
+
+function bfBuildConfirmation() {
+  const a = bfState.artist; if (!a) return;
+  const styleName = bfState.styles.map(s=>STYLE_DATA.find(d=>d.id===s)?.name).filter(Boolean).join(', ') || 'Any style';
+  const toneName  = bfState.tone ? `Shade ${bfState.tone}` : 'Not specified';
+  const assignLabel = {fastest:'Fastest Arrival',rated:'Highest Rated',cheapest:'Most Affordable',costliest:'Most Expensive',custom:'Custom Select'}[bfState.assignment] || '';
+  document.getElementById('bfConfirmArtist').innerHTML = `
+    <img class="bf-confirm-img" src="${a.img}" alt="${a.name}"/>
+    <div>
+      <div class="bf-confirm-name">${a.name}</div>
+      <div class="bf-confirm-spec">${a.spec}</div>
+      <div class="bf-confirm-rating">★ ${a.rating} · ${a.area} · ${a.price}/hr</div>
+    </div>`;
+  document.getElementById('bfSummaryRows').innerHTML = [
+    {label:'Address',    val: bfState.address || 'To be confirmed'},
+    {label:'Date',       val: bfState.date || 'Today'},
+    {label:'Time',       val: bfState.time || 'Flexible'},
+    {label:'Style',      val: styleName},
+    {label:'Brand level',val: PRESTIGE_DATA[bfState.prestige]?.label},
+    {label:'Skin tone',  val: toneName},
+    {label:'Assignment', val: assignLabel}
+  ].map(r=>`<div class="bf-summary-row"><span class="bf-summary-label">${r.label}</span><span class="bf-summary-val">${r.val}</span></div>`).join('');
+}
+
+function bfConfirm() {
+  const a = bfState.artist;
+  closeBookingFlow();
+  setTimeout(() => showToast(`Booking confirmed with ${a.name.split(' ')[0]}! WhatsApp confirmation coming shortly.`), 300);
 }
 
 // ── HEART ──
@@ -1566,7 +2004,7 @@ function openSheet(name, spec, price, rating, revs, dist, brands, img) {
   }
 
   document.getElementById('overlay').classList.add('open');
-  document.body.classList.add('no-scroll');
+  lockScroll();
 }
 
 function closeSheet(e) {
@@ -1574,7 +2012,7 @@ function closeSheet(e) {
 }
 function closeSheetDirect() {
   document.getElementById('overlay').classList.remove('open');
-  document.body.classList.remove('no-scroll');
+  unlockScroll();
 }
 
 function selectSlot(el) {
@@ -1622,7 +2060,7 @@ function mobTab(tab, section) {
   document.querySelectorAll('.mob-tab').forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
   if (section === 'browse') document.getElementById('aesthetics').scrollIntoView({behavior:'smooth'});
-  if (section === 'book')   document.getElementById('artists').scrollIntoView({behavior:'smooth'});
+  if (section === 'book')   openBookingFlow();
 }
 
 // ── SHEET TAB (BOOKING MODAL) ──
@@ -1648,7 +2086,7 @@ function submitReview() {
   const name = document.getElementById('revName').value.trim();
   const text = document.getElementById('revText').value.trim();
   if (!name || !text || !userRating) { showToast('Fill in your name, rating, and review', true); return; }
-  showToast('Review posted — thank you!');
+  showToast('Review posted, thank you!');
   document.getElementById('revName').value = '';
   document.getElementById('revText').value = '';
   userRating = 0;
@@ -1682,29 +2120,30 @@ async function postToSheet(action, data) {
 function openAuth(mode) {
   if (mode === 'artist') {
     document.getElementById('artistModal').classList.add('open');
-    document.body.classList.add('no-scroll');
+    lockScroll();
     artistGoToStep(1);
     return;
   }
   const modal = document.getElementById('authModal');
   modal.classList.add('open');
-  document.body.classList.add('no-scroll');
   switchAuthTab(mode === 'signup' ? 'signup' : 'signin');
 }
 
 function closeAuth() {
   document.getElementById('authModal').classList.remove('open');
-  document.body.classList.remove('no-scroll');
 }
 
 function closeArtistModal() {
   document.getElementById('artistModal').classList.remove('open');
-  document.body.classList.remove('no-scroll');
+  unlockScroll();
 }
 
 document.getElementById('authModal').addEventListener('click', e => {
   if (e.target === document.getElementById('authModal')) closeAuth();
 });
+window.addEventListener('scroll', () => {
+  if (document.getElementById('authModal').classList.contains('open')) closeAuth();
+}, { passive: true });
 document.getElementById('artistModal').addEventListener('click', e => {
   if (e.target === document.getElementById('artistModal')) closeArtistModal();
 });
@@ -1864,13 +2303,13 @@ function openDrawer() {
   document.getElementById('navDrawer').classList.add('open');
   document.getElementById('drawerOverlay').classList.add('open');
   document.getElementById('navHamburger').classList.add('open');
-  document.body.classList.add('no-scroll');
+  lockScroll();
 }
 function closeDrawer() {
   document.getElementById('navDrawer').classList.remove('open');
   document.getElementById('drawerOverlay').classList.remove('open');
   document.getElementById('navHamburger').classList.remove('open');
-  document.body.classList.remove('no-scroll');
+  unlockScroll();
 }
 function scrollTo_(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
