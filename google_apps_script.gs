@@ -1,12 +1,12 @@
 // ═══════════════════════════════════════════════════════════
-//  Makeup Day — Google Apps Script
+//  NoroCare — Google Apps Script
 //  Paste this into Extensions > Apps Script in your Sheet,
 //  then deploy as a Web App (Execute as: Me, Access: Anyone).
 //  Copy the Web App URL into SHEET_URL in index.html.
 // ═══════════════════════════════════════════════════════════
 
 const SPREADSHEET_ID = '1ZTgofkE4RsHKYJSxXQenxZmuQiRv1A6uVD9GlLZ4qQc';
-const PLATFORM_NAME  = 'Makeup Day';
+const PLATFORM_NAME  = 'NoroCare';
 const PLATFORM_URL   = 'https://YOUR_DEPLOYED_SITE_URL'; // replace after going live
 
 // ── ENTRY POINT ──────────────────────────────────────────────
@@ -30,7 +30,7 @@ function doPost(e) {
 }
 
 function doGet() {
-  return ContentService.createTextOutput('Makeup Day API is running.');
+  return ContentService.createTextOutput('NoroCare API is running.');
 }
 
 // ── SHEET HELPERS ─────────────────────────────────────────────
@@ -94,12 +94,12 @@ function sendWelcomeEmail(email, name) {
 <tr><td align="center">
 <table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
   <tr><td style="background:#E8175A;padding:28px 32px;text-align:center">
-    <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px">Makeup<span style="opacity:.75">Day</span></div>
+    <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px">Noro<span style="opacity:.75">Care</span></div>
     <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:4px">Abuja's Makeup Artist Booking Platform</div>
   </td></tr>
   <tr><td style="padding:32px 32px 0">
     <p style="font-size:22px;color:#0A0A0A;font-weight:700;margin:0 0 8px">Welcome, ${firstName}! ✨</p>
-    <p style="font-size:15px;color:#3C3C3C;line-height:1.65;margin:0 0 24px">You're now part of Makeup Day — book verified makeup artists in Abuja by brand and vibe.</p>
+    <p style="font-size:15px;color:#3C3C3C;line-height:1.65;margin:0 0 24px">You're now part of NoroCare — book verified makeup artists in Abuja by brand and vibe.</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="background:#FFF0F4;border-radius:12px;margin-bottom:24px">
       <tr><td style="padding:20px 24px">
         <p style="font-size:12px;font-weight:700;color:#E8175A;letter-spacing:.5px;text-transform:uppercase;margin:0 0 12px">What you can do now</p>
@@ -112,7 +112,7 @@ function sendWelcomeEmail(email, name) {
     <a href="${PLATFORM_URL}" style="display:block;background:#E8175A;color:#fff;text-decoration:none;padding:16px 32px;border-radius:50px;font-size:15px;font-weight:700;text-align:center;margin-bottom:24px">Start Exploring →</a>
   </td></tr>
   <tr><td style="padding:24px 32px;border-top:1px solid #EBEBEB">
-    <p style="font-size:12px;color:#8A8A8A;margin:0;text-align:center">© 2026 Makeup Day Ltd · Abuja, Nigeria<br/>Questions? Just reply to this email.</p>
+    <p style="font-size:12px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroCare Ltd · Abuja, Nigeria<br/>Questions? Just reply to this email.</p>
   </td></tr>
 </table>
 </td></tr>
@@ -135,16 +135,16 @@ function sendVerifyEmail(email, name) {
 <tr><td align="center">
 <table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
   <tr><td style="background:#E8175A;padding:24px 32px;text-align:center">
-    <div style="font-size:20px;font-weight:800;color:#fff">MakeupDay</div>
+    <div style="font-size:20px;font-weight:800;color:#fff">NoroCare</div>
   </td></tr>
   <tr><td style="padding:32px">
     <p style="font-size:20px;color:#0A0A0A;font-weight:700;margin:0 0 12px">Verify your email ✉️</p>
     <p style="font-size:14px;color:#3C3C3C;line-height:1.65;margin:0 0 24px">Hi ${firstName}, click below to verify your email address and activate your account. This link expires in 24 hours.</p>
     <a href="${verifyLink}" style="display:block;background:#E8175A;color:#fff;text-decoration:none;padding:16px 32px;border-radius:50px;font-size:15px;font-weight:700;text-align:center;margin-bottom:20px">Verify My Email →</a>
-    <p style="font-size:12px;color:#8A8A8A;margin:0">Didn't create a Makeup Day account? You can safely ignore this email.</p>
+    <p style="font-size:12px;color:#8A8A8A;margin:0">Didn't create a NoroCare account? You can safely ignore this email.</p>
   </td></tr>
   <tr><td style="padding:20px 32px;border-top:1px solid #EBEBEB">
-    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 Makeup Day Ltd · Abuja, Nigeria</p>
+    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroCare Ltd · Abuja, Nigeria</p>
   </td></tr>
 </table>
 </td></tr>
@@ -166,7 +166,7 @@ function sendForgotPasswordEmail(email) {
 <tr><td align="center">
 <table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
   <tr><td style="background:#0A0A0A;padding:24px 32px;text-align:center">
-    <div style="font-size:20px;font-weight:800;color:#fff">Makeup<span style="color:#E8175A">Day</span></div>
+    <div style="font-size:20px;font-weight:800;color:#fff">Noro<span style="color:#E8175A">Care</span></div>
   </td></tr>
   <tr><td style="padding:32px">
     <p style="font-size:20px;color:#0A0A0A;font-weight:700;margin:0 0 12px">Reset your password 🔐</p>
@@ -175,14 +175,14 @@ function sendForgotPasswordEmail(email) {
     <p style="font-size:12px;color:#8A8A8A;margin:0;line-height:1.6">Didn't request a reset? Ignore this — your account is safe.</p>
   </td></tr>
   <tr><td style="padding:20px 32px;border-top:1px solid #EBEBEB">
-    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 Makeup Day Ltd · Abuja, Nigeria</p>
+    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroCare Ltd · Abuja, Nigeria</p>
   </td></tr>
 </table>
 </td></tr>
 </table>
 </body></html>`;
 
-  GmailApp.sendEmail(email, subject, `Reset your Makeup Day password: ${resetLink} (expires in 1 hour)`, { htmlBody: html, name: PLATFORM_NAME });
+  GmailApp.sendEmail(email, subject, `Reset your NoroCare password: ${resetLink} (expires in 1 hour)`, { htmlBody: html, name: PLATFORM_NAME });
 }
 
 // ── EMAIL: ARTIST WELCOME ─────────────────────────────────────
@@ -196,7 +196,7 @@ function sendArtistWelcomeEmail(email, name) {
 <tr><td align="center">
 <table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
   <tr><td style="background:#E8175A;padding:28px 32px;text-align:center">
-    <div style="font-size:20px;font-weight:800;color:#fff">MakeupDay · Artist</div>
+    <div style="font-size:20px;font-weight:800;color:#fff">NoroCare · Artist</div>
     <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:4px">Artist Program</div>
   </td></tr>
   <tr><td style="padding:32px">
@@ -216,7 +216,7 @@ function sendArtistWelcomeEmail(email, name) {
     <p style="font-size:13px;color:#8A8A8A;margin:20px 0 0;line-height:1.6">While you wait, keep your Instagram portfolio updated — we love seeing your work!</p>
   </td></tr>
   <tr><td style="padding:20px 32px;border-top:1px solid #EBEBEB">
-    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 Makeup Day Ltd · Abuja, Nigeria</p>
+    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroCare Ltd · Abuja, Nigeria</p>
   </td></tr>
 </table>
 </td></tr>
@@ -224,7 +224,7 @@ function sendArtistWelcomeEmail(email, name) {
 </body></html>`;
 
   GmailApp.sendEmail(email, subject,
-    `Hi ${firstName}, your Makeup Day artist application has been received. We'll review it within 48 hours.`,
+    `Hi ${firstName}, your NoroCare artist application has been received. We'll review it within 48 hours.`,
     { htmlBody: html, name: `${PLATFORM_NAME} Artist Program` }
   );
 }

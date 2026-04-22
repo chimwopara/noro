@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Makeup Day: Book Your Artist in Abuja</title>
+<title>NoroTouch: Book Your Artist in Abuja</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -150,7 +150,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 
 /* ─── BRANDS ─── */
 .brands-wrap{background:#D9CFC0;padding:40px 20px}
-#brands{padding:60px 32px;background:rgba(255,255,255,.45);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.7);border-radius:28px;box-shadow:0 8px 40px rgba(10,10,10,.07)}
+#brands{padding:60px 32px;background:rgba(255,255,255,.24);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.42);border-radius:28px;box-shadow:0 8px 40px rgba(10,10,10,.07)}
 .brands-head{margin-bottom:32px}
 .brand-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
 .brand-scroll::-webkit-scrollbar{display:none}
@@ -213,8 +213,8 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .reviews-head{margin-bottom:40px}
 .reviews-head .section-title{color:var(--ink)}
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.r-card{background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.7);border-radius:var(--r2);padding:26px;transition:background .25s}
-.r-card:hover{background:rgba(255,255,255,.65)}
+.r-card{background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.42);border-radius:var(--r2);padding:26px;transition:background .25s}
+.r-card:hover{background:rgba(255,255,255,.34)}
 .r-stars{color:#C8860A;font-size:.85rem;margin-bottom:14px;letter-spacing:1px}
 .r-text{font-size:.88rem;line-height:1.7;color:var(--ink2);font-style:italic;margin-bottom:20px}
 .r-author{display:flex;align-items:center;gap:12px}
@@ -226,15 +226,19 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 
 /* ─── FOOTER ─── */
 footer{background:#C4B5A0;color:rgba(10,10,10,.55);padding:0}
-.foot-simple{text-align:center;padding:20px 24px 16px;display:flex;flex-direction:column;gap:5px}
+.foot-simple{padding:20px 24px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.foot-left{display:flex;flex-direction:column;gap:3px}
+.foot-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
 .foot-logo{font-size:1rem;font-weight:700;color:var(--ink)}
 .foot-logo span{color:var(--pink)}
 .foot-tagline{font-size:.75rem;color:rgba(10,10,10,.55)}
-.foot-links{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.75rem}
+.foot-links{display:flex;align-items:center;gap:8px;font-size:.75rem}
 .foot-links a{color:rgba(10,10,10,.45);text-decoration:none;transition:color .18s}
 .foot-links a:hover{color:var(--ink)}
 .foot-links span{color:rgba(10,10,10,.25)}
 .foot-copy{font-size:.7rem;color:rgba(10,10,10,.4)}
+.foot-copy a{color:inherit;text-decoration:none;transition:color .18s}
+.foot-copy a:hover{color:var(--ink)}
 
 /* ─── MOBILE BOTTOM NAV ─── */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:12px 0 20px}
@@ -350,7 +354,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   .auth-box{max-height:96svh}
   .auth-header,.auth-tabs,.auth-body{padding-left:22px;padding-right:22px}
   .auth-close-btn{top:14px;right:14px}
-  .artist-box{max-height:96svh}
+  .artist-box{height:90svh}
   .artist-splash-inner{padding:26px 22px}
   .artist-box-header,.artist-box-body{padding-left:22px;padding-right:22px}
 }
@@ -396,47 +400,60 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .auth-success-icon{font-size:2.8rem;margin-bottom:10px}
 .auth-success-title{font-family:'Instrument Serif',serif;font-size:1.5rem;font-style:italic;color:var(--ink);margin-bottom:7px}
 .auth-success-text{font-size:.84rem;color:var(--ink3);line-height:1.6;margin-bottom:0}
+.card-auth-shell{position:relative;display:flex;flex-direction:column;min-height:100%;height:100%;overflow:hidden;isolation:isolate}
+.card-auth-shell::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
+.card-auth-shell::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.24) 0%,rgba(5,5,5,.58) 28%,rgba(5,5,5,.82) 100%);z-index:-1}
+.card-auth-back{position:absolute;top:18px;right:18px;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:rgba(7,7,7,.52);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);min-width:36px;height:36px;padding:0 14px;border-radius:999px;font-size:.82rem;font-weight:700;cursor:pointer;color:#fff;z-index:4;transition:background .18s,border-color .18s,transform .18s}
+.card-auth-back:hover{background:rgba(7,7,7,.72);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
+.card-auth-shell .auth-header,.card-auth-shell .auth-tabs,.card-auth-shell .auth-body{position:relative;z-index:1}
+.card-auth-shell .auth-body{flex:1;overflow-y:auto}
+.card-auth-shell.show-success .auth-tabs{display:none}
+.card-auth-shell.show-success .auth-header{padding-bottom:28px}
 
 /* ─── ARTIST APPLICATION MODAL ─── */
-#artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:16px}
+#artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 #artistModal.open{opacity:1;pointer-events:all}
-.artist-box{background:rgba(237,231,220,.14);border-radius:28px;width:100%;max-width:540px;max-height:92svh;overflow-y:auto;position:relative;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1);border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 72px rgba(10,10,10,.32);isolation:isolate}
+.artist-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;overflow:hidden;position:relative;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);border:1px solid rgba(255,255,255,.16);isolation:isolate}
 .artist-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
 .artist-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.22) 0%,rgba(5,5,5,.55) 24%,rgba(5,5,5,.82) 100%);z-index:-1}
 #artistModal.open .artist-box{transform:translateY(0)}
-.artist-box-header{padding:24px 28px 0;border-bottom:1px solid rgba(255,255,255,.12);position:sticky;top:0;background:rgba(17,13,10,.62);backdrop-filter:blur(18px);z-index:2;border-radius:28px 28px 0 0}
+.artist-box-header{padding:0 24px 10px;border-bottom:1px solid rgba(235,235,235,.5);position:sticky;top:0;background:rgba(237,231,220,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:2;flex-shrink:0;border-radius:28px 28px 0 0}
+.artist-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:8px auto 8px;flex-shrink:0}
 .artist-box-topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
-.artist-brand-line{font-size:.88rem;font-weight:700;color:#fff}
-.artist-brand-line span{color:var(--pink2)}
-.artist-brand-line em{font-style:normal;color:rgba(255,255,255,.62);font-weight:400}
-.artist-step-track{display:flex;align-items:center;margin-bottom:18px}
-.ast-step{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);flex-shrink:0}
-.ast-step-num{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;transition:all .22s;color:#fff}
+.artist-brand-line{font-size:.95rem;font-weight:700;color:var(--ink)}
+.artist-brand-line span{color:var(--pink)}
+.artist-brand-line em{font-style:normal;color:var(--ink3);font-weight:400}
+.artist-step-track{display:flex;align-items:center;gap:0;margin-bottom:14px}
+.ast-step{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--ink3);flex-shrink:0}
+.ast-step-num{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;transition:all .22s;color:var(--ink3)}
 .ast-step.done .ast-step-num{background:var(--green);border-color:var(--green);color:#fff}
 .ast-step.active .ast-step-num{background:var(--pink);border-color:var(--pink);color:#fff}
-.ast-step.active{color:#fff}
-.ast-sep{flex:1;height:2px;background:rgba(255,255,255,.16);margin:0 6px;transition:background .22s}
+.ast-step.active{color:var(--pink)}
+.ast-sep{flex:1;height:2px;background:var(--border);margin:0 6px;transition:background .22s}
 .ast-sep.done{background:var(--green)}
-.artist-box-body{padding:22px 28px 32px;background:rgba(237,231,220,.9);backdrop-filter:blur(22px);position:relative;z-index:1}
+.artist-box-body{padding:24px;overflow-y:auto;flex:1;background:rgba(237,231,220,.94);backdrop-filter:blur(22px);position:relative;z-index:1}
+.artist-box-body::-webkit-scrollbar{width:3px}
+.artist-box-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .artist-step-panel{display:none}
 .artist-step-panel.active{display:block}
 .artist-box.splash-active .artist-box-header{display:none}
 .artist-box.splash-active .artist-box-body{padding:0;background:transparent;backdrop-filter:none}
-.artist-splash-panel{min-height:min(88svh,760px)}
-.artist-splash-inner{position:relative;z-index:1;padding:32px;display:flex;flex-direction:column;min-height:min(88svh,760px)}
+.artist-splash-panel{height:100%;min-height:100%}
+.artist-splash-inner{position:relative;z-index:1;padding:40px 32px 40px;display:flex;flex-direction:column;min-height:100%}
 .artist-splash-top{display:flex;justify-content:flex-end}
-.artist-login-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:rgba(7,7,7,.52);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:999px;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.artist-login-btn:hover{background:rgba(7,7,7,.72);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
+.artist-login-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.artist-login-btn:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
+.artist-box-header .artist-login-btn{background:var(--bg);color:var(--ink);border:1.5px solid var(--border);backdrop-filter:none}
+.artist-box-header .artist-login-btn:hover{background:var(--pink-bg);border-color:var(--pink);color:var(--pink);transform:none}
 .artist-splash-spacer{flex:1}
-.artist-splash-badge{display:inline-flex;align-items:center;width:fit-content;background:rgba(255,255,255,.14);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 14px;border-radius:999px;font-size:.76rem;font-weight:600;margin-bottom:18px}
-.artist-splash-brand{font-size:1.02rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px}
+.artist-splash-brand{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px}
 .artist-splash-brand span{color:var(--pink2)}
 .artist-splash-title{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,7vw,3rem);font-style:italic;color:#fff;line-height:1.05;margin-bottom:14px;max-width:380px}
-.artist-splash-copy{font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.7;max-width:360px;margin-bottom:28px}
-.artist-splash-btn{width:100%;flex:none;background:#fff;color:var(--ink);font-size:.97rem;padding:17px}
+.artist-splash-copy{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:340px;margin-bottom:36px}
+.artist-splash-btn{width:100%;flex:none!important;background:#fff;color:var(--ink);font-size:1rem;padding:16px}
 .artist-splash-btn:hover{background:rgba(255,255,255,.9)}
-.artist-section-title{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:var(--ink);margin-bottom:4px}
-.artist-section-sub{font-size:.82rem;color:var(--ink3);margin-bottom:20px;line-height:1.5}
+.artist-section-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:4px}
+.artist-section-sub{font-size:.84rem;color:var(--ink3);margin-bottom:22px;line-height:1.5}
 .a-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
 .a-check-item{display:flex;align-items:center;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;cursor:pointer;transition:all .18s}
 .a-check-item:hover{border-color:var(--pink);background:var(--pink-bg)}
@@ -444,7 +461,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .a-check-item label{font-size:.81rem;font-weight:600;color:var(--ink2);cursor:pointer;flex:1}
 .a-check-item.checked{border-color:var(--pink);background:var(--pink-bg)}
 .a-check-item.checked label{color:var(--pink)}
-.artist-nav-btns{display:flex;gap:10px;margin-top:22px}
+.artist-nav-btns{display:flex;gap:10px;margin-top:24px}
 .artist-back-btn{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
 .artist-back-btn:hover{border-color:var(--ink)}
 .artist-next-btn{flex:2;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:opacity .2s}
@@ -466,6 +483,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .bf-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);position:relative;overflow:hidden}
 .bf-splash{position:absolute;inset:0;z-index:10;border-radius:28px 28px 0 0;overflow:hidden;flex-direction:column}
 .bf-splash-top{display:flex;justify-content:flex-end}
+.bf-splash-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bf-splash-back{display:inline-flex;align-items:center;gap:6px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.bf-splash-back:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
 .bf-splash-signin{display:inline-flex;align-items:center;gap:6px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
 .bf-splash-signin:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
 .bf-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px 28px 0 0;pointer-events:none;z-index:0}
@@ -589,7 +609,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       Book Now <svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </button>
   </div>
-  <div class="nav-logo">Makeup<span>Day</span></div>
+  <div class="nav-logo">Noro<span>Touch</span></div>
   <div class="nav-right">
     <button class="nav-btn" id="navJoinBtn" onclick="openAuth('artist')" style="opacity:0;pointer-events:none;transition:opacity .3s">Join as Artist</button>
   </div>
@@ -602,7 +622,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 <div id="drawerOverlay" onclick="closeDrawer()"></div>
 <div id="navDrawer">
   <div class="drawer-head">
-    <div class="drawer-logo">Makeup<span>Day</span></div>
+    <div class="drawer-logo">Noro<span>Touch</span></div>
     <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
   <div class="drawer-links">
@@ -844,7 +864,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   <div class="reviews-grid">
     <div class="r-card reveal">
       <div class="r-stars">★★★★★</div>
-      <p class="r-text">"I had an owambe in Maitama and didn't know any MUA in Abuja. Found Chidinma on Makeup Day at 10pm the night before and she showed up at 7am looking like a whole professional. The fact I could see she uses Fenty meant I knew my skin tone wouldn't be washed out. Best decision."</p>
+      <p class="r-text">"I had an owambe in Maitama and didn't know any MUA in Abuja. Found Chidinma on NoroTouch at 10pm the night before and she showed up at 7am looking like a whole professional. The fact I could see she uses Fenty meant I knew my skin tone wouldn't be washed out. Best decision."</p>
       <div class="r-author">
         <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Temi&backgroundColor=ffd5dc" alt="Temi" style="background:#ffd5dc"/>
         <div>
@@ -866,7 +886,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     </div>
     <div class="r-card reveal">
       <div class="r-stars">★★★★★</div>
-      <p class="r-text">"I travel to Abuja for work every month. Makeup Day is now my first download when I land. Searched 'Garki, editorial' and Blessing came up. Looked incredible for my pitch. The live availability dot is everything. No back and forth DMs."</p>
+      <p class="r-text">"I travel to Abuja for work every month. NoroTouch is now my first download when I land. Searched 'Garki, editorial' and Blessing came up. Looked incredible for my pitch. The live availability dot is everything. No back and forth DMs."</p>
       <div class="r-author">
         <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Zainab&backgroundColor=d5f5e3" alt="Zainab" style="background:#d5f5e3"/>
         <div>
@@ -881,14 +901,19 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 <!-- FOOTER -->
 <footer>
   <div class="foot-simple">
-    <div class="foot-logo">Makeup<span>Day</span></div>
-    <p class="foot-tagline">Abuja's first makeup artist booking platform.</p>
-    <div class="foot-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <span>·</span>
-      <a href="terms.html">Terms of Service</a>
+    <div class="foot-left">
+      <div class="foot-logo">Noro<span>Touch</span></div>
+      <p class="foot-tagline">Abuja's first makeup artist booking platform.</p>
     </div>
-    <p class="foot-copy">© <span id="footYear"></span> Makeup Day Ltd</p>
+    <div class="foot-right">
+      <div class="foot-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <span>·</span>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <p class="foot-copy">© <span id="footYear"></span> NoroTouch Ltd</p>
+      <p class="foot-copy"><a href="https://wopara.com" target="_blank" rel="noopener noreferrer">Website by Chim</a></p>
+    </div>
   </div>
 </footer>
 
@@ -934,7 +959,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div class="mk-sparkle" style="background:#B88C6A;top:12%;left:55%;animation-duration:5.5s;animation-delay:-1s"></div>
     </div>
     <div class="auth-header" style="position:relative;z-index:1">
-      <div class="auth-brand">Makeup<span>Day</span></div>
+      <div class="auth-brand">Noro<span>Touch</span></div>
       <div class="auth-panel-title" id="authTitle">Welcome back</div>
       <p class="auth-panel-sub" id="authSub">Sign in to book your artist</p>
     </div>
@@ -979,7 +1004,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div class="auth-success">
           <div class="auth-success-icon">🎉</div>
           <div class="auth-success-title" id="authSuccessTitle">You're in!</div>
-          <p class="auth-success-text" id="authSuccessText">Welcome to Makeup Day. Check your email for a verification link.</p>
+          <p class="auth-success-text" id="authSuccessText">Welcome to NoroTouch. Check your email for a verification link.</p>
           <button class="auth-submit-btn" style="margin-top:22px" onclick="closeAuth()">Start Exploring →</button>
         </div>
       </div>
@@ -992,9 +1017,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 <div id="artistModal">
   <div class="artist-box splash-active" id="artistBox">
     <div class="artist-box-header">
+      <div class="artist-handle"></div>
       <div class="artist-box-topline">
-        <span class="artist-brand-line">Makeup<span>Day</span> <em>· Artist Application</em></span>
-        <button class="artist-login-btn" onclick="openAuth('signin')">Login</button>
+        <span class="artist-brand-line">Noro<span>Touch</span> <em>· Artist Application</em></span>
       </div>
       <div class="artist-step-track" id="artistStepTrack">
         <div class="ast-step active" id="astStep0"><div class="ast-step-num">1</div><span>Account</span></div>
@@ -1004,16 +1029,15 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div class="ast-step" id="astStep2"><div class="ast-step-num">3</div><span>Setup</span></div>
       </div>
     </div>
-    <div class="artist-box-body">
+    <div class="artist-box-body" id="artistBoxBody">
 
       <div class="artist-step-panel artist-splash-panel active" id="artStep0">
         <div class="artist-splash-inner">
           <div class="artist-splash-top">
-            <button class="artist-login-btn" onclick="openAuth('signin')">Login</button>
+            <button class="artist-login-btn" onclick="artistShowAuth()">Login</button>
           </div>
           <div class="artist-splash-spacer"></div>
-          <div class="artist-splash-badge">Artist onboarding</div>
-          <div class="artist-splash-brand">Makeup<span>Day</span></div>
+          <div class="artist-splash-brand">Noro<span>Touch</span></div>
           <div class="artist-splash-title">Turn your kit into fully booked weekends.</div>
           <p class="artist-splash-copy">Create your artist profile, show the brands you work with, and start getting matched with clients across Abuja.</p>
           <button class="artist-next-btn artist-splash-btn" onclick="artistGoToStep(1)">Start Application →</button>
@@ -1023,7 +1047,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <!-- STEP 1: Account -->
       <div class="artist-step-panel" id="artStep1">
         <div class="artist-section-title">Create your account</div>
-        <p class="artist-section-sub">Join 200+ verified artists earning on Makeup Day. Start with your basic details.</p>
+        <p class="artist-section-sub">Join 200+ verified artists earning on NoroTouch. Start with your basic details.</p>
         <label class="a-field-label">Full name</label>
         <input type="text" class="a-field" id="artName" placeholder="Your full name" autocomplete="name"/>
         <label class="a-field-label">Email address</label>
@@ -1135,9 +1159,69 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div class="auth-success" style="padding:28px 0 8px">
           <div class="auth-success-icon">✨</div>
           <div class="auth-success-title">Application received!</div>
-          <p class="auth-success-text">Thank you for applying to Makeup Day.<br/>We'll review within 48 hours and reach out with next steps.</p>
+          <p class="auth-success-text">Thank you for applying to NoroTouch.<br/>We'll review within 48 hours and reach out with next steps.</p>
           <p style="font-size:.77rem;color:var(--ink3);margin-top:8px">Check your email for a verification link.</p>
           <button class="auth-submit-btn" style="margin-top:22px" onclick="closeArtistModal()">Done →</button>
+        </div>
+      </div>
+
+      <!-- INLINE AUTH (replaces popup for artist modal) -->
+      <div class="artist-step-panel" id="artStepAuth">
+        <div class="card-auth-shell">
+          <div class="auth-header">
+            <div class="auth-brand">Noro<span>Touch</span></div>
+            <div class="auth-panel-title" id="cardAuthTitle">Welcome back</div>
+            <p class="auth-panel-sub" id="cardAuthSub">Sign in to book your artist</p>
+          </div>
+          <div class="auth-tabs" id="cardAuthTabs">
+            <button class="auth-tab active" id="cardTabSignIn" onclick="switchCardAuthTab('signin')">Sign In</button>
+            <button class="auth-tab" id="cardTabSignUp" onclick="switchCardAuthTab('signup')">Sign Up</button>
+          </div>
+          <div class="auth-body" id="cardAuthBody">
+            <!-- SIGN IN -->
+            <div class="auth-panel active" id="cardPanelSignIn">
+              <form onsubmit="submitCardSignIn(event)">
+                <label class="a-field-label">Email address</label>
+                <input type="email" class="a-field" id="cardSiEmail" placeholder="you@example.com" required autocomplete="email"/>
+                <label class="a-field-label">Password</label>
+                <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required/>
+                <span class="auth-forgot-link" onclick="showCardForgotPassword()">Forgot password?</span>
+                <div class="bf-nav-btns" style="margin-top:2px">
+                  <button type="button" class="bf-back-btn" onclick="artistHideAuth()">← Back</button>
+                  <button type="submit" class="bf-next-btn" id="cardSiBtn">Sign In →</button>
+                </div>
+              </form>
+              <div class="auth-or">or</div>
+              <p style="font-size:.8rem;color:var(--ink3);text-align:center">No account? <span style="color:var(--pink);cursor:pointer;font-weight:600" onclick="switchCardAuthTab('signup')">Sign up free →</span></p>
+            </div>
+            <!-- SIGN UP -->
+            <div class="auth-panel" id="cardPanelSignUp">
+              <form onsubmit="submitCardSignUp(event)">
+                <label class="a-field-label">Full name</label>
+                <input type="text" class="a-field" id="cardSuName" placeholder="Your full name" required autocomplete="name"/>
+                <label class="a-field-label">Email address</label>
+                <input type="email" class="a-field" id="cardSuEmail" placeholder="you@example.com" required autocomplete="email"/>
+                <label class="a-field-label">Phone number</label>
+                <input type="tel" class="a-field" id="cardSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
+                <label class="a-field-label">Password</label>
+                <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8"/>
+                <div class="bf-nav-btns" style="margin-top:2px">
+                  <button type="button" class="bf-back-btn" onclick="artistHideAuth()">← Back</button>
+                  <button type="submit" class="bf-next-btn" id="cardSuBtn">Create Account →</button>
+                </div>
+              </form>
+              <p style="font-size:.75rem;color:var(--ink3);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
+            </div>
+            <!-- SUCCESS -->
+            <div class="auth-panel" id="cardPanelAuthSuccess">
+              <div class="auth-success">
+                <div class="auth-success-icon">🎉</div>
+                <div class="auth-success-title" id="cardAuthSuccessTitle">You're in!</div>
+                <p class="auth-success-text" id="cardAuthSuccessText">Welcome to NoroTouch. Check your email for a verification link.</p>
+                <button class="auth-submit-btn" style="margin-top:22px" onclick="artistHideAuth()">Start Exploring →</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1161,7 +1245,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
           </button>
         </div>
         <div style="flex:1"></div>
-        <div style="font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px">Makeup<span style="color:var(--pink)">Day</span></div>
+        <div style="font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px">Noro<span style="color:var(--pink)">Touch</span></div>
         <div style="font-family:'Instrument Serif',serif;font-size:2.2rem;font-style:italic;color:#fff;line-height:1.15;margin-bottom:18px">Book your artist<br/>in minutes.</div>
         <p style="font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:36px;max-width:340px">Tell us your skin tone, date, brand preferences and the look you want and we will match you with a verified makeup artist near you.</p>
         <button class="bf-next-btn" style="flex:none;background:#fff;color:var(--ink);font-size:1rem;padding:18px" onclick="bfGoToStep('0b')">Get Started →</button>
@@ -1173,20 +1257,16 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1612892483236-52d32a0e0ac1?w=800&q=80');background-size:cover;background-position:center top"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.96) 0%,rgba(5,5,5,.65) 42%,rgba(5,5,5,.18) 100%)"></div>
       <div style="position:relative;z-index:1;padding:40px 32px 32px;display:flex;flex-direction:column;height:100%">
-        <div style="display:flex;justify-content:center">
-          <div style="display:inline-flex;align-items:center;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 14px;border-radius:50px;font-size:.77rem;font-weight:600;width:fit-content">
-            Currently serving Abuja
-          </div>
-        </div>
         <div style="flex:1"></div>
         <div style="font-family:'Instrument Serif',serif;font-size:2rem;font-style:italic;color:#fff;line-height:1.15;margin-bottom:12px">Where should your<br/>artist come to?</div>
-        <p style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:20px">You're browsing from <strong style="color:#fff" id="bfLocationLabel">your location</strong>. Makeup Day operates in Abuja — enter the address where you'd like your artist to arrive.</p>
+        <p style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:20px">You're browsing from <strong style="color:#fff" id="bfLocationLabel">your location</strong>. NoroTouch operates in Abuja — enter the address where you'd like your artist to arrive.</p>
         <div style="margin-bottom:24px">
           <input id="bfAbujaAddress" type="text" placeholder="e.g. 14 Adetokunbo Ademola Cres, Wuse 2" autocomplete="street-address" enterkeyhint="done" style="width:100%;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;padding:15px 18px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'"/>
           <p style="font-size:.72rem;color:rgba(255,255,255,.42);margin-top:8px;line-height:1.5">Street address, area, or landmark in Abuja</p>
         </div>
-        <div style="margin-top:auto">
-          <button class="bf-next-btn" style="width:100%;flex:none" onclick="bfSaveAddress()">Continue →</button>
+        <div class="bf-nav-btns" style="margin-top:auto">
+          <button class="bf-back-btn" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)" onclick="bfGoToStep('0')">← Back</button>
+          <button class="bf-next-btn" onclick="bfSaveAddress()">Continue →</button>
         </div>
       </div>
     </div>
@@ -2275,7 +2355,7 @@ function switchAuthTab(tab) {
   } else {
     document.getElementById('tabSignUp').classList.add('active');
     document.getElementById('panelSignUp').classList.add('active');
-    document.getElementById('authTitle').textContent = 'Join Makeup Day';
+    document.getElementById('authTitle').textContent = 'Join NoroTouch';
     document.getElementById('authSub').textContent = 'Create your free account';
   }
 }
@@ -2315,9 +2395,89 @@ function showForgotPassword() {
   showToast('Password reset link sent to ' + email);
 }
 
+// ── INLINE CARD AUTH (inside artist modal) ──
+function artistShowAuth() {
+  document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('artStepAuth');
+  if (panel) panel.classList.add('active');
+  const box = document.getElementById('artistBox');
+  if (box) box.classList.remove('splash-active');
+  // hide step track header when showing auth
+  const header = document.querySelector('.artist-box-header');
+  if (header) header.style.display = 'none';
+  switchCardAuthTab('signin');
+  artistScrollToTop();
+}
+
+function artistHideAuth() {
+  // show step track header again
+  const header = document.querySelector('.artist-box-header');
+  if (header) header.style.display = '';
+  artistGoToStep(0);
+}
+
+function switchCardAuthTab(tab) {
+  document.querySelectorAll('#artStepAuth .auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#artStepAuth .auth-panel').forEach(p => p.classList.remove('active'));
+  if (tab === 'signin') {
+    document.getElementById('cardTabSignIn').classList.add('active');
+    document.getElementById('cardPanelSignIn').classList.add('active');
+    document.getElementById('cardAuthTitle').textContent = 'Welcome back';
+    document.getElementById('cardAuthSub').textContent = 'Sign in to book your artist';
+  } else {
+    document.getElementById('cardTabSignUp').classList.add('active');
+    document.getElementById('cardPanelSignUp').classList.add('active');
+    document.getElementById('cardAuthTitle').textContent = 'Join NoroTouch';
+    document.getElementById('cardAuthSub').textContent = 'Create your free account';
+  }
+}
+
+async function submitCardSignIn(e) {
+  e.preventDefault();
+  const btn = document.getElementById('cardSiBtn');
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  await new Promise(r => setTimeout(r, 800));
+  btn.disabled = false; btn.textContent = 'Sign In →';
+  artistHideAuth();
+  showToast('Welcome back!');
+}
+
+async function submitCardSignUp(e) {
+  e.preventDefault();
+  const name  = document.getElementById('cardSuName').value.trim();
+  const email = document.getElementById('cardSuEmail').value.trim();
+  const phone = document.getElementById('cardSuPhone').value.trim();
+  if (!name || !email || !phone) return;
+  const btn = document.getElementById('cardSuBtn');
+  btn.disabled = true; btn.textContent = 'Creating account…';
+  await postToSheet('signup', { name, email, phone });
+  btn.disabled = false; btn.textContent = 'Create Account →';
+  document.querySelectorAll('#artStepAuth .auth-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#artStepAuth .auth-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('cardPanelAuthSuccess').classList.add('active');
+  document.getElementById('cardAuthSuccessTitle').textContent = `Welcome, ${name.split(' ')[0]}!`;
+  document.getElementById('cardAuthSuccessText').textContent = 'Your account is created. Check your email for a verification link.';
+  // hide tabs on success
+  const tabs = document.getElementById('cardAuthTabs');
+  if (tabs) tabs.style.display = 'none';
+}
+
+function showCardForgotPassword() {
+  const email = document.getElementById('cardSiEmail').value.trim();
+  if (!email) { showToast('Enter your email address first', true); return; }
+  postToSheet('forgot_password', { email });
+  artistHideAuth();
+  showToast('Password reset link sent to ' + email);
+}
+
 // ── ARTIST APPLICATION ──
 let currentArtistStep = 0;
 const artRadioValues = {};
+
+function artistScrollToTop() {
+  const body = document.getElementById('artistBoxBody');
+  if (body) body.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 function artistGoToStep(step) {
   currentArtistStep = step;
@@ -2336,7 +2496,7 @@ function artistGoToStep(step) {
     if (i + 1 === step) el.classList.add('active');
   });
   // scroll modal to top
-  if (box) box.scrollTo({ top: 0, behavior: 'smooth' });
+  artistScrollToTop();
 }
 
 function artistNextStep(from) {
@@ -2408,7 +2568,7 @@ async function submitArtistApplication() {
   });
   document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('artStepSuccess').classList.add('active');
-  document.querySelector('.artist-box').scrollTo({ top: 0, behavior: 'smooth' });
+  artistScrollToTop();
 }
 
 // ── MOBILE DRAWER ──
