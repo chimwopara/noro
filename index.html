@@ -17,16 +17,25 @@
   --shadow2:0 16px 56px rgba(10,10,10,.14);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;width:100%;min-width:0}
 img{display:block;max-width:100%}
 button{font-family:inherit;cursor:pointer}
 a{text-decoration:none;color:inherit}
 
 /* ─── SCROLLBAR ─── */
-::-webkit-scrollbar{height:4px;width:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+/* Use standard CSS — avoids switching Mac to classic (space-consuming) scrollbar mode */
+html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+/* Thin horizontal scrollbars only for overflow-x scroll containers */
+.qb-chips::-webkit-scrollbar,.aesthetics-scroll::-webkit-scrollbar,
+.brand-scroll::-webkit-scrollbar,.date-row::-webkit-scrollbar,
+.rev-list::-webkit-scrollbar,.artist-box::-webkit-scrollbar{height:4px;width:4px}
+.qb-chips::-webkit-scrollbar-track,.aesthetics-scroll::-webkit-scrollbar-track,
+.brand-scroll::-webkit-scrollbar-track,.date-row::-webkit-scrollbar-track,
+.rev-list::-webkit-scrollbar-track,.artist-box::-webkit-scrollbar-track{background:transparent}
+.qb-chips::-webkit-scrollbar-thumb,.aesthetics-scroll::-webkit-scrollbar-thumb,
+.brand-scroll::-webkit-scrollbar-thumb,.date-row::-webkit-scrollbar-thumb,
+.rev-list::-webkit-scrollbar-thumb,.artist-box::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
 /* ─── UTIL ─── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
@@ -52,8 +61,8 @@ a{text-decoration:none;color:inherit}
 .nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--border);border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer}
 
 /* ─── HERO ─── */
-#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px}
-.hero-slides{position:absolute;inset:0}
+#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;width:100vw;background:#0A0A0A}
+.hero-slides{position:absolute;inset:0;width:100%;height:100%;background:#0A0A0A}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center top;opacity:0;transform:scale(1.12);animation:slideShow 28s infinite}
 .hero-slide:nth-child(1){animation-delay:0s;background-image:url('https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=1600&q=90&fit=crop&crop=top')}
 .hero-slide:nth-child(2){animation-delay:7s;background-image:url('https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=1600&q=90&fit=crop&crop=top')}
@@ -1571,7 +1580,7 @@ function submitReview() {
 
 // ── GOOGLE SHEETS URL ──
 // After deploying your Apps Script as a Web App, paste the URL here:
-const SHEET_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxUqABXtyXizqWoIb4FCIcQpzHMGLc7E_znMDxD_XJp9LDZTwlnzJCCdaE3nwP4yXqpwA/exec';
 
 async function postToSheet(action, data) {
   if (SHEET_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
