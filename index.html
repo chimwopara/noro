@@ -327,9 +327,11 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  #nav{top:10px;left:14px;right:14px;height:54px;padding:0 16px}
-  .nav-right{display:none}
-  .nav-hamburger{display:flex}
+  #nav{top:10px;left:14px;right:14px;height:54px;padding:0 16px;justify-content:flex-start;gap:12px}
+  .nav-left{order:2;margin-left:auto}
+  .nav-logo{position:static;left:auto;transform:none;pointer-events:auto;order:1;font-size:1.1rem;flex-shrink:0}
+  .nav-right,.nav-hamburger{display:none}
+  #navBookBtn{padding:9px 16px;font-size:.78rem;white-space:nowrap}
   #hero .hero-content{padding:0 20px}
   #aesthetics,#reviews,footer{padding-left:20px;padding-right:20px}
   .brands-wrap{padding:28px 12px}
@@ -338,36 +340,45 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   .aesthetics-head{padding:0 20px}
   .aesthetics-scroll{padding-right:20px}
   .how-grid{grid-template-columns:1fr}
-  .mob-nav{display:block}
+  .mob-nav{display:none}
 }
 @media(max-width:600px){
   .how-grid{grid-template-columns:1fr}
   .reviews-grid{grid-template-columns:1fr}
   .artists-grid{grid-template-columns:1fr}
+  input,select,textarea{font-size:16px!important}
+  .auth-box{max-height:96svh}
+  .auth-header,.auth-tabs,.auth-body{padding-left:22px;padding-right:22px}
+  .auth-close-btn{top:14px;right:14px}
+  .artist-box{max-height:96svh}
+  .artist-splash-inner{padding:26px 22px}
+  .artist-box-header,.artist-box-body{padding-left:22px;padding-right:22px}
 }
 
 /* ─── AUTH MODAL ─── */
-#authModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.12);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:flex-start;justify-content:flex-end;padding:80px 20px 0;opacity:0;pointer-events:none;transition:opacity .3s,backdrop-filter .3s}
+#authModal{position:fixed;inset:0;z-index:340;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s}
 #authModal.open{opacity:1;pointer-events:all}
-.auth-box{background:rgba(255,255,255,.82);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(255,255,255,.6);box-shadow:0 24px 64px rgba(10,10,10,.2),0 4px 16px rgba(10,10,10,.1);border-radius:28px;width:100%;max-width:360px;position:relative;overflow:hidden;transform:translateY(-14px) scale(.96);transform-origin:top right;transition:transform .32s cubic-bezier(.32,0,.15,1)}
-#authModal.open .auth-box{transform:translateY(0) scale(1)}
-.auth-close-btn{position:absolute;top:14px;right:14px;background:rgba(237,231,220,.6);border:none;width:34px;height:34px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);z-index:4;transition:background .18s}
-.auth-close-btn:hover{background:rgba(235,235,235,.7)}
+.auth-box{background:rgba(237,231,220,.14);border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 72px rgba(10,10,10,.32);border-radius:28px;width:100%;max-width:520px;max-height:92svh;position:relative;overflow-y:auto;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1);isolation:isolate}
+.auth-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
+.auth-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.24) 0%,rgba(5,5,5,.58) 28%,rgba(5,5,5,.82) 100%);z-index:-1}
+#authModal.open .auth-box{transform:translateY(0)}
+.auth-close-btn{position:absolute;top:18px;right:18px;background:rgba(7,7,7,.52);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);width:36px;height:36px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;z-index:4;transition:background .18s,border-color .18s,transform .18s}
+.auth-close-btn:hover{background:rgba(7,7,7,.72);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
 /* ─── AUTH MAKEUP ANIMATION ─── */
 .auth-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px;pointer-events:none;z-index:0}
 .mk-blob{position:absolute;border-radius:50%;filter:blur(34px);animation:mkPulse ease-in-out infinite}
 .mk-sparkle{position:absolute;width:5px;height:5px;border-radius:50%;animation:mkFloat linear infinite;opacity:0}
 @keyframes mkPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.8}}
 @keyframes mkFloat{0%{transform:translateY(0) scale(0);opacity:0}15%{opacity:.85;transform:translateY(-14px) scale(1)}80%{opacity:.35;transform:translateY(-88px) scale(.7)}100%{transform:translateY(-130px) scale(0);opacity:0}}
-.auth-header{padding:32px 32px 0;text-align:center}
-.auth-brand{font-size:1rem;font-weight:700;letter-spacing:-.3px;margin-bottom:16px;color:var(--ink)}
-.auth-brand span{color:var(--pink)}
-.auth-panel-title{font-family:'Instrument Serif',serif;font-size:1.65rem;font-style:italic;color:var(--ink);margin-bottom:5px}
-.auth-panel-sub{font-size:.82rem;color:var(--ink3);line-height:1.5}
-.auth-tabs{display:flex;border-bottom:1px solid rgba(235,235,235,.6);margin:20px 32px 0}
+.auth-header{padding:36px 32px 22px;text-align:center;background:rgba(17,13,10,.58);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.12)}
+.auth-brand{font-size:1rem;font-weight:700;letter-spacing:-.3px;margin-bottom:16px;color:#fff}
+.auth-brand span{color:var(--pink2)}
+.auth-panel-title{font-family:'Instrument Serif',serif;font-size:1.85rem;font-style:italic;color:#fff;margin-bottom:7px}
+.auth-panel-sub{font-size:.84rem;color:rgba(255,255,255,.74);line-height:1.6;max-width:320px;margin:0 auto}
+.auth-tabs{display:flex;border-bottom:1px solid rgba(221,213,197,.85);margin:0;padding:0 32px;background:rgba(237,231,220,.92);position:relative;z-index:1}
 .auth-tab{flex:1;background:none;border:none;border-bottom:2.5px solid transparent;padding:11px 8px;font-family:inherit;font-size:.85rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;margin-bottom:-1px}
 .auth-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
-.auth-body{padding:22px 32px 32px}
+.auth-body{padding:24px 32px 32px;background:rgba(237,231,220,.94);backdrop-filter:blur(22px)}
 .auth-panel{display:none}
 .auth-panel.active{display:block}
 .a-field-label{font-size:.74rem;font-weight:600;color:var(--ink2);letter-spacing:.3px;margin-bottom:5px;display:block}
@@ -389,20 +400,41 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 /* ─── ARTIST APPLICATION MODAL ─── */
 #artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:16px}
 #artistModal.open{opacity:1;pointer-events:all}
-.artist-box{background:#fff;border-radius:28px;width:100%;max-width:540px;max-height:92svh;overflow-y:auto;position:relative;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1)}
+.artist-box{background:rgba(237,231,220,.14);border-radius:28px;width:100%;max-width:540px;max-height:92svh;overflow-y:auto;position:relative;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1);border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 72px rgba(10,10,10,.32);isolation:isolate}
+.artist-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
+.artist-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.22) 0%,rgba(5,5,5,.55) 24%,rgba(5,5,5,.82) 100%);z-index:-1}
 #artistModal.open .artist-box{transform:translateY(0)}
-.artist-box-header{padding:24px 28px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2;border-radius:28px 28px 0 0}
+.artist-box-header{padding:24px 28px 0;border-bottom:1px solid rgba(255,255,255,.12);position:sticky;top:0;background:rgba(17,13,10,.62);backdrop-filter:blur(18px);z-index:2;border-radius:28px 28px 0 0}
+.artist-box-topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
+.artist-brand-line{font-size:.88rem;font-weight:700;color:#fff}
+.artist-brand-line span{color:var(--pink2)}
+.artist-brand-line em{font-style:normal;color:rgba(255,255,255,.62);font-weight:400}
 .artist-step-track{display:flex;align-items:center;margin-bottom:18px}
-.ast-step{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--ink3);flex-shrink:0}
-.ast-step-num{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;transition:all .22s}
+.ast-step{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);flex-shrink:0}
+.ast-step-num{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;transition:all .22s;color:#fff}
 .ast-step.done .ast-step-num{background:var(--green);border-color:var(--green);color:#fff}
 .ast-step.active .ast-step-num{background:var(--pink);border-color:var(--pink);color:#fff}
-.ast-step.active{color:var(--pink)}
-.ast-sep{flex:1;height:2px;background:var(--border);margin:0 6px;transition:background .22s}
+.ast-step.active{color:#fff}
+.ast-sep{flex:1;height:2px;background:rgba(255,255,255,.16);margin:0 6px;transition:background .22s}
 .ast-sep.done{background:var(--green)}
-.artist-box-body{padding:22px 28px 32px}
+.artist-box-body{padding:22px 28px 32px;background:rgba(237,231,220,.9);backdrop-filter:blur(22px);position:relative;z-index:1}
 .artist-step-panel{display:none}
 .artist-step-panel.active{display:block}
+.artist-box.splash-active .artist-box-header{display:none}
+.artist-box.splash-active .artist-box-body{padding:0;background:transparent;backdrop-filter:none}
+.artist-splash-panel{min-height:min(88svh,760px)}
+.artist-splash-inner{position:relative;z-index:1;padding:32px;display:flex;flex-direction:column;min-height:min(88svh,760px)}
+.artist-splash-top{display:flex;justify-content:flex-end}
+.artist-login-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:rgba(7,7,7,.52);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:999px;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.artist-login-btn:hover{background:rgba(7,7,7,.72);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
+.artist-splash-spacer{flex:1}
+.artist-splash-badge{display:inline-flex;align-items:center;width:fit-content;background:rgba(255,255,255,.14);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 14px;border-radius:999px;font-size:.76rem;font-weight:600;margin-bottom:18px}
+.artist-splash-brand{font-size:1.02rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px}
+.artist-splash-brand span{color:var(--pink2)}
+.artist-splash-title{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,7vw,3rem);font-style:italic;color:#fff;line-height:1.05;margin-bottom:14px;max-width:380px}
+.artist-splash-copy{font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.7;max-width:360px;margin-bottom:28px}
+.artist-splash-btn{width:100%;flex:none;background:#fff;color:var(--ink);font-size:.97rem;padding:17px}
+.artist-splash-btn:hover{background:rgba(255,255,255,.9)}
 .artist-section-title{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:var(--ink);margin-bottom:4px}
 .artist-section-sub{font-size:.82rem;color:var(--ink3);margin-bottom:20px;line-height:1.5}
 .a-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
@@ -433,6 +465,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 #bookingFlow.open{opacity:1;pointer-events:all}
 .bf-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);position:relative;overflow:hidden}
 .bf-splash{position:absolute;inset:0;z-index:10;border-radius:28px 28px 0 0;overflow:hidden;flex-direction:column}
+.bf-splash-top{display:flex;justify-content:flex-end}
+.bf-splash-signin{display:inline-flex;align-items:center;gap:6px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.bf-splash-signin:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
 .bf-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px 28px 0 0;pointer-events:none;z-index:0}
 #bookingFlow.open .bf-box{transform:none}
 .bf-handle{width:40px;height:4px;background:var(--border);border-radius:2px;flex-shrink:0}
@@ -886,6 +921,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 <!-- AUTH MODAL -->
 <div id="authModal">
   <div class="auth-box">
+    <button class="auth-close-btn" onclick="closeAuth()">✕</button>
     <div class="auth-makeup-bg">
       <div class="mk-blob" style="width:210px;height:210px;background:rgba(155,123,90,.1);top:-80px;right:-50px;animation-duration:7s;animation-delay:0s"></div>
       <div class="mk-blob" style="width:160px;height:160px;background:rgba(255,110,160,.08);bottom:-55px;left:-35px;animation-duration:9s;animation-delay:-3.5s"></div>
@@ -954,11 +990,11 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 <!-- ARTIST APPLICATION MODAL -->
 <div id="artistModal">
-  <div class="artist-box">
+  <div class="artist-box splash-active" id="artistBox">
     <div class="artist-box-header">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <span style="font-size:.88rem;font-weight:700;color:var(--ink)">Makeup<span style="color:var(--pink)">Day</span> <span style="color:var(--ink3);font-weight:400">· Artist Application</span></span>
-        <button class="auth-close-btn" style="position:static;flex-shrink:0" onclick="closeArtistModal()">✕</button>
+      <div class="artist-box-topline">
+        <span class="artist-brand-line">Makeup<span>Day</span> <em>· Artist Application</em></span>
+        <button class="artist-login-btn" onclick="openAuth('signin')">Login</button>
       </div>
       <div class="artist-step-track" id="artistStepTrack">
         <div class="ast-step active" id="astStep0"><div class="ast-step-num">1</div><span>Account</span></div>
@@ -970,8 +1006,22 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     </div>
     <div class="artist-box-body">
 
+      <div class="artist-step-panel artist-splash-panel active" id="artStep0">
+        <div class="artist-splash-inner">
+          <div class="artist-splash-top">
+            <button class="artist-login-btn" onclick="openAuth('signin')">Login</button>
+          </div>
+          <div class="artist-splash-spacer"></div>
+          <div class="artist-splash-badge">Artist onboarding</div>
+          <div class="artist-splash-brand">Makeup<span>Day</span></div>
+          <div class="artist-splash-title">Turn your kit into fully booked weekends.</div>
+          <p class="artist-splash-copy">Create your artist profile, show the brands you work with, and start getting matched with clients across Abuja.</p>
+          <button class="artist-next-btn artist-splash-btn" onclick="artistGoToStep(1)">Start Application →</button>
+        </div>
+      </div>
+
       <!-- STEP 1: Account -->
-      <div class="artist-step-panel active" id="artStep1">
+      <div class="artist-step-panel" id="artStep1">
         <div class="artist-section-title">Create your account</div>
         <p class="artist-section-sub">Join 200+ verified artists earning on Makeup Day. Start with your basic details.</p>
         <label class="a-field-label">Full name</label>
@@ -1104,8 +1154,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80');background-size:cover;background-position:center"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.94) 0%,rgba(5,5,5,.55) 45%,rgba(5,5,5,.18) 100%)"></div>
       <div style="position:relative;z-index:1;padding:40px 32px 40px;display:flex;flex-direction:column;height:100%">
-        <div>
-          <button onclick="closeBookingFlow();openAuth('signin')" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.28);color:#fff;padding:8px 16px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer">
+        <div class="bf-splash-top">
+          <button class="bf-splash-signin" onclick="openAuth('signin')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             Sign In
           </button>
@@ -1132,7 +1182,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div style="font-family:'Instrument Serif',serif;font-size:2rem;font-style:italic;color:#fff;line-height:1.15;margin-bottom:12px">Where should your<br/>artist come to?</div>
         <p style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:20px">You're browsing from <strong style="color:#fff" id="bfLocationLabel">your location</strong>. Makeup Day operates in Abuja — enter the address where you'd like your artist to arrive.</p>
         <div style="margin-bottom:24px">
-          <input id="bfAbujaAddress" type="text" placeholder="e.g. 14 Adetokunbo Ademola Cres, Wuse 2" style="width:100%;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;padding:15px 18px;font-family:inherit;font-size:.9rem;color:#fff;outline:none;transition:border-color .18s" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'"/>
+          <input id="bfAbujaAddress" type="text" placeholder="e.g. 14 Adetokunbo Ademola Cres, Wuse 2" autocomplete="street-address" enterkeyhint="done" style="width:100%;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;padding:15px 18px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'"/>
           <p style="font-size:.72rem;color:rgba(255,255,255,.42);margin-top:8px;line-height:1.5">Street address, area, or landmark in Abuja</p>
         </div>
         <div style="margin-top:auto">
@@ -1185,8 +1235,10 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <p class="bf-panel-sub">Pick your date and a time slot.</p>
         <div class="bf-fill-scroll">
           <div id="bfDateRow"></div>
-          <span class="bf-section-lbl">Time</span>
-          <div class="bf-time-grid" id="bfTimeGrid"></div>
+          <div id="bfTimeSection">
+            <span class="bf-section-lbl">Time</span>
+            <div class="bf-time-grid" id="bfTimeGrid"></div>
+          </div>
         </div>
         <div class="bf-nav-btns" style="padding-top:20px">
           <button class="bf-back-btn" onclick="bfPrevStep(2)">← Back</button>
@@ -1442,12 +1494,19 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 <script>
 // ── SCROLL LOCK ──
 let _savedScrollY = 0;
+let _scrollLockDepth = 0;
 function lockScroll() {
-  _savedScrollY = window.scrollY;
-  document.body.style.top = '-' + _savedScrollY + 'px';
-  document.body.classList.add('no-scroll');
+  if (_scrollLockDepth === 0) {
+    _savedScrollY = window.scrollY;
+    document.body.style.top = '-' + _savedScrollY + 'px';
+    document.body.classList.add('no-scroll');
+  }
+  _scrollLockDepth += 1;
 }
 function unlockScroll() {
+  if (_scrollLockDepth === 0) return;
+  _scrollLockDepth -= 1;
+  if (_scrollLockDepth > 0) return;
   document.body.classList.remove('no-scroll');
   document.body.style.top = '';
   window.scrollTo(0, _savedScrollY);
@@ -1611,13 +1670,24 @@ const SKIN_TONES = [
 ];
 
 // Booking flow state
-let bfState = { tone:null, date:null, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null };
+let bfState = { tone:null, date:null, dateChosen:false, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null };
+
+function bfIsMobileLayout() {
+  return window.matchMedia('(max-width: 900px)').matches;
+}
 
 function bfSaveState() {
   const s = bfState;
   if (s.tone != null) localStorage.setItem('mday_tone', s.tone);
-  if (s.date) localStorage.setItem('mday_bf_date', s.date);
-  if (s.time) localStorage.setItem('mday_bf_time', s.time);
+  if (s.dateChosen && s.date) {
+    localStorage.setItem('mday_bf_date', s.date);
+    localStorage.setItem('mday_bf_date_chosen', '1');
+  } else {
+    localStorage.removeItem('mday_bf_date');
+    localStorage.removeItem('mday_bf_date_chosen');
+  }
+  if (s.dateChosen && s.time) localStorage.setItem('mday_bf_time', s.time);
+  else localStorage.removeItem('mday_bf_time');
   localStorage.setItem('mday_bf_prestige', s.prestige);
   if (s.styles.length) localStorage.setItem('mday_bf_styles', JSON.stringify(s.styles));
   if (s.address) localStorage.setItem('mday_bf_address', s.address);
@@ -1626,10 +1696,12 @@ function bfSaveState() {
 function bfRestoreState() {
   const tone = localStorage.getItem('mday_tone');
   if (tone) bfState.tone = +tone;
+  const dateChosen = localStorage.getItem('mday_bf_date_chosen') === '1';
   const date = localStorage.getItem('mday_bf_date');
-  if (date) bfState.date = date;
+  bfState.dateChosen = dateChosen;
+  bfState.date = dateChosen && date ? date : null;
   const time = localStorage.getItem('mday_bf_time');
-  if (time) bfState.time = time;
+  bfState.time = dateChosen && time ? time : null;
   const prestige = localStorage.getItem('mday_bf_prestige');
   if (prestige != null) bfState.prestige = +prestige;
   const styles = localStorage.getItem('mday_bf_styles');
@@ -1698,10 +1770,20 @@ function bfDetectLocation() {
 }
 
 function bfSaveAddress() {
-  const addr = document.getElementById('bfAbujaAddress').value.trim();
+  const input = document.getElementById('bfAbujaAddress');
+  const addr = input.value.trim();
   if (!addr) { showToast('Please enter your Abuja address', true); return; }
   bfState.address = addr;
+  input.blur();
   bfSaveState();
+  if (bfIsMobileLayout()) {
+    bfResetMobileViewport();
+    setTimeout(() => {
+      bfResetMobileViewport();
+      bfGoToStep(1);
+    }, 180);
+    return;
+  }
   bfGoToStep(1);
 }
 
@@ -1755,7 +1837,8 @@ function bfInitDates() {
     _bfCalY = d.getFullYear(); _bfCalM = d.getMonth();
   } else {
     _bfCalY = today.getFullYear(); _bfCalM = today.getMonth();
-    bfState.date = today.toDateString();
+    bfState.date = bfIsMobileLayout() ? null : today.toDateString();
+    bfState.dateChosen = false;
   }
   bfRenderCal();
 }
@@ -1795,7 +1878,11 @@ function bfCalNav(dir) {
 }
 function bfSelectCalDate(dateStr) {
   bfState.date = dateStr;
+  bfState.dateChosen = true;
   bfRenderCal();
+  if (bfIsMobileLayout()) {
+    requestAnimationFrame(() => bfScrollToTimeSection());
+  }
 }
 
 function bfInitTimeSlots() {
@@ -1813,6 +1900,24 @@ function bfInitTimeSlots() {
 function bfSelectTime(el, time) {
   document.querySelectorAll('.bf-t-slot').forEach(s=>s.classList.remove('active'));
   el.classList.add('active'); bfState.time = time;
+}
+
+function bfResetMobileViewport() {
+  if (!bfIsMobileLayout()) return;
+  const viewport = window.visualViewport;
+  if (!viewport || viewport.scale <= 1) return;
+  const meta = document.querySelector('meta[name="viewport"]');
+  const original = meta?.getAttribute('content');
+  if (!meta || !original) return;
+  meta.setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0');
+  setTimeout(() => meta.setAttribute('content', original), 120);
+}
+
+function bfScrollToTimeSection() {
+  const container = document.querySelector('#bfStep2 .bf-fill-scroll');
+  const target = document.getElementById('bfTimeSection');
+  if (!container || !target) return;
+  container.scrollTo({ top: Math.max(0, target.offsetTop - 10), behavior: 'smooth' });
 }
 
 // Step 3: Prestige
@@ -2119,22 +2224,33 @@ async function postToSheet(action, data) {
 // ── AUTH MODAL ──
 function openAuth(mode) {
   if (mode === 'artist') {
-    document.getElementById('artistModal').classList.add('open');
-    lockScroll();
-    artistGoToStep(1);
+    const artistModal = document.getElementById('artistModal');
+    if (!artistModal.classList.contains('open')) {
+      artistModal.classList.add('open');
+      lockScroll();
+    }
+    artistGoToStep(0);
     return;
   }
   const modal = document.getElementById('authModal');
-  modal.classList.add('open');
+  if (!modal.classList.contains('open')) {
+    modal.classList.add('open');
+    lockScroll();
+  }
   switchAuthTab(mode === 'signup' ? 'signup' : 'signin');
 }
 
 function closeAuth() {
-  document.getElementById('authModal').classList.remove('open');
+  const modal = document.getElementById('authModal');
+  if (!modal.classList.contains('open')) return;
+  modal.classList.remove('open');
+  unlockScroll();
 }
 
 function closeArtistModal() {
-  document.getElementById('artistModal').classList.remove('open');
+  const modal = document.getElementById('artistModal');
+  if (!modal.classList.contains('open')) return;
+  modal.classList.remove('open');
   unlockScroll();
 }
 
@@ -2200,7 +2316,7 @@ function showForgotPassword() {
 }
 
 // ── ARTIST APPLICATION ──
-let currentArtistStep = 1;
+let currentArtistStep = 0;
 const artRadioValues = {};
 
 function artistGoToStep(step) {
@@ -2208,6 +2324,8 @@ function artistGoToStep(step) {
   document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('artStep' + step) || document.getElementById('artStepSuccess');
   if (panel) panel.classList.add('active');
+  const box = document.getElementById('artistBox');
+  if (box) box.classList.toggle('splash-active', step === 0);
   [0,1,2].forEach(i => {
     const el  = document.getElementById('astStep' + i);
     const sep = document.getElementById('astSep' + i);
@@ -2218,7 +2336,6 @@ function artistGoToStep(step) {
     if (i + 1 === step) el.classList.add('active');
   });
   // scroll modal to top
-  const box = document.querySelector('.artist-box');
   if (box) box.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
