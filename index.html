@@ -47,7 +47,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .no-scroll{overflow:hidden}
 
 /* ─── NAV ─── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:0 28px;height:66px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
+#nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:0 20px;height:66px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
 #nav.solid{background:rgba(247,245,242,.92);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
 .nav-logo{font-size:1.25rem;font-weight:700;letter-spacing:-.5px;color:var(--ink)}
 .nav-logo span{color:var(--pink)}
@@ -59,6 +59,36 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .nav-btn{background:var(--pink);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600;transition:opacity .2s,transform .2s}
 .nav-btn:hover{opacity:.88;transform:translateY(-1px)}
 .nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--border);border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer}
+/* hamburger button */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;background:none;border:none;cursor:pointer;gap:5px;padding:4px;border-radius:10px;transition:background .18s}
+.nav-hamburger:hover{background:rgba(0,0,0,.06)}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s ease,opacity .3s ease,width .3s ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;width:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* drawer overlay */
+#drawerOverlay{position:fixed;inset:0;z-index:180;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
+#drawerOverlay.open{opacity:1;pointer-events:all}
+/* drawer panel */
+#navDrawer{position:fixed;top:0;right:0;bottom:0;z-index:190;width:min(320px,88vw);background:#fff;box-shadow:-8px 0 40px rgba(0,0,0,.14);transform:translateX(100%);transition:transform .36s cubic-bezier(.32,0,.15,1);display:flex;flex-direction:column;overflow-y:auto}
+#navDrawer.open{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);flex-shrink:0}
+.drawer-logo{font-size:1.15rem;font-weight:700;letter-spacing:-.4px;color:var(--ink)}
+.drawer-logo span{color:var(--pink)}
+.drawer-close{background:var(--bg);border:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;color:var(--ink3);transition:background .18s}
+.drawer-close:hover{background:var(--border)}
+.drawer-loc{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:9px 16px;margin:18px 22px 0;font-size:.84rem;font-weight:500;cursor:pointer}
+.drawer-links{display:flex;flex-direction:column;padding:10px 12px;flex:1}
+.drawer-link{display:flex;align-items:center;gap:12px;padding:13px 12px;border-radius:12px;font-size:.95rem;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .18s,color .18s;text-decoration:none;border:none;background:none;font-family:inherit;width:100%;text-align:left}
+.drawer-link:hover{background:var(--pink-bg);color:var(--pink)}
+.drawer-link svg{flex-shrink:0;color:var(--ink3);transition:color .18s}
+.drawer-link:hover svg{color:var(--pink)}
+.drawer-divider{height:1px;background:var(--border);margin:8px 12px}
+.drawer-cta{padding:18px 22px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.drawer-cta-book{background:var(--pink);color:#fff;border:none;padding:14px;border-radius:50px;font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer;transition:opacity .2s;text-align:center}
+.drawer-cta-book:hover{opacity:.88}
+.drawer-cta-signin{background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.drawer-cta-signin:hover{border-color:var(--pink);color:var(--pink)}
 
 /* ─── HERO ─── */
 #hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;width:100vw;background:#0A0A0A}
@@ -316,6 +346,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 @media(max-width:900px){
   #nav{padding:0 20px;height:60px}
   .nav-links{display:none}
+  .nav-right{display:none}
+  .nav-hamburger{display:flex}
+  .nav-loc{display:none}
   #hero .hero-content{padding:0 20px}
   #aesthetics,#brands,#artists,#how,#reviews,#cta,footer{padding-left:20px;padding-right:20px}
   #aesthetics{padding-left:0}
@@ -425,7 +458,51 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     <button class="nav-btn" onclick="document.getElementById('artists').scrollIntoView({behavior:'smooth'})">Book Now</button>
     <div class="nav-avatar" onclick="openAuth('signin')" title="Sign In / Sign Up" style="cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
   </div>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleDrawer()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div id="drawerOverlay" onclick="closeDrawer()"></div>
+<div id="navDrawer">
+  <div class="drawer-head">
+    <div class="drawer-logo">Makeup<span>Day</span></div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-loc" onclick="alert('Location services coming soon!')">
+    <span class="pulse" style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite"></span>
+    <span>Abuja, Nigeria</span>
+    <span style="font-size:.7rem;color:var(--ink3);margin-left:auto">▾</span>
+  </div>
+  <div class="drawer-links">
+    <a class="drawer-link" onclick="scrollTo_('artists');closeDrawer()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Browse Artists
+    </a>
+    <a class="drawer-link" onclick="scrollTo_('aesthetics');closeDrawer()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Browse by Vibe
+    </a>
+    <a class="drawer-link" onclick="scrollTo_('brands');closeDrawer()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Browse by Brand
+    </a>
+    <a class="drawer-link" onclick="scrollTo_('how');closeDrawer()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      How it Works
+    </a>
+    <div class="drawer-divider"></div>
+    <a class="drawer-link" onclick="openAuth('artist');closeDrawer()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Join as Artist
+    </a>
+  </div>
+  <div class="drawer-cta">
+    <button class="drawer-cta-book" onclick="scrollTo_('artists');closeDrawer()">Book an Artist →</button>
+    <button class="drawer-cta-signin" onclick="openAuth('signin');closeDrawer()">Sign In / Sign Up</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1776,6 +1853,27 @@ async function submitArtistApplication() {
   document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('artStepSuccess').classList.add('active');
   document.querySelector('.artist-box').scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── MOBILE DRAWER ──
+function toggleDrawer() {
+  const open = document.getElementById('navDrawer').classList.contains('open');
+  open ? closeDrawer() : openDrawer();
+}
+function openDrawer() {
+  document.getElementById('navDrawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.getElementById('navHamburger').classList.add('open');
+  document.body.classList.add('no-scroll');
+}
+function closeDrawer() {
+  document.getElementById('navDrawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}
+function scrollTo_(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
 
 // ── TOAST ──
