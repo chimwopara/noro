@@ -15,25 +15,35 @@ function doPost(e) {
     const data   = JSON.parse(e.postData.contents);
     const action = data.action;
 
-    if (action === 'signup')             handleSignup(data);
+    // Basic guard: reject requests with no recognisable action
+    const allowed = ['signup','booking','booking_started','artist_application','forgot_password'];
+    if (!allowed.includes(action)) return jsonOut_({ success: false, error: 'Unknown action' });
+
+    let result = null;
+    if      (action === 'signup')             result = handleSignup(data);
     else if (action === 'booking')            handleBooking(data);
+    else if (action === 'booking_started')    handleBookingStarted(data);
     else if (action === 'artist_application') handleArtistApplication(data);
     else if (action === 'forgot_password')    handleForgotPassword(data);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: true }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonOut_(result || { success: true });
   } catch (err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: false, error: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonOut_({ success: false, error: err.toString() });
   }
 }
 
 function doGet(e) {
-  if (e && e.parameter && e.parameter.sheet === 'artists') return getArtistsJson();
+  const p = (e && e.parameter) ? e.parameter : {};
+  if (p.sheet === 'artists')         return getArtistsJson();
+  if (p.action === 'signin')         return jsonOut_(handleSignIn(p));
+  if (p.action === 'verify_otp')     return jsonOut_(handleVerifyOtp(p));
+  if (p.action === 'reset_password') return jsonOut_(handleResetPassword(p));
+  return jsonOut_({ status: 'ok' });
+}
+
+function jsonOut_(obj) {
   return ContentService
-    .createTextOutput(JSON.stringify({ status: 'ok' }))
+    .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -85,10 +95,35 @@ function getOrCreateSheet(name, headers) {
 
 // ── ACTION HANDLERS ───────────────────────────────────────────
 function handleSignup(data) {
-  const sheet = getOrCreateSheet('Signups', ['Timestamp', 'Name', 'Email', 'Phone']);
-  sheet.appendRow([data.timestamp || new Date().toISOString(), data.name, data.email, data.phone]);
+  const sheet = getOrCreateSheet('Signups', ['Timestamp','Name','Email','Phone','Password Hash']);
+  const rows  = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i][2].toString().toLowerCase() === data.email.toLowerCase()) {
+      return { success: false, error: 'Email already registered' };
+    }
+  }
+  const hash = hashPassword_(data.password || '', data.email);
+  sheet.appendRow([data.timestamp || new Date().toISOString(), data.name, data.email, data.phone, hash]);
   sendWelcomeEmail(data.email, data.name);
-  sendVerifyEmail(data.email, data.name);
+  return { success: true };
+}
+
+function handleSignIn(p) {
+  const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName('Signups');
+  if (!sheet) return { success: false, error: 'No users found' };
+  const rows = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i][2].toString().toLowerCase() === (p.email || '').toLowerCase()) {
+      const storedHash = rows[i][4] ? rows[i][4].toString() : '';
+      const inputHash  = hashPassword_(p.password || '', p.email);
+      if (!storedHash || storedHash === inputHash) {
+        return { success: true, user: { name: rows[i][1], email: rows[i][2], phone: rows[i][3] } };
+      }
+      return { success: false, error: 'Wrong password' };
+    }
+  }
+  return { success: false, error: 'Email not found' };
 }
 
 function handleArtistApplication(data) {
@@ -123,10 +158,140 @@ function handleBooking(data) {
   sendBookingConfirmEmail(data.email, data.name, data);
 }
 
+function handleBookingStarted(data) {
+  const sheet = getOrCreateSheet('Abandoned Bookings',
+    ['Timestamp','Email','Name','Artist','Date','Time','Recovery Sent']);
+  sheet.appendRow([
+    new Date().toISOString(),
+    data.email, data.name, data.artist,
+    data.date, data.time, false
+  ]);
+}
+
+// ── TIME TRIGGER: check abandoned bookings (run every hour) ───
+// Setup: Triggers → Add trigger → checkAbandonedBookings → Time-driven → Hour timer → Every 12 hours
+function checkAbandonedBookings() {
+  const ss       = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const abandon  = ss.getSheetByName('Abandoned Bookings');
+  const bookings = ss.getSheetByName('Bookings');
+  if (!abandon || !bookings) return;
+
+  const aRows = abandon.getDataRange().getValues();
+  const bRows = bookings.getDataRange().getValues();
+  const now   = new Date();
+
+  // Build set of completed booking keys (email+artist+date)
+  const completed = new Set(
+    bRows.slice(1).map(r => `${r[3]}|${r[4]}|${r[7]}`.toLowerCase())
+  );
+
+  for (let i = 1; i < aRows.length; i++) {
+    const [ts, email, name, artist, date, time, sent] = aRows[i];
+    if (sent) continue;
+    const age = (now - new Date(ts)) / 3600000; // hours
+    if (age < 12) continue; // wait 12 hours before sending
+
+    const key = `${email}|${artist}|${date}`.toLowerCase();
+    if (!completed.has(key)) {
+      sendRecoveryEmail_(email, name, artist, date, time);
+    }
+    // Mark as sent regardless (don't keep emailing)
+    abandon.getRange(i + 1, 7).setValue(true);
+  }
+}
+
+function sendRecoveryEmail_(email, name, artist, date, time) {
+  const firstName = firstName_(name);
+  const subject   = `${firstName}, your artist is still waiting 💄`;
+  const html = `<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#F7F5F2;font-family:'Helvetica Neue',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px">
+<tr><td align="center">
+<table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
+  <tr><td style="background:#0A0A0A;padding:28px 32px;text-align:center">
+    <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px">Noro<span style="color:#E8175A">Touch</span></div>
+  </td></tr>
+  <tr><td style="padding:32px 32px 0">
+    <p style="font-size:22px;color:#0A0A0A;font-weight:700;margin:0 0 8px">You were so close ✨</p>
+    <p style="font-size:15px;color:#3C3C3C;line-height:1.65;margin:0 0 20px">
+      Hi ${firstName}, you started booking <strong>${artist}</strong> for <strong>${date}</strong> at <strong>${time}</strong> — but didn't finish.
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#FFF0F4;border-radius:14px;margin-bottom:24px">
+      <tr><td style="padding:20px 24px">
+        <p style="font-size:13px;color:#E8175A;font-weight:700;margin:0 0 6px">Your slot is still open</p>
+        <p style="font-size:14px;color:#3C3C3C;margin:0;line-height:1.6">Top artists in Abuja book out fast. Pick up where you left off before someone else takes your spot.</p>
+      </td></tr>
+    </table>
+    <a href="${PLATFORM_URL}" style="display:block;background:#E8175A;color:#fff;text-decoration:none;padding:16px 32px;border-radius:50px;font-size:15px;font-weight:700;text-align:center;margin-bottom:24px">Complete My Booking →</a>
+    <p style="font-size:13px;color:#8A8A8A;line-height:1.6;margin:0">Questions? Just reply to this email — we're here to help.</p>
+  </td></tr>
+  <tr><td style="padding:24px 32px;border-top:1px solid #EBEBEB">
+    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroTouch Ltd · Abuja, Nigeria</p>
+  </td></tr>
+</table>
+</td></tr>
+</table>
+</body></html>`;
+  GmailApp.sendEmail(email, subject,
+    `Hi ${firstName}, you left your booking with ${artist} on ${date} incomplete. Come back and finish it: ${PLATFORM_URL}`,
+    { htmlBody: html, name: PLATFORM_NAME }
+  );
+}
+
 function handleForgotPassword(data) {
-  const sheet = getOrCreateSheet('Password Resets', ['Timestamp', 'Email']);
-  sheet.appendRow([new Date().toISOString(), data.email]);
-  sendForgotPasswordEmail(data.email);
+  const otp    = generateOtp_();
+  const hash   = hashOtp_(data.email, otp);
+  const expiry = new Date(Date.now() + 15 * 60 * 1000).toISOString(); // 15 min
+  const sheet  = getOrCreateSheet('Password Resets', ['Timestamp','Email','OTP Hash','Expiry','Used']);
+  sheet.appendRow([new Date().toISOString(), data.email, hash, expiry, false]);
+  sendOtpEmail_(data.email, otp);
+}
+
+function handleVerifyOtp(p) {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName('Password Resets');
+  if (!sheet) return { success: false, error: 'No resets found' };
+  const rows      = sheet.getDataRange().getValues();
+  const inputHash = hashOtp_(p.email, p.otp);
+  const now       = new Date();
+  for (let i = rows.length - 1; i >= 1; i--) {
+    const [, email, storedHash, expiry, used] = rows[i];
+    if (email.toString().toLowerCase() === (p.email || '').toLowerCase() && storedHash === inputHash) {
+      if (used)              return { success: false, error: 'OTP already used' };
+      if (now > new Date(expiry)) return { success: false, error: 'OTP expired' };
+      return { success: true };
+    }
+  }
+  return { success: false, error: 'Invalid code' };
+}
+
+function handleResetPassword(p) {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName('Password Resets');
+  if (!sheet) return { success: false, error: 'No resets found' };
+  const rows      = sheet.getDataRange().getValues();
+  const inputHash = hashOtp_(p.email, p.otp);
+  const now       = new Date();
+  for (let i = rows.length - 1; i >= 1; i--) {
+    const [, email, storedHash, expiry, used] = rows[i];
+    if (email.toString().toLowerCase() === (p.email || '').toLowerCase() && storedHash === inputHash) {
+      if (used)              return { success: false, error: 'OTP already used' };
+      if (now > new Date(expiry)) return { success: false, error: 'OTP expired' };
+      // Mark OTP used
+      sheet.getRange(i + 1, 5).setValue(true);
+      // Update password hash in Signups
+      const signups = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName('Signups');
+      if (signups) {
+        const sRows = signups.getDataRange().getValues();
+        for (let j = 1; j < sRows.length; j++) {
+          if (sRows[j][2].toString().toLowerCase() === (p.email || '').toLowerCase()) {
+            signups.getRange(j + 1, 5).setValue(hashPassword_(p.newPassword || '', p.email));
+            break;
+          }
+        }
+      }
+      return { success: true };
+    }
+  }
+  return { success: false, error: 'Invalid code' };
 }
 
 // ── EMAIL: WELCOME (CLIENT) ───────────────────────────────────
@@ -201,36 +366,6 @@ function sendVerifyEmail(email, name) {
   GmailApp.sendEmail(email, subject, `Hi ${firstName}, verify your account: ${verifyLink}`, { htmlBody: html, name: PLATFORM_NAME });
 }
 
-// ── EMAIL: FORGOT PASSWORD ────────────────────────────────────
-function sendForgotPasswordEmail(email) {
-  const token     = Utilities.base64Encode(email + ':reset:' + Date.now());
-  const resetLink = `${PLATFORM_URL}/reset-password?token=${encodeURIComponent(token)}`;
-  const subject   = `Reset your ${PLATFORM_NAME} password`;
-
-  const html = `<!DOCTYPE html>
-<html><body style="margin:0;padding:0;background:#F7F5F2;font-family:'Helvetica Neue',Arial,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px">
-<tr><td align="center">
-<table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
-  <tr><td style="background:#0A0A0A;padding:24px 32px;text-align:center">
-    <div style="font-size:20px;font-weight:800;color:#fff">Noro<span style="color:#E8175A">Touch</span></div>
-  </td></tr>
-  <tr><td style="padding:32px">
-    <p style="font-size:20px;color:#0A0A0A;font-weight:700;margin:0 0 12px">Reset your password 🔐</p>
-    <p style="font-size:14px;color:#3C3C3C;line-height:1.65;margin:0 0 24px">We received a request to reset your password. Click below to choose a new one. This link expires in 1 hour.</p>
-    <a href="${resetLink}" style="display:block;background:#0A0A0A;color:#fff;text-decoration:none;padding:16px 32px;border-radius:50px;font-size:15px;font-weight:700;text-align:center;margin-bottom:20px">Reset My Password →</a>
-    <p style="font-size:12px;color:#8A8A8A;margin:0;line-height:1.6">Didn't request a reset? Ignore this — your account is safe.</p>
-  </td></tr>
-  <tr><td style="padding:20px 32px;border-top:1px solid #EBEBEB">
-    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroTouch Ltd · Abuja, Nigeria</p>
-  </td></tr>
-</table>
-</td></tr>
-</table>
-</body></html>`;
-
-  GmailApp.sendEmail(email, subject, `Reset your NoroTouch password: ${resetLink} (expires in 1 hour)`, { htmlBody: html, name: PLATFORM_NAME });
-}
 
 // ── EMAIL: ARTIST WELCOME ─────────────────────────────────────
 function sendArtistWelcomeEmail(email, name) {
@@ -316,6 +451,142 @@ function sendBookingConfirmEmail(email, name, d) {
 </body></html>`;
 
   GmailApp.sendEmail(email, subject, `Hi ${firstName}, your booking with ${d.artist} on ${d.date} at ${d.time} is confirmed. We'll WhatsApp you shortly.`, { htmlBody: html, name: PLATFORM_NAME });
+}
+
+// ── SETUP (run once manually) ─────────────────────────────────
+function setup() {
+  // Create all sheets with correct headers
+  getOrCreateSheet('Signups',              ['Timestamp','Name','Email','Phone','Password Hash']);
+  getOrCreateSheet('Bookings',             ['Timestamp','Name','Phone','Email','Artist','Area','Price','Date','Time','Address','Styles','Brand Level','Pay Method','Status']);
+  getOrCreateSheet('Artist Applications',  ['Timestamp','Name','Email','Phone','Experience','Specialties','Brands','Location','Has Kit','Certification','Instagram','Referral','Status']);
+  getOrCreateSheet('Password Resets',      ['Timestamp','Email','OTP Hash','Expiry','Used']);
+  getOrCreateSheet('Abandoned Bookings',   ['Timestamp','Email','Name','Artist','Date','Time','Recovery Sent']);
+
+  // Create Artists sheet with the exact column names getArtistsJson() reads
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let artists = ss.getSheetByName('Artists');
+  if (!artists) {
+    artists = ss.insertSheet('Artists');
+    const headers = ['name','spec','price','pricenum','rating','reviews','distance','area','brands','styles','prestige','availability','availtext','image'];
+    artists.appendRow(headers);
+    artists.getRange(1, 1, 1, headers.length)
+      .setFontWeight('bold')
+      .setBackground('#0A0A0A')
+      .setFontColor('#FFFFFF');
+    artists.setFrozenRows(1);
+
+    // Sample artist row so the sheet isn't empty
+    artists.appendRow([
+      'Amaka Obi',
+      'Bridal & Editorial',
+      '₦25,000',
+      25000,
+      4.9,
+      48,
+      1.2,
+      'Wuse 2',
+      'Fenty Beauty, MAC',
+      'bridal, editorial',
+      '2,3',
+      'now',
+      'Available Now',
+      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80'
+    ]);
+  }
+
+  SpreadsheetApp.getUi().alert('✅ NoroTouch sheets are ready!');
+}
+
+// ── ON EDIT TRIGGER (booking status changes) ──────────────────
+// Set this up: Triggers → Add trigger → onBookingEdit → From spreadsheet → On edit
+function onBookingEdit(e) {
+  const sheet = e.range.getSheet();
+  if (sheet.getName() !== 'Bookings') return;
+
+  const col = e.range.getColumn();
+  const row = e.range.getRow();
+  if (row < 2) return; // skip header
+
+  // Status column is col 14 ("Status") — adjust if you reorder columns
+  const STATUS_COL = 14;
+  if (col !== STATUS_COL) return;
+
+  const newStatus = e.range.getValue();
+  const rowData   = sheet.getRange(row, 1, 1, STATUS_COL).getValues()[0];
+  const [timestamp, name, phone, email, artist, , , date, time] = rowData;
+
+  if (newStatus === 'Confirmed') {
+    sendStatusEmail(email, name, artist, date, time, 'confirmed');
+  } else if (newStatus === 'Cancelled') {
+    sendStatusEmail(email, name, artist, date, time, 'cancelled');
+  }
+}
+
+function sendStatusEmail(email, name, artist, date, time, status) {
+  const firstName = firstName_(name);
+  const isConfirmed = status === 'confirmed';
+  const subject = isConfirmed
+    ? `✅ Your booking with ${artist} is confirmed — NoroTouch`
+    : `Your NoroTouch booking has been cancelled`;
+
+  const body = isConfirmed
+    ? `Hi ${firstName}, your booking with ${artist} on ${date} at ${time} is confirmed. They'll be at your address on time. Reply to this email if you need anything.`
+    : `Hi ${firstName}, unfortunately your booking with ${artist} on ${date} at ${time} has been cancelled. Please rebook on norotouch.com or reply to this email for help.`;
+
+  GmailApp.sendEmail(email, subject, body, { name: PLATFORM_NAME });
+}
+
+// ── CRYPTO HELPERS ────────────────────────────────────────────
+function hashPassword_(password, email) {
+  const input = email.toLowerCase() + ':pw:' + password;
+  return sha256_(input);
+}
+
+function hashOtp_(email, otp) {
+  const input = email.toLowerCase() + ':otp:' + otp;
+  return sha256_(input);
+}
+
+function sha256_(input) {
+  const bytes = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256, input, Utilities.Charset.UTF_8
+  );
+  return bytes.map(b => ('0' + (b & 0xff).toString(16)).slice(-2)).join('');
+}
+
+function generateOtp_() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+// ── EMAIL: OTP RESET ──────────────────────────────────────────
+function sendOtpEmail_(email, otp) {
+  const subject = `${otp} is your NoroTouch reset code`;
+  const html = `<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#F7F5F2;font-family:'Helvetica Neue',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px">
+<tr><td align="center">
+<table width="100%" style="max-width:480px;background:#fff;border-radius:20px;overflow:hidden">
+  <tr><td style="background:#0A0A0A;padding:24px 32px;text-align:center">
+    <div style="font-size:20px;font-weight:800;color:#fff">Noro<span style="color:#E8175A">Touch</span></div>
+  </td></tr>
+  <tr><td style="padding:36px 32px;text-align:center">
+    <p style="font-size:15px;color:#3C3C3C;margin:0 0 28px">Use the code below to reset your password. It expires in <strong>15 minutes</strong>.</p>
+    <div style="display:inline-block;background:#F7F5F2;border-radius:14px;padding:20px 40px;margin-bottom:28px">
+      <div style="font-size:38px;font-weight:800;letter-spacing:10px;color:#0A0A0A">${otp}</div>
+    </div>
+    <p style="font-size:12px;color:#8A8A8A;margin:0">Didn't request this? You can safely ignore it.</p>
+  </td></tr>
+  <tr><td style="padding:20px 32px;border-top:1px solid #EBEBEB">
+    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroTouch Ltd · Abuja, Nigeria</p>
+  </td></tr>
+</table>
+</td></tr>
+</table>
+</body></html>`;
+  GmailApp.sendEmail(email, subject,
+    `Your NoroTouch reset code is ${otp}. It expires in 15 minutes.`,
+    { htmlBody: html, name: PLATFORM_NAME }
+  );
 }
 
 // ── HELPERS ───────────────────────────────────────────────────

@@ -3,600 +3,84 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>NoroTouch: Book Your Artist in Abuja</title>
+
+<!-- SEO -->
+<title>NoroTouch — Book Makeup Artists in Abuja | Owambe, Bridal &amp; Glam</title>
+<meta name="description" content="Book certified makeup artists in Abuja instantly. Filter by brand (Fenty Beauty, MAC, Zaron, House of Tara), look (Owambe, Bridal, Aso-ebi) and area. Available now across Maitama, Wuse, Asokoro, Garki &amp; more."/>
+<meta name="keywords" content="makeup artist Abuja, book MUA Abuja, bridal makeup Abuja, owambe makeup Abuja, aso-ebi makeup Abuja, Maitama makeup artist, Wuse makeup artist, Asokoro makeup artist, Garki makeup artist, Nigerian makeup artist booking, Fenty Beauty Abuja, MAC makeup Abuja, Zaron makeup artist, House of Tara Abuja"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://norotouch.com/"/>
+<meta name="theme-color" content="#9B7B5A"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="NoroTouch — Book Certified Makeup Artists in Abuja"/>
+<meta property="og:description" content="Book a certified makeup artist in Abuja in minutes. Filter by brand, look, and location. Available now across Maitama, Wuse, Asokoro, Garki and more."/>
+<meta property="og:url" content="https://norotouch.com/"/>
+<meta property="og:image" content="https://norotouch.com/og-image.jpg"/>
+<meta property="og:site_name" content="NoroTouch"/>
+<meta property="og:locale" content="en_NG"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="NoroTouch — Book Certified Makeup Artists in Abuja"/>
+<meta name="twitter:description" content="Book a certified makeup artist in Abuja in minutes. Filter by brand, look, and location."/>
+<meta name="twitter:image" content="https://norotouch.com/og-image.jpg"/>
+
+<!-- Geo -->
+<meta name="geo.region" content="NG-FC"/>
+<meta name="geo.placename" content="Abuja, Federal Capital Territory, Nigeria"/>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --ink:#0A0A0A;--ink2:#3C3C3C;--ink3:#8A8A8A;
-  --pink:#9B7B5A;--pink2:#B89572;--pink-bg:#F5EDDF;
-  --gold:#C9963A;--gold-bg:#FDF5E6;
-  --green:#00C48C;--red:#FF3B30;
-  --bg:#EDE7DC;--white:#FFFFFF;--border:#DDD5C5;
-  --r:18px;--r2:28px;
-  --shadow:0 4px 24px rgba(10,10,10,.08);
-  --shadow2:0 16px 56px rgba(10,10,10,.14);
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/styles.css"/>
+
+<!-- Schema.org LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "NoroTouch",
+  "description": "Abuja's first on-demand makeup artist booking platform. Book certified MUAs for Owambe, Bridal, Editorial, Aso-ebi, and everyday looks across Abuja.",
+  "url": "https://norotouch.com",
+  "image": "https://norotouch.com/og-image.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Abuja",
+    "addressRegion": "FCT",
+    "addressCountry": "NG"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 9.0765,
+    "longitude": 7.3986
+  },
+  "openingHours": "Mo-Su 06:00-22:00",
+  "priceRange": "₦₦",
+  "areaServed": ["Maitama","Wuse","Wuse 2","Asokoro","Garki","Jabi","Utako","Gwarinpa","Kubwa","Central Area","Abuja"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Makeup Services in Abuja",
+    "itemListElement": [
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Owambe Glam Makeup","description":"Bold, dramatic party-ready makeup for Owambe events by certified artists across Abuja."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Bridal Makeup Abuja","description":"Professional bridal makeup services by verified artists across Abuja, including traditional and church wedding looks."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Aso-ebi Makeup Abuja","description":"Vibrant makeup looks perfectly matched for Aso-ebi events and traditional ceremonies in Abuja."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Editorial Makeup Abuja","description":"Creative, artistic makeup for photoshoots and editorial content in Abuja."}}
+    ]
+  }
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;width:100%;min-width:0}
-img{display:block;max-width:100%}
-button{font-family:inherit;cursor:pointer}
-a{text-decoration:none;color:inherit}
-
-/* ─── SCROLLBAR ─── */
-/* Use standard CSS — avoids switching Mac to classic (space-consuming) scrollbar mode */
-html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-/* Thin horizontal scrollbars only for overflow-x scroll containers */
-.aesthetics-scroll::-webkit-scrollbar,
-.brand-scroll::-webkit-scrollbar,.date-row::-webkit-scrollbar,
-.rev-list::-webkit-scrollbar,.artist-box::-webkit-scrollbar{height:4px;width:4px}
-.aesthetics-scroll::-webkit-scrollbar-track,
-.brand-scroll::-webkit-scrollbar-track,.date-row::-webkit-scrollbar-track,
-.rev-list::-webkit-scrollbar-track,.artist-box::-webkit-scrollbar-track{background:transparent}
-.aesthetics-scroll::-webkit-scrollbar-thumb,
-.brand-scroll::-webkit-scrollbar-thumb,.date-row::-webkit-scrollbar-thumb,
-.rev-list::-webkit-scrollbar-thumb,.artist-box::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
-
-/* ─── UTIL ─── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
-.reveal.visible{opacity:1;transform:none}
-.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
-.reveal-left.visible{opacity:1;transform:none}
-.tag{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
-.section-title{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);font-style:italic;line-height:1.15;color:var(--ink)}
-.no-scroll{overflow:hidden;position:fixed;width:100%;}
-
-/* ─── NAV ─── */
-#nav{position:fixed;top:14px;left:20px;right:20px;z-index:90;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s,border-color .3s;border-radius:20px;background:rgba(237,231,220,.18);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.22)}
-#nav.solid{background:rgba(237,231,220,.88);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(10,10,10,.08);border-color:rgba(235,235,235,.8)}
-.nav-logo{font-size:1.25rem;font-weight:700;letter-spacing:-.5px;color:#fff;white-space:nowrap;pointer-events:auto;text-shadow:0 0 8px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6),0 0 40px var(--pink),0 0 70px var(--pink);transition:color .3s,text-shadow .3s,opacity .45s;opacity:0;position:relative;z-index:1}
-.nav-logo span{color:#fff;text-shadow:inherit}
-#nav.solid .nav-logo{color:var(--ink);text-shadow:none;opacity:1}
-#nav.solid .nav-logo span{color:var(--pink)}
-/* Scrolling ticker */
-.nav-ticker{position:absolute;inset:0;overflow:hidden;border-radius:20px;display:flex;align-items:center;z-index:0;opacity:1;transition:opacity .45s;pointer-events:none}
-.nav-ticker-inner{display:flex;align-items:center;white-space:nowrap;animation:noroTickerLtr 24s linear infinite}
-@keyframes noroTickerLtr{from{transform:translateX(-50%)}to{transform:translateX(0%)}}
-.nav-ticker-item{font-size:1rem;font-weight:700;letter-spacing:-.4px;color:#fff;text-shadow:0 0 6px rgba(255,255,255,.8),0 0 16px rgba(255,255,255,.5),0 0 28px var(--pink),0 0 52px var(--pink);padding:0 24px;flex-shrink:0}
-.nav-ticker-item span{color:#fff}
-.nav-ticker-sep{color:rgba(255,255,255,.3);font-size:.6rem;flex-shrink:0}
-#nav.solid .nav-ticker{opacity:0}
-.nav-loc{display:flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:7px 14px;font-size:.82rem;font-weight:500;cursor:pointer;transition:border-color .2s}
-.nav-loc:hover{border-color:var(--pink)}
-.nav-loc .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,196,140,.4);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,196,140,.45)}70%{box-shadow:0 0 0 8px rgba(0,196,140,0)}100%{box-shadow:0 0 0 0 rgba(0,196,140,0)}}
-.nav-right{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
-.nav-btn{background:var(--pink);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600;transition:opacity .2s,transform .2s;cursor:pointer}
-.nav-btn:hover{opacity:.88;transform:translateY(-1px)}
-.nav-arrow{animation:arrowNudge 1.4s ease-in-out infinite}
-@keyframes arrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
-.nav-btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border);padding:8px 18px;border-radius:50px;font-size:.83rem;font-weight:600;cursor:pointer;transition:border-color .2s,transform .2s}
-.nav-btn-outline:hover{border-color:var(--pink);transform:translateY(-1px)}
-.nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--border);border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer}
-
-/* ─── HERO ─── */
-#hero{position:relative;height:80svh;min-height:520px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;width:100vw;background:#0A0A0A;padding-top:90px;border-radius:0 0 32px 32px}
-.hero-slides{position:absolute;inset:0;width:100%;height:100%;background:#0A0A0A}
-.hero-slide{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center top;opacity:0;transform:scale(1.12);animation:slideShow 28s infinite}
-.hero-slide:nth-child(1){animation-delay:0s;background-image:url('https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=1600&q=90&fit=crop&crop=top')}
-.hero-slide:nth-child(2){animation-delay:7s;background-image:url('https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=1600&q=90&fit=crop&crop=top')}
-.hero-slide:nth-child(3){animation-delay:14s;background-image:url('https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=1600&q=90&fit=crop&crop=top')}
-.hero-slide:nth-child(4){animation-delay:21s;background-image:url('https://images.unsplash.com/photo-1648671095483-254807669fcd?w=1600&q=90&fit=crop&crop=top')}
-@keyframes slideShow{
-  0%{opacity:1;transform:scale(1.06)}
-  22%{opacity:1;transform:scale(1.0)}
-  27%{opacity:0;transform:scale(1.0)}
-  100%{opacity:0;transform:scale(1.0)}
-}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.82) 0%,rgba(5,5,5,.35) 50%,rgba(5,5,5,.2) 100%)}
-.hero-content{position:relative;z-index:2;padding:0 32px;max-width:700px}
-.hero-live{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 14px;border-radius:50px;font-size:.78rem;font-weight:500;margin-bottom:24px}
-.hero-live .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-.hero-h1{font-family:'Instrument Serif',serif;font-size:clamp(3rem,7vw,5.5rem);font-style:italic;line-height:1.05;color:#fff;margin-bottom:20px}
-.hero-h1 .word{color:var(--pink2);transition:opacity .35s,transform .35s}
-.hero-h1 .word.out{opacity:0;transform:translateY(-12px)}
-.hero-h1 .word.in{opacity:0;transform:translateY(12px)}
-.hero-sub{font-size:1rem;color:rgba(255,255,255,.72);font-weight:400;margin-bottom:32px;line-height:1.6;max-width:420px}
-.hero-search-bar{display:flex;align-items:center;background:#fff;border-radius:60px;padding:7px 7px 7px 22px;gap:8px;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,.25)}
-.hero-search-bar input{flex:1;border:none;outline:none;font-family:inherit;font-size:.9rem;color:var(--ink);background:transparent}
-.hero-search-bar input::placeholder{color:#BCBCBC}
-.hero-search-bar button{background:var(--pink);color:#fff;border:none;padding:11px 22px;border-radius:50px;font-size:.88rem;font-weight:600;white-space:nowrap;transition:all .2s}
-.hero-search-bar button:hover{background:var(--pink2)}
-.hero-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s,width .3s}
-.hero-dot.active{background:#fff;width:20px;border-radius:4px}
-.hero-scroll-icon{width:22px;height:34px;border:2px solid rgba(255,255,255,.3);border-radius:12px;position:relative;display:flex;justify-content:center;padding-top:5px}
-.hero-scroll-icon::after{content:'';width:4px;height:6px;background:rgba(255,255,255,.6);border-radius:2px;animation:scrollDot 1.5s infinite}
-@keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}80%{transform:translateY(8px);opacity:0}}
-
-/* ─── QUICK BOOK ─── */
-
-/* ─── AESTHETICS ─── */
-#aesthetics{padding:60px 0 60px 32px;background:#D9CFC0}
-.aesthetics-head{padding-right:32px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end}
-.see-all{font-size:.83rem;font-weight:600;color:var(--pink);cursor:pointer}
-.aesthetics-scroll{display:flex;gap:14px;overflow-x:auto;padding-right:32px;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
-.aesthetics-scroll::-webkit-scrollbar{display:none}
-.aes-card{flex-shrink:0;width:150px;height:200px;border-radius:20px;overflow:hidden;position:relative;cursor:pointer;transition:transform .25s}
-.aes-card:hover{transform:scale(1.03)}
-.aes-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.aes-card:hover img{transform:scale(1.08)}
-.aes-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%)}
-.aes-info{position:absolute;bottom:0;left:0;right:0;padding:14px 12px}
-.aes-name{font-size:.88rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:3px}
-.aes-count{font-size:.7rem;color:rgba(255,255,255,.65)}
-.aes-card.selected::after{content:'✓';position:absolute;top:10px;right:10px;background:var(--pink);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}
-
-/* ─── BRANDS ─── */
-.brands-wrap{background:#D9CFC0;padding:40px 20px}
-#brands{padding:60px 32px;background:rgba(255,255,255,.24);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.42);border-radius:28px;box-shadow:0 8px 40px rgba(10,10,10,.07)}
-.brands-head{margin-bottom:32px}
-.brand-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
-.brand-scroll::-webkit-scrollbar{display:none}
-.brand-tile{flex-shrink:0;background:#D9CFC0;border:1.5px solid rgba(0,0,0,.06);border-radius:18px;overflow:hidden;cursor:pointer;text-align:center;transition:all .22s;width:110px}
-.brand-tile:hover,.brand-tile.active{border-color:var(--pink);box-shadow:0 6px 20px rgba(155,123,90,.14);transform:translateY(-3px)}
-.brand-mark{height:64px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase}
-.brand-tile .b-name{font-size:.7rem;font-weight:600;color:var(--ink);padding:8px 8px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand-tile .b-count{font-size:.65rem;color:var(--ink3);padding:0 8px 10px}
-.brand-tile.active .b-name{color:var(--pink)}
-.brand-tile.active .b-count{color:rgba(155,123,90,.6)}
-/* ─── ARTISTS ─── */
-#artists{padding:60px 32px;background:var(--white)}
-.artists-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;gap:16px;flex-wrap:wrap}
-.artists-head-left{display:block}
-.artists-meta{font-size:.85rem;color:var(--ink3);margin-top:6px}
-.sort-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.sort-label{font-size:.78rem;color:var(--ink3);font-weight:500}
-.sort-chip{background:var(--bg);border:1.5px solid var(--border);color:var(--ink2);padding:7px 14px;border-radius:50px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:5px}
-.sort-chip:hover,.sort-chip.active{background:var(--pink-bg);border-color:var(--pink);color:var(--pink)}
-.artists-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
-
-/* ─── ARTIST CARD ─── */
-.a-card{background:var(--white);border-radius:var(--r2);border:1.5px solid var(--border);overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s}
-.a-card:hover{transform:translateY(-6px);box-shadow:var(--shadow2);border-color:transparent}
-.a-card.hidden{display:none}
-.a-card-img{position:relative;height:210px;overflow:hidden}
-.a-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
-.a-card:hover .a-card-img img{transform:scale(1.06)}
-.a-avail{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);color:#fff;padding:5px 11px;border-radius:50px;font-size:.72rem;font-weight:600}
-.a-avail .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
-.a-avail.busy .dot{background:#FF9500;animation:none}
-.a-heart{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);border:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:transform .2s,background .2s}
-.a-heart:hover{transform:scale(1.15)}
-.a-heart.liked{background:var(--pink-bg);color:var(--pink)}
-.a-card-body{padding:18px 18px 20px}
-.a-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px}
-.a-name{font-size:1.05rem;font-weight:700;color:var(--ink)}
-.a-price{font-size:.88rem;font-weight:700;color:var(--pink)}
-.a-spec{font-size:.8rem;color:var(--ink3);margin-bottom:10px}
-.a-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
-.a-rating{display:flex;align-items:center;gap:4px;font-size:.82rem;font-weight:600;color:var(--ink)}
-.a-rating .star{color:#F59E0B}
-.a-rating .rev{font-weight:400;color:var(--ink3)}
-.a-dist{display:flex;align-items:center;gap:4px;font-size:.8rem;color:var(--ink3)}
-.a-brands{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
-.a-brand{background:var(--bg);color:var(--ink2);padding:4px 10px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.2px}
-.a-brand.lux{background:var(--gold-bg);color:var(--gold)}
-.a-book{width:100%;background:var(--ink);color:#fff;border:none;padding:12px;border-radius:50px;font-size:.88rem;font-weight:700;transition:background .2s,transform .2s;letter-spacing:.3px}
-.a-book:hover{background:var(--pink)}
-
-.how-inner{max-width:900px;margin:0 auto}
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
-.how-step{background:var(--white);border-radius:var(--r2);padding:32px 24px;position:relative;border:1.5px solid var(--border)}
-.how-num{font-family:'Instrument Serif',serif;font-size:4rem;font-style:italic;color:var(--border);font-weight:400;line-height:1;margin-bottom:14px}
-.how-step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-.how-step p{font-size:.85rem;color:var(--ink3);line-height:1.65}
-
-/* ─── TESTIMONIALS ─── */
-#reviews{padding:80px 32px;background:#D9CFC0;color:var(--ink)}
-.reviews-head{margin-bottom:40px}
-.reviews-head .section-title{color:var(--ink)}
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.r-card{background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.42);border-radius:var(--r2);padding:26px;transition:background .25s}
-.r-card:hover{background:rgba(255,255,255,.34)}
-.r-stars{color:#C8860A;font-size:.85rem;margin-bottom:14px;letter-spacing:1px}
-.r-text{font-size:.88rem;line-height:1.7;color:var(--ink2);font-style:italic;margin-bottom:20px}
-.r-author{display:flex;align-items:center;gap:12px}
-.r-av{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(155,123,90,.4)}
-.r-name{font-size:.85rem;font-weight:700;color:var(--ink)}
-.r-detail{font-size:.75rem;color:var(--ink3)}
-
-/* ─── CTA STRIP ─── */
-
-/* ─── FOOTER ─── */
-footer{background:#C4B5A0;color:rgba(10,10,10,.55);padding:0}
-.foot-simple{padding:20px 24px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.foot-left{display:flex;flex-direction:column;gap:3px}
-.foot-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
-.foot-logo{font-size:1rem;font-weight:700;color:var(--ink)}
-.foot-logo span{color:var(--pink)}
-.foot-tagline{font-size:.75rem;color:rgba(10,10,10,.55)}
-.foot-links{display:flex;align-items:center;gap:8px;font-size:.75rem}
-.foot-links a{color:rgba(10,10,10,.45);text-decoration:none;transition:color .18s}
-.foot-links a:hover{color:var(--ink)}
-.foot-links span{color:rgba(10,10,10,.25)}
-.foot-copy{font-size:.7rem;color:rgba(10,10,10,.4)}
-.foot-copy a{color:inherit;text-decoration:none;transition:color .18s}
-.foot-copy a:hover{color:var(--ink)}
-
-/* ─── MOBILE BOTTOM NAV ─── */
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:12px 0 20px}
-.mob-nav-inner{display:flex;justify-content:space-around}
-.mob-tab{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:0 16px}
-.mob-tab-icon{width:22px;height:22px;transition:transform .2s;display:flex;align-items:center;justify-content:center;color:var(--ink3)}
-.mob-tab.active .mob-tab-icon{color:var(--pink)}
-.mob-tab-label{font-size:.66rem;font-weight:600;color:var(--ink3);letter-spacing:.3px}
-.mob-tab.active .mob-tab-icon{transform:scale(1.15)}
-.mob-tab.active .mob-tab-label{color:var(--pink)}
-
-/* ─── BOOKING MODAL ─── */
-#overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:flex-end;justify-content:center}
-#overlay.open{opacity:1;pointer-events:all}
-.sheet{background:#fff;border-radius:28px 28px 0 0;width:100%;max-width:560px;max-height:92svh;overflow-y:auto;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1)}
-#overlay.open .sheet{transform:none}
-.sheet-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:14px auto 0}
-.sheet-hero{height:200px;position:relative;overflow:hidden;margin-top:8px}
-.sheet-hero img{width:100%;height:100%;object-fit:cover}
-.sheet-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent)}
-.sheet-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.sheet-artist-tag{position:absolute;bottom:16px;left:16px;right:16px;display:flex;align-items:flex-end;justify-content:space-between}
-.sheet-artist-name{font-size:1.4rem;font-weight:700;color:#fff;font-family:'Instrument Serif',serif;font-style:italic}
-.sheet-artist-rating{font-size:.8rem;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:4px}
-.sheet-body{padding:24px 22px 32px}
-.sheet-section{font-size:.75rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin:20px 0 12px}
-.date-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-ms-overflow-style:none;scrollbar-width:none}
-.date-row::-webkit-scrollbar{display:none}
-.date-chip{flex-shrink:0;border:1.5px solid var(--border);border-radius:14px;padding:10px 14px;text-align:center;cursor:pointer;transition:all .18s}
-.date-chip:hover,.date-chip.active{border-color:var(--pink);background:var(--pink-bg)}
-.date-chip .dc-day{font-size:.7rem;color:var(--ink3);font-weight:500}
-.date-chip .dc-num{font-size:1.1rem;font-weight:700;color:var(--ink)}
-.date-chip.active .dc-day,.date-chip.active .dc-num{color:var(--pink)}
-.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.t-slot{border:1.5px solid var(--border);border-radius:10px;padding:9px 6px;text-align:center;font-size:.8rem;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .18s}
-.t-slot:hover,.t-slot.active{border-color:var(--pink);background:var(--pink-bg);color:var(--pink)}
-.t-slot.off{color:#D8D8D8;cursor:default;background:var(--bg);border-color:transparent}
-.services-list{display:flex;flex-direction:column;gap:8px}
-.svc-row{display:flex;align-items:center;background:var(--bg);border-radius:14px;padding:13px 14px;gap:10px;cursor:pointer;transition:background .18s}
-.svc-row:hover{background:#F0EBE8}
-.svc-row input[type=checkbox]{accent-color:var(--pink);width:16px;height:16px;cursor:pointer;flex-shrink:0}
-.svc-row label{flex:1;font-size:.88rem;color:var(--ink);cursor:pointer}
-.svc-row .svc-price{font-size:.88rem;font-weight:700;color:var(--pink)}
-/* ─── SHEET TABS ─── */
-.sheet-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin:0 0 4px}
-.s-tab{flex:1;background:none;border:none;border-bottom:2.5px solid transparent;padding:13px 10px;font-family:inherit;font-size:.85rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;margin-bottom:-1px}
-.s-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
-.sheet-panel{display:none;padding-top:4px}
-.sheet-panel.active{display:block}
-/* ─── REVIEWS PANEL ─── */
-.rev-summary{display:flex;align-items:center;gap:18px;background:var(--bg);border-radius:16px;padding:16px 18px;margin-bottom:18px}
-.rev-big{font-family:'Instrument Serif',serif;font-size:3rem;font-style:italic;line-height:1;color:var(--ink)}
-.rev-stars-row{color:#F59E0B;font-size:1rem;letter-spacing:2px;margin-bottom:3px}
-.rev-total{font-size:.75rem;color:var(--ink3)}
-.rev-bars{flex:1}
-.rev-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.rev-bar-lbl{font-size:.7rem;color:var(--ink3);width:8px;text-align:right}
-.rev-bar-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
-.rev-bar-fill{height:100%;background:#F59E0B;border-radius:3px}
-.rev-list{display:flex;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto;margin-bottom:20px;padding-right:2px}
-.rev-list::-webkit-scrollbar{width:3px}
-.rev-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.rev-item{background:var(--bg);border-radius:14px;padding:14px 15px}
-.rev-item-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px}
-.rev-item-name{font-size:.83rem;font-weight:700;color:var(--ink)}
-.rev-item-date{font-size:.7rem;color:var(--ink3)}
-.rev-item-stars{color:#F59E0B;font-size:.75rem;letter-spacing:1px;margin-bottom:6px}
-.rev-item-text{font-size:.82rem;color:var(--ink2);line-height:1.65}
-.rev-item-tag{display:inline-block;font-size:.68rem;color:var(--ink3);background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2px 8px;margin-top:8px}
-.write-rev{border-top:1px solid var(--border);padding-top:18px}
-.write-rev-title{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:12px}
-.star-input{display:flex;gap:5px;margin-bottom:14px}
-.star-input span{font-size:1.7rem;color:#D8D8D8;cursor:pointer;transition:color .12s,transform .12s;line-height:1}
-.star-input span.lit{color:#F59E0B}
-.star-input span:hover{transform:scale(1.2)}
-.rev-field{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:inherit;font-size:.85rem;color:var(--ink);background:var(--bg);transition:border-color .18s;outline:none;display:block;margin-bottom:10px}
-.rev-field:focus{border-color:var(--pink)}
-textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
-.rev-post-btn{width:100%;background:var(--ink);color:#fff;border:none;padding:13px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s}
-.rev-post-btn:hover{background:var(--pink)}
-.tone-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
-.tone-btn{width:36px;height:36px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;flex-shrink:0}
-.tone-btn:hover{transform:scale(1.15)}
-.tone-btn.selected{border-color:var(--pink);box-shadow:0 0 0 3px rgba(155,123,90,.25);transform:scale(1.18)}
-.sheet-total{display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-radius:14px;padding:14px 16px;margin-top:16px;margin-bottom:20px}
-.sheet-total .tot-label{font-size:.82rem;color:var(--ink3)}
-.sheet-total .tot-price{font-size:1.1rem;font-weight:700;color:var(--ink)}
-.sheet-book-btn{width:100%;background:var(--ink);color:#fff;border:none;padding:16px;border-radius:50px;font-size:.95rem;font-weight:700;transition:background .2s}
-.sheet-book-btn:hover{background:var(--pink)}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:900px){
-  #nav{top:10px;left:14px;right:14px;height:54px;padding:0 16px}
-  .nav-logo{font-size:1.1rem;flex-shrink:0}
-  #navBookBtn{padding:9px 16px;font-size:.78rem;white-space:nowrap}
-  #hero .hero-content{padding:0 20px}
-  #aesthetics,#reviews,footer{padding-left:20px;padding-right:20px}
-  .brands-wrap{padding:28px 12px}
-  #brands{padding-left:20px;padding-right:20px}
-  #aesthetics{padding-left:0}
-  .aesthetics-head{padding:0 20px}
-  .aesthetics-scroll{padding-right:20px}
-  .how-grid{grid-template-columns:1fr}
-  .mob-nav{display:none}
-}
-@media(max-width:600px){
-  .how-grid{grid-template-columns:1fr}
-  .reviews-grid{grid-template-columns:1fr}
-  .artists-grid{grid-template-columns:1fr}
-  input,select,textarea{font-size:16px!important}
-  .auth-box{max-height:96svh}
-  .auth-header,.auth-tabs,.auth-body{padding-left:22px;padding-right:22px}
-  .auth-close-btn{top:14px;right:14px}
-  .artist-box{height:90svh}
-  .artist-splash-inner{padding:26px 22px}
-  .artist-box-header,.artist-box-body{padding-left:22px;padding-right:22px}
-}
-
-/* ─── AUTH MODAL ─── */
-#authModal{position:fixed;inset:0;z-index:340;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s}
-#authModal.open{opacity:1;pointer-events:all}
-.auth-box{background:rgba(237,231,220,.14);border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 72px rgba(10,10,10,.32);border-radius:28px;width:100%;max-width:520px;max-height:92svh;position:relative;overflow-y:auto;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1);isolation:isolate}
-.auth-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
-.auth-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.24) 0%,rgba(5,5,5,.58) 28%,rgba(5,5,5,.82) 100%);z-index:-1}
-#authModal.open .auth-box{transform:translateY(0)}
-.auth-close-btn{position:absolute;top:18px;right:18px;background:rgba(7,7,7,.52);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);width:36px;height:36px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;z-index:4;transition:background .18s,border-color .18s,transform .18s}
-.auth-close-btn:hover{background:rgba(7,7,7,.72);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
-/* ─── AUTH MAKEUP ANIMATION ─── */
-.auth-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px;pointer-events:none;z-index:0}
-.mk-blob{position:absolute;border-radius:50%;filter:blur(34px);animation:mkPulse ease-in-out infinite}
-.mk-sparkle{position:absolute;width:5px;height:5px;border-radius:50%;animation:mkFloat linear infinite;opacity:0}
-@keyframes mkPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.8}}
-@keyframes mkFloat{0%{transform:translateY(0) scale(0);opacity:0}15%{opacity:.85;transform:translateY(-14px) scale(1)}80%{opacity:.35;transform:translateY(-88px) scale(.7)}100%{transform:translateY(-130px) scale(0);opacity:0}}
-.auth-header{padding:36px 32px 22px;text-align:center;background:rgba(17,13,10,.58);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.12)}
-.auth-brand{font-size:1rem;font-weight:700;letter-spacing:-.3px;margin-bottom:16px;color:#fff}
-.auth-brand span{color:var(--pink2)}
-.auth-panel-title{font-family:'Instrument Serif',serif;font-size:1.85rem;font-style:italic;color:#fff;margin-bottom:7px}
-.auth-panel-sub{font-size:.84rem;color:rgba(255,255,255,.74);line-height:1.6;max-width:320px;margin:0 auto}
-.auth-tabs{display:flex;border-bottom:1px solid rgba(221,213,197,.85);margin:0;padding:0 32px;background:rgba(237,231,220,.92);position:relative;z-index:1}
-.auth-tab{flex:1;background:none;border:none;border-bottom:2.5px solid transparent;padding:11px 8px;font-family:inherit;font-size:.85rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;margin-bottom:-1px}
-.auth-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
-.auth-body{padding:24px 32px 32px;background:rgba(237,231,220,.94);backdrop-filter:blur(22px)}
-.auth-panel{display:none}
-.auth-panel.active{display:block}
-.a-field-label{font-size:.88rem;font-weight:700;color:var(--ink);letter-spacing:0;margin-bottom:7px;display:block}
-.a-field{width:100%;border:1.5px solid rgba(235,235,235,.7);border-radius:12px;padding:13px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:rgba(255,255,255,.55);outline:none;transition:border-color .18s,background .18s;margin-bottom:20px;display:block}
-.a-field:focus{border-color:var(--pink);background:rgba(255,255,255,.8)}
-.a-field::placeholder{color:#BCBCBC}
-.auth-forgot-link{font-size:.79rem;color:var(--pink);cursor:pointer;text-align:right;margin:-4px 0 14px;display:block}
-.auth-forgot-link:hover{text-decoration:underline}
-.auth-submit-btn{width:100%;background:var(--pink);color:#fff;border:none;padding:15px;border-radius:50px;font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer;transition:opacity .2s;margin-top:2px}
-.auth-submit-btn:hover{opacity:.88}
-.auth-submit-btn:disabled{opacity:.5;cursor:default}
-.auth-or{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--ink3);font-size:.78rem}
-.auth-or::before,.auth-or::after{content:'';flex:1;height:1px;background:var(--border)}
-.auth-success{text-align:center;padding:12px 0 4px}
-.auth-success-icon{font-size:2.8rem;margin-bottom:10px}
-.auth-success-title{font-family:'Instrument Serif',serif;font-size:1.5rem;font-style:italic;color:var(--ink);margin-bottom:7px}
-.auth-success-text{font-size:.84rem;color:var(--ink3);line-height:1.6;margin-bottom:0}
-.card-auth-shell{position:relative;display:flex;flex-direction:column;min-height:100%;height:100%;overflow:hidden;isolation:isolate}
-.card-auth-shell::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
-.card-auth-shell::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.24) 0%,rgba(5,5,5,.58) 28%,rgba(5,5,5,.82) 100%);z-index:-1}
-.card-auth-back{position:absolute;top:18px;right:18px;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:rgba(7,7,7,.52);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);min-width:36px;height:36px;padding:0 14px;border-radius:999px;font-size:.82rem;font-weight:700;cursor:pointer;color:#fff;z-index:4;transition:background .18s,border-color .18s,transform .18s}
-.card-auth-back:hover{background:rgba(7,7,7,.72);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
-.card-auth-shell .auth-header,.card-auth-shell .auth-tabs,.card-auth-shell .auth-body{position:relative;z-index:1}
-.card-auth-shell .auth-body{flex:1;overflow-y:auto}
-.card-auth-shell.show-success .auth-tabs{display:none}
-.card-auth-shell.show-success .auth-header{padding-bottom:28px}
-
-/* ─── ARTIST APPLICATION MODAL ─── */
-#artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-#artistModal.open{opacity:1;pointer-events:all}
-.artist-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;overflow:hidden;position:relative;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);isolation:isolate}
-.artist-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&q=80');background-size:cover;background-position:center top;z-index:-2}
-.artist-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.22) 0%,rgba(5,5,5,.55) 24%,rgba(5,5,5,.82) 100%);z-index:-1}
-#artistModal.open .artist-box{transform:translateY(0)}
-.artist-box-header{padding:0 24px 10px;border-bottom:1px solid rgba(235,235,235,.5);position:sticky;top:0;background:rgba(237,231,220,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:2;flex-shrink:0;border-radius:28px 28px 0 0}
-.artist-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:8px auto 8px;flex-shrink:0}
-.artist-box-topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
-.artist-brand-line{font-size:.95rem;font-weight:700;color:var(--ink)}
-.artist-brand-line span{color:var(--pink)}
-.artist-brand-line em{font-style:normal;color:var(--ink3);font-weight:400}
-.artist-step-track{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.ast-step{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--ink3);flex-shrink:0}
-.ast-step-num{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;transition:all .22s;color:var(--ink3)}
-.ast-step.done .ast-step-num{background:var(--green);border-color:var(--green);color:#fff}
-.ast-step.active .ast-step-num{background:var(--pink);border-color:var(--pink);color:#fff}
-.ast-step.active{color:var(--pink)}
-.ast-sep{flex:1;height:2px;background:var(--border);margin:0 6px;transition:background .22s}
-.ast-sep.done{background:var(--green)}
-.artist-box-body{padding:24px;overflow-y:auto;flex:1;background:rgba(237,231,220,.94);backdrop-filter:blur(22px);position:relative;z-index:1}
-.artist-box-body::-webkit-scrollbar{width:3px}
-.artist-box-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.artist-step-panel{display:none}
-.artist-step-panel.active{display:flex;flex-direction:column;min-height:100%}
-.artist-box.splash-active .artist-box-header{display:none}
-.artist-box.splash-active .artist-box-body{padding:0;background:transparent;backdrop-filter:none}
-.artist-splash-panel{height:100%;min-height:100%}
-.artist-splash-inner{position:relative;z-index:1;padding:40px 32px 40px;display:flex;flex-direction:column;min-height:100%}
-.artist-splash-top{display:flex;justify-content:flex-end}
-.artist-login-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.artist-login-btn:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
-.artist-box-header .artist-login-btn{background:var(--bg);color:var(--ink);border:1.5px solid var(--border);backdrop-filter:none}
-.artist-box-header .artist-login-btn:hover{background:var(--pink-bg);border-color:var(--pink);color:var(--pink);transform:none}
-.artist-splash-spacer{flex:1}
-.artist-splash-brand{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:8px}
-.artist-splash-brand span{color:var(--pink2)}
-.artist-splash-title{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,7vw,3rem);font-style:italic;color:#fff;line-height:1.05;margin-bottom:14px;max-width:380px}
-.artist-splash-copy{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:340px;margin-bottom:36px}
-.artist-splash-btn{width:100%;flex:none!important;background:#fff;color:var(--ink);font-size:1rem;padding:16px}
-.artist-splash-btn:hover{background:rgba(255,255,255,.9)}
-.artist-section-title{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:var(--ink);margin-bottom:5px}
-.artist-section-sub{font-size:.84rem;color:var(--ink3);margin-bottom:28px;line-height:1.5}
-.a-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
-.a-check-item{display:flex;align-items:center;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;cursor:pointer;transition:all .18s}
-.a-check-item:hover{border-color:var(--pink);background:var(--pink-bg)}
-.a-check-item input{accent-color:var(--pink);width:14px;height:14px;flex-shrink:0;cursor:pointer}
-.a-check-item label{font-size:.81rem;font-weight:600;color:var(--ink2);cursor:pointer;flex:1}
-.a-check-item.checked{border-color:var(--pink);background:var(--pink-bg)}
-.a-check-item.checked label{color:var(--pink)}
-.artist-nav-btns{display:flex;gap:10px;margin-top:auto;padding-top:28px;padding-bottom:4px}
-.artist-back-btn{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
-.artist-back-btn:hover{border-color:var(--ink)}
-.artist-next-btn{flex:2;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:opacity .2s}
-.artist-next-btn:hover{opacity:.88}
-.artist-next-btn:disabled{opacity:.5;cursor:default}
-.a-select{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:var(--bg);outline:none;transition:border-color .18s;margin-bottom:20px;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
-.a-select:focus{border-color:var(--pink)}
-.a-radio-group{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.a-radio-btn{flex:1;min-width:80px;border:1.5px solid var(--border);border-radius:10px;padding:10px 10px;text-align:center;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--ink2);transition:all .18s;white-space:nowrap}
-.a-radio-btn:hover{border-color:var(--pink)}
-.a-radio-btn.selected{border-color:var(--pink);background:var(--pink-bg);color:var(--pink)}
-
-/* ─── TOAST ─── */
-.md-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);padding:11px 22px;border-radius:50px;font-size:.84rem;font-weight:600;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.18);pointer-events:none;transition:opacity .3s}
-
-/* ─── BOOKING FLOW MODAL ─── */
-#bookingFlow{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-#bookingFlow.open{opacity:1;pointer-events:all}
-.bf-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);position:relative;overflow:hidden}
-.bf-splash{position:absolute;inset:0;z-index:10;border-radius:28px 28px 0 0;overflow:hidden;flex-direction:column}
-.bf-splash-top{display:flex;justify-content:flex-end}
-.bf-splash-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.bf-splash-back{display:inline-flex;align-items:center;gap:6px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.bf-splash-back:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
-.bf-splash-signin{display:inline-flex;align-items:center;gap:6px;background:rgba(7,7,7,.58);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.bf-splash-signin:hover{background:rgba(7,7,7,.74);border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
-.bf-makeup-bg{position:absolute;inset:0;overflow:hidden;border-radius:28px 28px 0 0;pointer-events:none;z-index:0}
-#bookingFlow.open .bf-box{transform:none}
-.bf-handle{width:40px;height:4px;background:var(--border);border-radius:2px;flex-shrink:0}
-.bf-header{padding:0 24px 10px;border-bottom:1px solid rgba(235,235,235,.5);position:sticky;top:0;background:rgba(237,231,220,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:2;flex-shrink:0;border-radius:28px 28px 0 0}
-.bf-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.bf-title{font-size:.95rem;font-weight:700;color:var(--ink)}
-.bf-close{background:var(--bg);border:none;width:34px;height:34px;border-radius:50%;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:background .18s}
-.bf-close:hover{background:var(--border)}
-.bf-steps{display:flex;gap:5px;margin-bottom:14px}
-.bf-step-dot{flex:1;height:3px;background:var(--border);border-radius:2px;transition:background .3s}
-.bf-step-dot.done{background:var(--green)}
-.bf-step-dot.active{background:var(--pink)}
-.bf-body{padding:24px;overflow-y:auto;flex:1}
-.bf-body::-webkit-scrollbar{width:3px}
-.bf-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.bf-panel{display:none}
-.bf-panel.active{display:block}
-.bf-panel-fill.active{display:flex!important;flex-direction:column;height:100%;overflow:hidden}
-.bf-fill-scroll{flex:1;min-height:0;overflow-y:auto;padding:2px 4px 0}
-.bf-panel-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:4px}
-.bf-panel-sub{font-size:.84rem;color:var(--ink3);margin-bottom:22px;line-height:1.5}
-/* Tones */
-.bf-tones{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px;padding:8px 12px 0}
-.bf-tone-btn{aspect-ratio:1;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;width:100%;background:none}
-.bf-tone-btn:hover{transform:scale(1.12)}
-.bf-tone-btn.selected{border-color:var(--pink);box-shadow:0 0 0 4px rgba(155,123,90,.22);transform:scale(1.15)}
-/* Date + time */
-.bf-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding:0 2px}
-.bf-cal-month-lbl{font-weight:700;font-size:1.08rem;color:var(--ink);letter-spacing:-.2px}
-.bf-cal-nav{background:rgba(155,123,90,.09);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1.15rem;display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:background .15s;flex-shrink:0}
-.bf-cal-nav:hover:not(:disabled){background:rgba(155,123,90,.18)}
-.bf-cal-nav:disabled{opacity:.2;cursor:default}
-.bf-cal-dow{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:6px}
-.bf-cal-dow span{font-size:.65rem;font-weight:600;color:var(--ink3);padding:4px 0;letter-spacing:.5px}
-.bf-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-bottom:18px}
-.bf-cal-day{aspect-ratio:1;border:none;background:none;border-radius:50%;font-size:.9rem;cursor:pointer;font-family:inherit;color:var(--ink);transition:background .14s;display:flex;align-items:center;justify-content:center;width:100%;position:relative}
-.bf-cal-day:hover:not(:disabled):not(.active){background:rgba(155,123,90,.1)}
-.bf-cal-day.active{background:var(--pink);color:#fff;font-weight:600}
-.bf-cal-day.today:not(.active)::after{content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--pink)}
-.bf-cal-day:disabled{color:rgba(0,0,0,.18);cursor:default}
-.bf-time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.bf-t-slot{border:1.5px solid var(--border);border-radius:10px;padding:9px 6px;text-align:center;font-size:.8rem;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .18s}
-.bf-t-slot:hover,.bf-t-slot.active{border-color:var(--pink);background:var(--pink-bg);color:var(--pink)}
-/* Prestige slider */
-.bf-prestige-tabs{display:flex;gap:5px;margin-bottom:16px;flex-wrap:wrap;background:rgba(255,255,255,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:6px;border:1px solid rgba(255,255,255,.42)}
-.bf-prestige-tab{flex:1;min-width:calc(33.33% - 8px);background:transparent;border:none;border-radius:11px;padding:10px 6px;font-family:inherit;cursor:pointer;transition:all .2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
-.bf-prestige-tab-name{font-size:.8rem;font-weight:700;color:var(--ink2);transition:color .2s;white-space:nowrap}
-.bf-prestige-tab-sub{font-size:.62rem;font-weight:500;color:var(--ink3);transition:color .2s;line-height:1.2;white-space:nowrap}
-.bf-prestige-tab.active{background:var(--green)}
-.bf-prestige-tab.active .bf-prestige-tab-name{color:#fff}
-.bf-prestige-tab.active .bf-prestige-tab-sub{color:rgba(255,255,255,.75)}
-.bf-brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow-y:auto;flex:1;min-height:0;padding-bottom:8px}
-.bf-brand-card{border-radius:16px;min-height:160px;background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
-.bf-brand-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,rgba(5,5,5,.3) 55%,rgba(5,5,5,.05) 100%)}
-.bf-brand-inner{position:relative;z-index:1;padding:12px 12px}
-.bf-brand-name{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:4px}
-.bf-brand-about{font-size:.71rem;color:rgba(255,255,255,.65);line-height:1.45}
-.bf-brand-check{position:absolute;top:10px;right:10px;width:22px;height:22px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;font-size:.72rem;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-/* Style grid */
-.bf-style-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding-bottom:8px}
-.bf-style-card{border-radius:18px;padding:18px 16px 16px;cursor:pointer;border:2.5px solid transparent;transition:border-color .22s,box-shadow .22s,transform .22s;position:relative;overflow:hidden;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center}
-.bf-style-card:hover{transform:scale(1.02)}
-.bf-style-card.selected{border-color:rgba(255,255,255,.9);box-shadow:0 0 0 3px var(--pink)}
-.bf-style-name{font-size:.88rem;font-weight:700;color:#fff;position:relative;z-index:1;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.bf-style-desc{font-size:.7rem;color:rgba(255,255,255,.78);position:relative;z-index:1;margin-top:2px;text-shadow:0 1px 3px rgba(0,0,0,.25)}
-.bf-style-check{position:absolute;top:10px;right:10px;width:22px;height:22px;background:rgba(0,0,0,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;z-index:1;transition:background .2s;color:#fff}
-.bf-style-card.selected .bf-style-check{background:var(--pink)}
-/* Assignment */
-.bf-assign-grid{display:flex;flex-direction:column;gap:10px;padding-bottom:8px}
-.bf-assign-card{border-radius:18px;cursor:pointer;transition:border-color .22s,box-shadow .22s;position:relative;overflow:hidden;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center;border:2.5px solid transparent}
-.bf-assign-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.18)}
-.bf-assign-card.selected{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink)}
-.bf-assign-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.88) 0%,rgba(5,5,5,.3) 55%,rgba(5,5,5,.08) 100%)}
-.bf-assign-inner{position:relative;z-index:1;padding:14px 16px}
-.bf-assign-name{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:3px}
-.bf-assign-desc{font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.4}
-/* Custom artist list */
-.bf-sort-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.bf-sort-chip{background:var(--bg);border:1.5px solid var(--border);color:var(--ink2);padding:6px 12px;border-radius:50px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .18s}
-.bf-sort-chip.active{background:var(--pink-bg);border-color:var(--pink);color:var(--pink)}
-.bf-artist-list{display:flex;flex-direction:column;gap:12px}
-.bf-a-card{border:1.5px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;transition:all .22s;display:flex}
-.bf-a-card:hover{border-color:var(--pink);box-shadow:0 4px 20px rgba(155,123,90,.12);transform:translateY(-2px)}
-.bf-a-card.selected{border-color:var(--pink);background:var(--pink-bg)}
-.bf-a-img{width:88px;flex-shrink:0;position:relative}
-.bf-a-img img{width:100%;height:100%;object-fit:cover;display:block}
-.bf-a-avail{position:absolute;bottom:6px;left:6px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.58);color:#fff;padding:3px 8px;border-radius:20px;font-size:.62rem;font-weight:600}
-.bf-a-body{flex:1;padding:13px 14px 13px 14px}
-.bf-a-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
-.bf-a-name{font-size:.92rem;font-weight:700;color:var(--ink)}
-.bf-a-price{font-size:.82rem;font-weight:700;color:var(--pink)}
-.bf-a-spec{font-size:.72rem;color:var(--ink3);margin-bottom:6px}
-.bf-a-row{display:flex;align-items:center;gap:10px;font-size:.73rem;flex-wrap:wrap;margin-bottom:10px}
-.bf-a-rating{font-weight:600;color:var(--ink)}
-.bf-a-dist{color:var(--ink3)}
-.bf-a-select-btn{width:100%;background:var(--ink);color:#fff;border:none;padding:8px;border-radius:50px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;transition:background .2s}
-.bf-a-select-btn:hover,.bf-a-card.selected .bf-a-select-btn{background:var(--pink)}
-/* Confirmation */
-.bf-confirm-artist{display:flex;gap:14px;align-items:center;background:var(--bg);border-radius:18px;padding:16px;margin-bottom:18px}
-.bf-confirm-img{width:68px;height:68px;border-radius:12px;object-fit:cover;flex-shrink:0}
-.bf-confirm-name{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:2px}
-.bf-confirm-spec{font-size:.76rem;color:var(--ink3)}
-.bf-confirm-rating{font-size:.78rem;color:var(--ink);font-weight:600;margin-top:5px}
-.bf-summary-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);font-size:.85rem}
-.bf-summary-label{color:var(--ink3)}
-.bf-summary-val{font-weight:600;color:var(--ink);text-align:right;max-width:55%}
-.bf-confirm-btn{width:100%;background:var(--pink);color:#fff;border:none;padding:16px;border-radius:50px;font-family:inherit;font-size:.95rem;font-weight:700;margin-top:22px;cursor:pointer;transition:opacity .2s}
-.bf-confirm-btn:hover{opacity:.88}
-.bf-pay-opt{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:15px 18px;font-family:inherit;font-size:.92rem;font-weight:600;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .18s,background .18s}
-.bf-pay-opt:hover{border-color:var(--pink)}
-.bf-pay-opt.selected{border-color:var(--pink);background:rgba(220,50,110,.05)}
-.bf-nav-btns{display:flex;gap:10px;margin-top:24px}
-.bf-back-btn{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
-.bf-back-btn:hover{border-color:var(--ink)}
-.bf-next-btn{flex:2;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:opacity .2s}
-.bf-next-btn:hover{opacity:.88}
-.bf-next-btn:disabled{opacity:.5;cursor:default}
-.bf-section-lbl{font-size:.75rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:block}
-</style>
+</script>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Main navigation">
   <div class="nav-ticker" aria-hidden="true">
     <div class="nav-ticker-inner">
-      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
-      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
-      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
-      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
-      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
-      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
       <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
       <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
       <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
@@ -624,8 +108,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 <!-- HERO -->
 <div style="background:#0A0A0A">
-<section id="hero">
-  <div class="hero-slides">
+<section id="hero" aria-label="Hero — Book a makeup artist in Abuja">
+  <div class="hero-slides" role="presentation">
     <div class="hero-slide"></div>
     <div class="hero-slide"></div>
     <div class="hero-slide"></div>
@@ -636,7 +120,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     <h1 class="hero-h1">
       Your <span class="word" id="cycleWord">Owambe</span><br/>look, sorted.
     </h1>
-    <p class="hero-sub">Book a certified makeup artist near you. Pick by the brands they use, the looks they slay.</p>
+    <p class="hero-sub">Book a certified makeup artist near you in Abuja. Pick by the brands they use, the looks they slay.</p>
     <div id="heroCtas" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <button onclick="openBookingFlow()" style="background:var(--pink);color:#fff;border:none;padding:18px 36px;border-radius:60px;font-family:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(155,123,90,.45);transition:all .22s;letter-spacing:.2px" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(155,123,90,.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(155,123,90,.45)'">
         Book Now
@@ -646,27 +130,42 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </button>
     </div>
   </div>
-  <div class="hero-dots" id="heroDots">
+  <div class="hero-dots" id="heroDots" role="presentation">
     <div class="hero-dot active"></div>
     <div class="hero-dot"></div>
     <div class="hero-dot"></div>
     <div class="hero-dot"></div>
   </div>
+  <!-- Decorative rotating rings -->
+  <svg class="deco deco-ring-outer" style="top:-80px;right:-70px" viewBox="0 0 320 320" fill="none" aria-hidden="true">
+    <circle cx="160" cy="160" r="154" stroke="rgba(232,23,90,0.22)" stroke-width="1.5" stroke-dasharray="8 5"/>
+    <circle cx="160" cy="160" r="130" stroke="rgba(155,123,90,0.15)" stroke-width="1" stroke-dasharray="3 10"/>
+  </svg>
+  <svg class="deco deco-ring-inner" style="bottom:40px;left:-50px" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <circle cx="100" cy="100" r="94" stroke="rgba(212,184,150,0.28)" stroke-width="1.5" stroke-dasharray="5 7"/>
+  </svg>
+  <!-- Floating sparkles -->
+  <svg class="deco-sparkle" style="top:22%;left:72%;animation-delay:0s" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(232,23,90,0.5)" d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z"/></svg>
+  <svg class="deco-sparkle" style="top:55%;left:18%;animation-delay:1.2s;animation-duration:4s,5.5s" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(196,149,106,0.55)" d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z"/></svg>
+  <svg class="deco-sparkle" style="top:35%;left:85%;animation-delay:2.4s;animation-duration:2.8s,6s" width="8" height="8" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(255,255,255,0.4)" d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z"/></svg>
+  <svg class="deco-sparkle" style="top:70%;left:60%;animation-delay:0.8s;animation-duration:3.5s,4s" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(212,184,150,0.45)" d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z"/></svg>
 </section>
 </div>
 
 <!-- BROWSE BY AESTHETIC -->
-<section id="aesthetics">
-  <div class="aesthetics-head reveal">
+<section id="aesthetics" aria-label="Browse makeup styles">
+  <div class="aesthetics-head reveal" style="position:relative">
     <div>
       <div class="tag">Browse by vibe</div>
       <h2 class="section-title">What's the <em style="color:var(--pink)">look?</em></h2>
     </div>
+    <svg class="deco-sparkle" style="top:-10px;right:40px;animation-delay:.6s;position:absolute" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(155,123,90,0.45)" d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z"/></svg>
+    <svg class="deco-sparkle" style="top:20px;right:68px;animation-delay:1.8s;animation-duration:2.6s,5s;position:absolute" width="9" height="9" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(232,23,90,0.35)" d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z"/></svg>
   </div>
-  <div class="aesthetics-scroll" id="aesScroll">
+  <div class="aesthetics-scroll" id="aesScroll" role="list">
 
-    <div class="aes-card" data-style="owambe" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80" alt="Owambe Glam" loading="lazy"/>
+    <div class="aes-card" data-style="owambe" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80" alt="Owambe Glam makeup artist Abuja" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Owambe Glam</div>
@@ -674,8 +173,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="bridal" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80" alt="Bridal" loading="lazy"/>
+    <div class="aes-card" data-style="bridal" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80" alt="Bridal makeup artist Abuja" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Bridal</div>
@@ -683,8 +182,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="editorial" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1648671095483-254807669fcd?w=400&q=80" alt="Editorial" loading="lazy"/>
+    <div class="aes-card" data-style="editorial" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1648671095483-254807669fcd?w=400&q=80" alt="Editorial makeup artist Abuja" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Editorial</div>
@@ -692,8 +191,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="natural" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=400&q=80" alt="Clean Natural" loading="lazy"/>
+    <div class="aes-card" data-style="natural" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=400&q=80" alt="Clean natural makeup artist Abuja" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Clean Natural</div>
@@ -701,8 +200,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="glam" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" alt="Full Glam" loading="lazy"/>
+    <div class="aes-card" data-style="glam" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" alt="Full glam makeup artist Abuja" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Full Glam</div>
@@ -710,8 +209,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="asoebi" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=400&q=80" alt="Aso-ebi Ready" loading="lazy"/>
+    <div class="aes-card" data-style="asoebi" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=400&q=80" alt="Aso-ebi makeup artist Abuja" loading="lazy"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Aso-ebi Ready</div>
@@ -719,8 +218,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="traditional" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80" alt="Traditional" loading="lazy" style="filter:sepia(.45) brightness(.9)"/>
+    <div class="aes-card" data-style="traditional" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80" alt="Traditional makeup artist Abuja" loading="lazy" style="filter:sepia(.45) brightness(.9)"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Traditional</div>
@@ -728,8 +227,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <div class="aes-card" data-style="softglam" onclick="openBookingFlow(this.dataset.style)">
-      <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80" alt="Soft Glam" loading="lazy" style="filter:brightness(1.05) saturate(1.15)"/>
+    <div class="aes-card" data-style="softglam" onclick="openBookingFlow(this.dataset.style)" role="listitem">
+      <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80" alt="Soft glam makeup artist Abuja" loading="lazy" style="filter:brightness(1.05) saturate(1.15)"/>
       <div class="aes-overlay"></div>
       <div class="aes-info">
         <div class="aes-name">Soft Glam</div>
@@ -742,81 +241,81 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 <!-- BROWSE BY BRAND -->
 <div class="brands-wrap">
-<section id="brands">
+<section id="brands" aria-label="Browse by makeup brand">
   <div class="brands-head reveal">
     <div class="tag">Browse by brand</div>
     <h2 class="section-title">Know what's on <em style="color:var(--pink)">your skin</em></h2>
     <p style="font-size:.88rem;color:var(--ink3);margin-top:8px;max-width:480px;line-height:1.6">Filter artists by the exact brands they carry — because your skin deserves only what you trust.</p>
   </div>
-  <div class="brand-scroll" id="brandsGrid">
+  <div class="brand-scroll" id="brandsGrid" role="list">
 
-    <button class="brand-tile active" data-brand="all" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile active" data-brand="all" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:var(--ink);color:#fff;font-size:.7rem">ALL</div>
       <div class="b-name">All Brands</div>
       <div class="b-count">200+ artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="mac" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="mac" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#0A0A0A;color:#fff;font-size:.78rem;letter-spacing:3px">M·A·C</div>
       <div class="b-name">MAC</div>
       <div class="b-count">24 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="fenty" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="fenty" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#F2E6D9;color:#1A0E06;font-size:.72rem;letter-spacing:2px">FENTY</div>
       <div class="b-name">Fenty Beauty</div>
       <div class="b-count">18 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="zaron" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="zaron" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#B04010;color:#fff;font-size:1.2rem;font-style:italic;letter-spacing:1px">Z</div>
       <div class="b-name">Zaron</div>
       <div class="b-count">31 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="tara" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="tara" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#5C2E14;color:#E8C88A;font-size:.68rem;letter-spacing:2px">H·O·T</div>
       <div class="b-name">House of Tara</div>
       <div class="b-count">22 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="bmpro" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="bmpro" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#1A2F4A;color:#fff;font-size:.78rem;letter-spacing:2px">BM PRO</div>
       <div class="b-name">BM Pro</div>
       <div class="b-count">19 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="charlotte" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="charlotte" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:linear-gradient(135deg,#C4956A,#E8C4A0);color:#fff;font-size:.82rem;letter-spacing:2px">CT</div>
       <div class="b-name">Charlotte Tilbury</div>
       <div class="b-count">12 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="huda" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="huda" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#F4A6B5;color:#fff;font-size:.72rem;letter-spacing:2px">HUDA</div>
       <div class="b-name">Huda Beauty</div>
       <div class="b-count">14 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="nars" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="nars" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#111111;color:#fff;font-size:.88rem;letter-spacing:3px">NARS</div>
       <div class="b-name">NARS</div>
       <div class="b-count">9 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="nyx" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="nyx" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#CC0022;color:#fff;font-size:.98rem;letter-spacing:3px">NYX</div>
       <div class="b-name">NYX</div>
       <div class="b-count">20 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="pat" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="pat" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#1C0A2A;color:#D4AF6A;font-size:.72rem;letter-spacing:1.5px">PMG</div>
       <div class="b-name">Pat McGrath</div>
       <div class="b-count">7 artists</div>
     </button>
 
-    <button class="brand-tile" data-brand="black-opal" onclick="openBookingFlow(null,this.dataset.brand)">
+    <button class="brand-tile" data-brand="black-opal" onclick="openBookingFlow(null,this.dataset.brand)" role="listitem">
       <div class="brand-mark" style="background:#2A1209;color:#C9963A;font-size:.65rem;letter-spacing:1.5px">OPAL</div>
       <div class="b-name">Black Opal</div>
       <div class="b-count">16 artists</div>
@@ -827,8 +326,18 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </section>
 </div>
 
+<!-- TOP 10 OF THE WEEK LEADERBOARD -->
+<section id="leaderboard" aria-label="Top artists this week" style="padding:60px 0 60px 32px;background:#D9CFC0">
+  <div class="reveal" style="margin-bottom:28px;padding-right:32px">
+    <div class="tag">This week's best</div>
+    <h2 class="section-title">Top 10 <em style="color:var(--pink)">Artists</em></h2>
+    <p style="font-size:.88rem;color:var(--ink3);margin-top:8px;max-width:480px;line-height:1.6">Ranked by rating and number of bookings completed this week across Abuja.</p>
+  </div>
+  <div id="leaderboardList" class="aesthetics-scroll"></div>
+</section>
+
 <!-- TESTIMONIALS -->
-<section id="reviews">
+<section id="reviews" aria-label="Client reviews">
   <div class="reviews-head reveal">
     <div class="tag" style="color:rgba(155,123,90,.8)">Real people, real glam</div>
     <h2 class="section-title">They booked. They slayed.</h2>
@@ -838,10 +347,10 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div class="r-stars">★★★★★</div>
       <p class="r-text">"I had an owambe in Maitama and didn't know any MUA in Abuja. Found Chidinma on NoroTouch at 10pm the night before and she showed up at 7am looking like a whole professional. The fact I could see she uses Fenty meant I knew my skin tone wouldn't be washed out. Best decision."</p>
       <div class="r-author">
-        <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Temi&backgroundColor=ffd5dc" alt="Temi" style="background:#ffd5dc"/>
+        <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Temi&backgroundColor=ffd5dc" alt="Temitope A." style="background:#ffd5dc"/>
         <div>
           <div class="r-name">Temitope A.</div>
-          <div class="r-detail">Booked Chidinma · Maitama</div>
+          <div class="r-detail">Booked Chidinma · Maitama, Abuja</div>
         </div>
       </div>
     </div>
@@ -849,10 +358,10 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div class="r-stars">★★★★★</div>
       <p class="r-text">"My sister's traditional wedding needed four bridesmaids done. We used the group booking feature and Fatima came with her full kit including full House of Tara and Zaron setup. Everyone was done in under 3 hours. She understood the aesthetic immediately."</p>
       <div class="r-author">
-        <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kemi&backgroundColor=e8d5f5" alt="Kemi" style="background:#e8d5f5"/>
+        <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kemi&backgroundColor=e8d5f5" alt="Kemi O." style="background:#e8d5f5"/>
         <div>
           <div class="r-name">Kemi O.</div>
-          <div class="r-detail">Booked Fatima · Group</div>
+          <div class="r-detail">Booked Fatima · Group Booking, Abuja</div>
         </div>
       </div>
     </div>
@@ -860,10 +369,10 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div class="r-stars">★★★★★</div>
       <p class="r-text">"I travel to Abuja for work every month. NoroTouch is now my first download when I land. Searched 'Garki, editorial' and Blessing came up. Looked incredible for my pitch. The live availability dot is everything. No back and forth DMs."</p>
       <div class="r-author">
-        <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Zainab&backgroundColor=d5f5e3" alt="Zainab" style="background:#d5f5e3"/>
+        <img class="r-av" src="https://api.dicebear.com/7.x/lorelei/svg?seed=Zainab&backgroundColor=d5f5e3" alt="Zainab M." style="background:#d5f5e3"/>
         <div>
           <div class="r-name">Zainab M.</div>
-          <div class="r-detail">Booked Blessing · Garki</div>
+          <div class="r-detail">Booked Blessing · Garki, Abuja</div>
         </div>
       </div>
     </div>
@@ -879,9 +388,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     </div>
     <div class="foot-right">
       <div class="foot-links">
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="privacy.html">Privacy</a>
         <span>·</span>
-        <a href="terms.html">Terms of Service</a>
+        <a href="terms.html">Terms</a>
       </div>
       <p class="foot-copy">© <span id="footYear"></span> NoroTouch Ltd &nbsp;·&nbsp; <a href="https://wopara.com" target="_blank" rel="noopener noreferrer">Website by Wopara Group</a></p>
     </div>
@@ -915,9 +424,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </div>
 
 <!-- AUTH MODAL -->
-<div id="authModal">
+<div id="authModal" role="dialog" aria-modal="true" aria-label="Sign in or create account">
   <div class="auth-box">
-    <button class="auth-close-btn" onclick="closeAuth()">✕</button>
+    <button class="auth-close-btn" onclick="closeAuth()" aria-label="Close">✕</button>
     <div class="auth-makeup-bg">
       <div class="mk-blob" style="width:210px;height:210px;background:rgba(155,123,90,.1);top:-80px;right:-50px;animation-duration:7s;animation-delay:0s"></div>
       <div class="mk-blob" style="width:160px;height:160px;background:rgba(255,110,160,.08);bottom:-55px;left:-35px;animation-duration:9s;animation-delay:-3.5s"></div>
@@ -967,7 +476,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
           <input type="password" class="a-field" id="suPassword" placeholder="At least 8 characters" required minlength="8"/>
           <button type="submit" class="auth-submit-btn" id="suBtn">Create Account →</button>
         </form>
-        <p style="font-size:.75rem;color:var(--ink3);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
+        <p style="font-size:.75rem;color:var(--ink3);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy</span></p>
       </div>
 
       <!-- SUCCESS -->
@@ -985,7 +494,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </div>
 
 <!-- ARTIST APPLICATION MODAL -->
-<div id="artistModal">
+<div id="artistModal" role="dialog" aria-modal="true" aria-label="Artist application">
   <div class="artist-box splash-active" id="artistBox">
     <div class="artist-box-header">
       <div class="artist-handle"></div>
@@ -1173,7 +682,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
               <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <button type="submit" class="bf-next-btn" id="cardSuBtn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
             </form>
-            <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
+            <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy</span></p>
           </div>
           <!-- Success -->
           <div id="cardPanelAuthSuccess" style="display:none;text-align:center;padding:24px 0">
@@ -1190,7 +699,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </div>
 
 <!-- BOOKING FLOW -->
-<div id="bookingFlow" onclick="bfBackdropClick(event)">
+<div id="bookingFlow" onclick="bfBackdropClick(event)" role="dialog" aria-modal="true" aria-label="Book a makeup artist">
   <div class="bf-box">
 
     <!-- SPLASH STEP 0: Welcome — covers entire card -->
@@ -1263,14 +772,26 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Full name</label>
             <input type="text" id="bfSuName" placeholder="Your full name" required autocomplete="name" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
-            <input type="email" id="bfSuEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <input type="email" id="bfSuEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
             <input type="tel" id="bfSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
             <input type="password" id="bfSuPassword" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <button type="submit" id="bfSuBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
           </form>
-          <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy</span></p>
+        </div>
+        <!-- OTP Reset panel -->
+        <div id="bfPanelOtpReset" style="display:none">
+          <p style="font-size:.84rem;color:rgba(255,255,255,.7);margin:0 0 20px;line-height:1.55">Enter the 6-digit code we sent to your email, then choose a new password.</p>
+          <form onsubmit="bfSubmitOtpReset(event)">
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Reset code</label>
+            <input type="text" id="bfOtpCode" inputmode="numeric" maxlength="6" placeholder="000000" required style="width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:22px;letter-spacing:8px;color:#fff;outline:none;margin-bottom:14px;box-sizing:border-box;text-align:center" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">New password</label>
+            <input type="password" id="bfOtpNewPw" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <button type="submit" id="bfOtpBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Reset Password →</button>
+          </form>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.45);text-align:center;margin-top:14px;cursor:pointer" onclick="bfSwitchAuthTab('signin');document.getElementById('bfPanelOtpReset').style.display='none'">← Back to sign in</p>
         </div>
         <!-- Success panel -->
         <div id="bfPanelAuthSuccess" style="display:none;text-align:center;padding:24px 0">
@@ -1282,7 +803,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
     </div>
 
-    <!-- Makeup animation layer — sits behind all card content -->
+    <!-- Makeup animation layer -->
     <div class="bf-makeup-bg">
       <div class="mk-blob" style="width:280px;height:280px;background:rgba(155,123,90,.08);top:-100px;right:-80px;animation-duration:9s;animation-delay:0s"></div>
       <div class="mk-blob" style="width:200px;height:200px;background:rgba(255,100,150,.06);bottom:-70px;left:-50px;animation-duration:11s;animation-delay:-4s"></div>
@@ -1314,7 +835,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
           <div class="bf-tones" id="bfTones"></div>
           <p style="font-size:.72rem;color:var(--ink3);margin-top:10px">Tap a swatch · you can change this anytime</p>
         </div>
-        <div class="bf-nav-btns" style="padding-top:20px">
+        <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(1)">← Back</button>
           <button class="bf-next-btn" onclick="bfNextStep(1)">Next: Date &amp; Time →</button>
         </div>
@@ -1331,7 +852,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
             <div class="bf-time-grid" id="bfTimeGrid"></div>
           </div>
         </div>
-        <div class="bf-nav-btns" style="padding-top:20px">
+        <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(2)">← Back</button>
           <button class="bf-next-btn" onclick="bfNextStep(2)">Next: Brand →</button>
         </div>
@@ -1343,7 +864,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <p class="bf-panel-sub">Pick a tier to filter artists by kit quality.</p>
         <div class="bf-prestige-tabs" id="bfPrestigeLabels"></div>
         <div class="bf-brand-grid" id="bfBrandGrid"></div>
-        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+        <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(3)">← Back</button>
           <button class="bf-next-btn" onclick="bfNextStep(3)">Next: Style →</button>
         </div>
@@ -1356,7 +877,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div class="bf-fill-scroll">
           <div class="bf-style-grid" id="bfStyleGrid"></div>
         </div>
-        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+        <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(4)">← Back</button>
           <button class="bf-next-btn" onclick="bfNextStep(4)">Next: Assignment →</button>
         </div>
@@ -1400,7 +921,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
             </div>
           </div>
         </div>
-        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+        <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(5)">← Back</button>
         </div>
       </div>
@@ -1418,7 +939,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div class="bf-fill-scroll">
           <div class="bf-artist-list" id="bfArtistList"></div>
         </div>
-        <div class="bf-nav-btns" style="padding-top:20px;flex-shrink:0">
+        <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(6)">← Back</button>
           <button class="bf-next-btn" id="bfSelectArtistBtn" onclick="bfNextStep(6)" disabled>Confirm Artist →</button>
         </div>
@@ -1486,13 +1007,13 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 </div>
 
 <!-- BOOKING MODAL (BOTTOM SHEET) -->
-<div id="overlay" onclick="closeSheet(event)">
+<div id="overlay" onclick="closeSheet(event)" role="dialog" aria-modal="true">
   <div class="sheet" id="sheet">
     <div class="sheet-handle"></div>
     <div class="sheet-hero">
       <img id="sheetHeroImg" src="" alt=""/>
       <div class="sheet-hero-overlay"></div>
-      <button class="sheet-close" onclick="closeSheetDirect()">✕</button>
+      <button class="sheet-close" onclick="closeSheetDirect()" aria-label="Close">✕</button>
       <div class="sheet-artist-tag">
         <div>
           <div class="sheet-artist-name" id="sheetName">Artist Name</div>
@@ -1627,1190 +1148,45 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   </div>
 </div>
 
+<!-- LEADERBOARD RENDER + Scripts -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/artists.js"></script>
 <script>
-// ── SCROLL LOCK ──
-let _savedScrollY = 0;
-let _scrollLockDepth = 0;
-function lockScroll() {
-  if (_scrollLockDepth === 0) {
-    _savedScrollY = window.scrollY;
-    document.body.style.top = '-' + _savedScrollY + 'px';
-    document.body.classList.add('no-scroll');
-  }
-  _scrollLockDepth += 1;
-}
-function unlockScroll() {
-  if (_scrollLockDepth === 0) return;
-  _scrollLockDepth -= 1;
-  if (_scrollLockDepth > 0) return;
-  document.body.classList.remove('no-scroll');
-  document.body.style.top = '';
-  window.scrollTo(0, _savedScrollY);
-}
-
-// ── HERO CYCLING WORD ──
-const words = ['Owambe','Bridal','Editorial','Aso-ebi','Everyday'];
-let wi = 0;
-const wordEl = document.getElementById('cycleWord');
-setInterval(() => {
-  wordEl.classList.add('out');
-  setTimeout(() => {
-    wi = (wi + 1) % words.length;
-    wordEl.textContent = words[wi];
-    wordEl.classList.remove('out');
-    wordEl.classList.add('in');
-    requestAnimationFrame(() => requestAnimationFrame(() => wordEl.classList.remove('in')));
-  }, 350);
-}, 2800);
-
-// ── HERO PARALLAX (mouse) ──
-document.getElementById('footYear').textContent = new Date().getFullYear();
-const heroContent = document.getElementById('heroContent');
-const heroSlides = document.querySelectorAll('.hero-slide');
-document.addEventListener('mousemove', e => {
-  if (document.body.classList.contains('no-scroll')) return;
-  const x = (e.clientX / window.innerWidth - .5) * 18;
-  const y = (e.clientY / window.innerHeight - .5) * 10;
-  heroSlides.forEach(s => {
-    s.style.transform = `translate(${x * .28}px,${y * .18}px) scale(1.12)`;
-  });
-  heroContent.style.transform = `translate(${x * .1}px,${y * .1}px)`;
-});
-
-// ── SCROLL PARALLAX + NAV ──
-const nav = document.getElementById('nav');
-const navBookBtn = document.getElementById('navBookBtn');
-const navJoinBtn = document.getElementById('navJoinBtn');
-
-function setNavBtns(visible) {
-  [navBookBtn, navJoinBtn].forEach(b => { if (!b) return; b.style.opacity = visible ? '1' : '0'; b.style.pointerEvents = visible ? 'all' : 'none'; });
-}
-
-new IntersectionObserver(([entry]) => {
-  setNavBtns(!entry.isIntersecting);
-}, { threshold: 0 }).observe(document.getElementById('heroCtas'));
-
-window.addEventListener('scroll', () => {
-  if (document.body.classList.contains('no-scroll')) return;
-  nav.classList.toggle('solid', window.scrollY > 40);
-}, { passive: true });
-
-// ── HERO DOTS SYNC ──
-const dots = document.querySelectorAll('.hero-dot');
-let dotIdx = 0;
-setInterval(() => {
-  dots[dotIdx].classList.remove('active');
-  dotIdx = (dotIdx + 1) % 4;
-  dots[dotIdx].classList.add('active');
-}, 7000);
-
-
-// ── REVEAL ON SCROLL ──
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: .12 });
-document.querySelectorAll('.reveal,.reveal-left').forEach(el => io.observe(el));
-
-// ── BOOKING FLOW DATA ──
-const PRESTIGE_DATA = [
-  { label:'Everyday', sub:'Great quality, accessible', brands:[
-    { name:'NYX',            about:'Cult-favourite pigments and bold colour at prices that make sense. Huge hit in Lagos beauty stores.',              img:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80' },
-    { name:'e.l.f.',         about:'Cruelty-free and wallet-friendly. A go-to for clean looks without breaking the bank.',                           img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80' },
-    { name:'Black Opal',     about:'Formulated for deeper skin tones. Rich, true-match shades that celebrate Nigerian complexions.',                  img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=500&q=80' },
-    { name:'Sleek',          about:'Award-winning UK brand popular in Nigerian beauty markets for intense pigmentation at everyday prices.',          img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
-    { name:'Milani',         about:'Drugstore brand with serious staying power. The Conceal + Perfect foundation is a bestseller among MUAs.',       img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' },
-    { name:'Ruby\'s Organics', about:'Natural, skin-safe formulas gaining ground in Abuja for everyday wear and sensitive-skin clients.',           img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
-    { name:'LA Girl',        about:'Long-wear HD formulas loved for their rich coverage and shade range for melanin-rich skin.',                    img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
-    { name:'Wet n Wild',     about:'Surprisingly professional finish at market prices. Artists love the Photo Focus foundation for photoshoots.',   img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
-    { name:'Nuban Beauty',   about:'Nigerian-owned brand crafted for Afro-textured skin with pigments that truly read on deeper tones.',            img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
-    { name:'Flori Roberts',  about:'A legacy brand formulated exclusively for women of colour. Trusted by Nigerian brides for decades.',            img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' },
-    { name:'Black Up',       about:'French brand engineered for darker skin tones. Rich texture and true pigment that won\'t look ashy.',           img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=500&q=80' }
-  ]},
-  { label:'Mid-range', sub:'Trusted local and imported', brands:[
-    { name:'Zaron',          about:'Nigeria\'s leading homegrown cosmetics brand, built for African skin tones and made to last Owambe nights.',    img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=500&q=80' },
-    { name:'House of Tara',  about:'Africa\'s flagship beauty brand by Tara Fela-Durotoye. Rich pigments, lasting wear, proudly Nigerian.',         img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
-    { name:'BM Pro',         about:'Professional-grade formulas trusted by working makeup artists across Nigeria and West Africa.',                  img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
-    { name:'Inglot',         about:'Polish brand famed for Freedom System palettes. Widely available at Jabi Mall and online in Nigeria.',          img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' },
-    { name:'Makeup Forever', about:'Professional staple used in Nollywood productions and bridal suites across Lagos and Abuja.',                   img:'https://images.unsplash.com/photo-1599948128020-9a44a85f88d4?w=500&q=80' },
-    { name:'Smashbox',       about:'LA studio-born brand known for Photo Finish primer. A favourite for TV appearances and red carpet moments.',    img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80' },
-    { name:'NYX Professional',about:'NYX\'s Pro line steps up pigment density and longevity. A favourite for editorial looks in Nigerian studios.', img:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80' },
-    { name:'Morphe',         about:'Highly pigmented palettes and brushes loved by Abuja MUAs for dramatic blends and bold eye looks.',             img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=500&q=80' },
-    { name:'ColourPop',      about:'Affordable prestige feel. Nigerian artists swear by the Super Shock shadows for Aso-ebi glam.',                 img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
-    { name:'Sigma Beauty',   about:'Best-in-class brushes trusted by professionals. Pairs beautifully with any mid-range or prestige product.',    img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
-    { name:'Urban Decay',    about:'Naked palettes are a staple in Nigerian bridal kits. Long-lasting eyeshadow that holds through all-day events.',img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' }
-  ]},
-  { label:'Prestige', sub:'Professional grade', brands:[
-    { name:'MAC',            about:'The global industry standard. Used backstage at Fashion Week and in Nollywood studios. Every MUA owns it.',     img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
-    { name:'NARS',           about:'Iconic Sheer Glow foundation and Orgasm blush. Effortless, luminous skin loved by Nigerian beauty influencers.',img:'https://images.unsplash.com/photo-1599948128020-9a44a85f88d4?w=500&q=80' },
-    { name:'Fenty Beauty',   about:'40+ foundation shades. Rihanna redefined inclusive beauty — and Nigerian skin tones finally had a match.',      img:'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=500&q=80' },
-    { name:'Too Faced',      about:'Born This Way foundation is a go-to for bridal prep in Abuja. Dewy coverage that photographs beautifully.',    img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80' },
-    { name:'Bobbi Brown',    about:'Foundation shades built for real women. The Skin Long-Wear Weightless formula is a Nigerian bridal bestseller.', img:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80' },
-    { name:'Estée Lauder',   about:'Double Wear foundation is legendary for 24-hour hold — essential for Owambe events that go till morning.',     img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
-    { name:'Benefit',        about:'Hoola bronzer and Gimme Brow are staples in Nigerian artist kits for natural-to-glam transitions.',            img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=500&q=80' },
-    { name:'Lancôme',        about:'Teint Idôle Ultra Wear is the prestige pick for photographers and TV productions across Nigeria.',              img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
-    { name:'Laura Mercier',  about:'Translucent setting powder has a cult following among top Nigerian MUAs who need the perfect bake.',            img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
-    { name:'Rare Beauty',    about:'Selena Gomez\'s inclusive brand. Soft Pinch blushes and Liquid Touch foundation — light but buildable.',       img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' }
-  ]},
-  { label:'Luxury', sub:'Premium formulas', brands:[
-    { name:'Charlotte Tilbury',about:'The secret weapon of A-list celebrities. Magic Skin Blur and Pillow Talk are legendary. Flown in for top Abuja weddings.', img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
-    { name:'Huda Beauty',     about:'Dubai\'s most glamorous export. Intense pigment, long-lasting, and always editorial. A favourite for high society events.', img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80' },
-    { name:'Armani Beauty',   about:'Luminous Silk foundation is the gold standard for radiant, second-skin coverage. Preferred by Nigeria\'s top bridal MUAs.',img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' },
-    { name:'YSL Beauty',      about:'All Hours foundation and Touche Éclat concealer are luxury staples on the Abuja red carpet.',                 img:'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=500&q=80' },
-    { name:'Givenchy Beauty', about:'Prisme Libre setting powder delivers an ultra-refined finish for high-fashion editorial and luxury weddings.', img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
-    { name:'Chanel Beauty',   about:'Les Beiges and Vitalumière foundation embody timeless French elegance, popular for understated luxury looks.', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80' },
-    { name:'Dior Beauty',     about:'French elegance in every formula. Rouge Dior lipstick and Forever foundation are timeless icons.',            img:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80' },
-    { name:'Guerlain',        about:'Parisian heritage brand. Terracotta bronzer is beloved for warming up melanin-rich skin without oxidising.',   img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' },
-    { name:'Sisley Paris',    about:'Phyto-Teint Nude foundation blends skincare and makeup for a flawless, barely-there veil of perfection.',     img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=500&q=80' },
-    { name:'Hourglass',       about:'Ambient Lighting powder transforms any look with a lit-from-within glow — a luxury studio staple.',           img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=500&q=80' }
-  ]},
-  { label:'Ultra-luxury', sub:'The finest in the world', brands:[
-    { name:'Pat McGrath',    about:'The most influential MUA on the planet. Every product is a collector\'s piece. Used by the world\'s top artists.', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=500&q=80' },
-    { name:'Tom Ford',       about:'Synonymous with opulence. Traceless foundation and Shade & Illuminate contour are bold and unapologetic.',    img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=500&q=80' },
-    { name:'La Mer',         about:'Skincare-meets-makeup. The Soft Fluid foundation delivers a luminous finish while actively treating skin.',    img:'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80' },
-    { name:'Clé de Peau',    about:'Japan\'s most prestigious beauty brand. Each product is engineered with radical precision and rare ingredients.', img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80' },
-    { name:'Westman Atelier',about:'Clean luxury from Gucci Westman. Vital Skin foundation is the choice of fashion editors and quiet-money brides.', img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
-    { name:'Serge Lutens',   about:'Parisian artisan luxury. Ultra-rare formulas sought by collectors and elite beauty connoisseurs worldwide.',    img:'https://images.unsplash.com/photo-1631214499778-79e1f7d8b9b8?w=500&q=80' },
-    { name:'Chantecaille',   about:'Botanical luxury skincare-makeup hybrid. Future Skin foundation is as rare as it is radiant.',                 img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=500&q=80' },
-    { name:'SUQQU',          about:'Japanese precision beauty. Flawless, featherlight formulas used by high-fashion makeup artists globally.',     img:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80' },
-    { name:'Victoria Beckham Beauty', about:'Understated British luxury. Satin Kajal liner and Cell Rejuvenating Power Serum set the standard.', img:'https://images.unsplash.com/photo-1599948128020-9a44a85f88d4?w=500&q=80' },
-    { name:'Kjaer Weis',     about:'Organic luxury from Denmark. Refillable compacts and clean formulas for clients who want prestige without compromise.', img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80' }
-  ]}
-];
-
-const STYLE_DATA = [
-  { id:'owambe',     name:'Owambe Glam',     desc:'Bold, dramatic, party ready',       img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=600&q=80' },
-  { id:'bridal',     name:'Bridal',          desc:'Soft, romantic, timeless',          img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=600&q=80' },
-  { id:'editorial',  name:'Editorial',       desc:'Artistic, creative, fierce',        img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=600&q=80' },
-  { id:'natural',    name:'Natural Glow',    desc:'Minimal, skin first, fresh',        img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=600&q=80' },
-  { id:'traditional',name:'Traditional',     desc:'Cultural, vibrant, ceremonial',     img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=600&q=80' },
-  { id:'softglam',   name:'Soft Glam',       desc:'Warm tones, subtle drama',          img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80' },
-  { id:'fullglam',   name:'Full Glam',       desc:'Contoured, striking, camera ready', img:'https://images.unsplash.com/photo-1529645050791-36f5f89f33ee?w=600&q=80' },
-  { id:'asoebi',     name:'Aso-ebi Ready',   desc:'Vibrant, celebratory matching',     img:'https://images.unsplash.com/photo-1614786269829-d24616faf56d?w=600&q=80' },
-  { id:'everyday',   name:'Everyday / Work', desc:'Clean, professional, versatile',    img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80' },
-  { id:'party',      name:'Glitter & Party', desc:'Shimmer, sparkle, night out',       img:'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&q=80' }
-];
-
-const ARTIST_DATA = [
-  { name:'Chidinma Okafor',  spec:'Full Glam · Owambe Specialist',    price:'₦18,000', priceNum:18000, rating:4.97, revs:312, dist:0.4, area:'Maitama', brands:['Fenty Beauty','MAC','Charlotte Tilbury'], styles:['owambe','fullglam','party'],         prestige:[3,4], avail:'now',  availText:'Available · 5 min',  img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=300&q=80' },
-  { name:'Fatima Al-Hassan', spec:'Bridal · Traditional · Northern',  price:'₦25,000', priceNum:25000, rating:5.0,  revs:98,  dist:0.7, area:'Wuse 2',  brands:['Zaron','House of Tara','BM Pro'],         styles:['bridal','traditional','owambe'],       prestige:[2],   avail:'now',  availText:'Available · 8 min',  img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=300&q=80' },
-  { name:'Blessing Eze',     spec:'Editorial · Natural Glow',         price:'₦15,000', priceNum:15000, rating:4.91, revs:243, dist:1.1, area:'Garki',   brands:['MAC','NARS','Black Opal'],               styles:['editorial','natural','everyday'],       prestige:[3],   avail:'busy', availText:'Busy · 25 min',      img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=300&q=80' },
-  { name:'Adaeze Nwachukwu', spec:'Luxury Bridal · High Glam',        price:'₦30,000', priceNum:30000, rating:4.95, revs:156, dist:1.4, area:'Asokoro', brands:['Charlotte Tilbury','Pat McGrath','Huda Beauty'], styles:['bridal','fullglam','editorial'], prestige:[4,5], avail:'now',  availText:'Available · 12 min', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=300&q=80' },
-  { name:'Ngozi Adeyemi',    spec:'Aso-ebi · Soft Glam',              price:'₦12,000', priceNum:12000, rating:4.88, revs:187, dist:1.9, area:'Utako',   brands:['Zaron','NYX','House of Tara'],           styles:['asoebi','owambe','softglam'],          prestige:[1,2], avail:'now',  availText:'Available · 3 min',  img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=300&q=80' },
-  { name:'Aisha Musa',       spec:'Natural Glow · Editorial',         price:'₦20,000', priceNum:20000, rating:4.93, revs:204, dist:2.1, area:'Jabi',    brands:['Fenty Beauty','BM Pro','Black Opal'],    styles:['natural','editorial','softglam'],      prestige:[2,3], avail:'now',  availText:'Available · 15 min', img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&q=80' },
-  { name:'Amaka Okonkwo',    spec:'Soft Glam · Bridal',               price:'₦22,000', priceNum:22000, rating:4.94, revs:89,  dist:1.6, area:'Gwarinpa', brands:['Fenty Beauty','Zaron','MAC'],            styles:['softglam','bridal','owambe'],          prestige:[2,3], avail:'now',  availText:'Available · 10 min', img:'https://images.unsplash.com/photo-1531746020167-ad472685c2c8?w=300&q=80' },
-  { name:'Precious Eze',     spec:'Traditional · Owambe',             price:'₦14,000', priceNum:14000, rating:4.86, revs:203, dist:2.3, area:'Kubwa',    brands:['House of Tara','Zaron','NYX'],           styles:['traditional','owambe','asoebi'],       prestige:[1,2], avail:'now',  availText:'Available · 6 min',  img:'https://images.unsplash.com/photo-1524504388868-5f4c3dc2e97b?w=300&q=80' },
-  { name:'Temi Fashola',     spec:'Editorial · Full Glam',            price:'₦28,000', priceNum:28000, rating:4.96, revs:134, dist:0.9, area:'Asokoro',  brands:['Charlotte Tilbury','NARS','MAC'],        styles:['editorial','fullglam','party'],        prestige:[3,4], avail:'now',  availText:'Available · 9 min',  img:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&q=80' },
-  { name:'Halima Yusuf',     spec:'Bridal · Natural Glam',            price:'₦24,000', priceNum:24000, rating:4.90, revs:167, dist:1.2, area:'Maitama',  brands:['BM Pro','Inglot','MAC'],                styles:['bridal','natural','softglam'],         prestige:[2,3], avail:'busy', availText:'Busy · 20 min',      img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=300&q=80' },
-  { name:'Chisom Obi',       spec:'Everyday · Soft Glam',             price:'₦10,000', priceNum:10000, rating:4.82, revs:278, dist:2.8, area:'Garki',    brands:['NYX','Black Opal','Milani'],             styles:['everyday','softglam','natural'],       prestige:[1],   avail:'now',  availText:'Available · 4 min',  img:'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&q=80' },
-  { name:'Sade Bello',       spec:'Aso-ebi · Owambe',                 price:'₦19,000', priceNum:19000, rating:4.91, revs:145, dist:1.7, area:'Wuse 1',   brands:['Fenty Beauty','Huda Beauty','MAC'],      styles:['asoebi','owambe','party'],             prestige:[3,4], avail:'now',  availText:'Available · 7 min',  img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80' },
-  { name:'Funmi Adebayo',    spec:'Party · Full Glam',                price:'₦16,000', priceNum:16000, rating:4.88, revs:219, dist:0.8, area:'Jabi',     brands:['MAC','Morphe','Smashbox'],               styles:['party','fullglam','owambe'],           prestige:[2,3], avail:'now',  availText:'Available · 2 min',  img:'https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?w=300&q=80' },
-  { name:'Kemi Oduola',      spec:'Natural Glow · Editorial',         price:'₦17,000', priceNum:17000, rating:4.93, revs:112, dist:1.3, area:'Central Area', brands:['NARS','Fenty Beauty','Black Opal'],  styles:['natural','editorial','everyday'],      prestige:[2,3], avail:'busy', availText:'Busy · 30 min',      img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80' },
-  { name:'Zainab Mohammed',  spec:'Traditional · Bridal',             price:'₦21,000', priceNum:21000, rating:4.89, revs:198, dist:0.5, area:'Wuse 2',   brands:['Inglot','BM Pro','Zaron'],               styles:['traditional','bridal','owambe'],       prestige:[2],   avail:'now',  availText:'Available · 11 min', img:'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=300&q=80' },
-  { name:'Ada Okafor',       spec:'Luxury Bridal · High Glam',        price:'₦35,000', priceNum:35000, rating:4.98, revs:87,  dist:1.8, area:'Asokoro',  brands:['Pat McGrath','Charlotte Tilbury','Lancôme'], styles:['bridal','fullglam','editorial'],    prestige:[4,5], avail:'now',  availText:'Available · 18 min', img:'https://images.unsplash.com/photo-1531746020167-ad472685c2c8?w=300&q=80' }
-];
-
-const SKIN_TONES = [
-  {tone:1, bg:'#1A0A00'},{tone:2, bg:'#271005'},{tone:3, bg:'#351608'},{tone:4, bg:'#4A2408'},
-  {tone:5, bg:'#5E3010'},{tone:6, bg:'#6B3A12'},{tone:7, bg:'#7E4818'},{tone:8, bg:'#8C5022'},
-  {tone:9, bg:'#AA6B30'},{tone:10,bg:'#C08440'},{tone:11,bg:'#CA9550'},{tone:12,bg:'#D4A060'},
-  {tone:13,bg:'#DDB87A'},{tone:14,bg:'#E8BF88'},{tone:15,bg:'#EDD0A0'},{tone:16,bg:'#F2D8B0'}
-];
-
-// Booking flow state
-let bfState = { tone:null, date:null, dateChosen:false, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null, authSource:'splash', payMethod:null };
-
-function bfIsMobileLayout() {
-  return window.matchMedia('(max-width: 900px)').matches;
-}
-
-function bfSaveState() {
-  const s = bfState;
-  if (s.tone != null) localStorage.setItem('mday_tone', s.tone);
-  if (s.dateChosen && s.date) {
-    localStorage.setItem('mday_bf_date', s.date);
-    localStorage.setItem('mday_bf_date_chosen', '1');
-  } else {
-    localStorage.removeItem('mday_bf_date');
-    localStorage.removeItem('mday_bf_date_chosen');
-  }
-  if (s.dateChosen && s.time) localStorage.setItem('mday_bf_time', s.time);
-  else localStorage.removeItem('mday_bf_time');
-  localStorage.setItem('mday_bf_prestige', s.prestige);
-  if (s.styles.length) localStorage.setItem('mday_bf_styles', JSON.stringify(s.styles));
-  if (s.address) localStorage.setItem('mday_bf_address', s.address);
-}
-
-function bfRestoreState() {
-  const tone = localStorage.getItem('mday_tone');
-  if (tone) bfState.tone = +tone;
-  const dateChosen = localStorage.getItem('mday_bf_date_chosen') === '1';
-  const date = localStorage.getItem('mday_bf_date');
-  bfState.dateChosen = dateChosen;
-  bfState.date = dateChosen && date ? date : null;
-  const time = localStorage.getItem('mday_bf_time');
-  bfState.time = dateChosen && time ? time : null;
-  const prestige = localStorage.getItem('mday_bf_prestige');
-  if (prestige != null) bfState.prestige = +prestige;
-  const styles = localStorage.getItem('mday_bf_styles');
-  if (styles) try { bfState.styles = JSON.parse(styles); } catch(e) {}
-  const address = localStorage.getItem('mday_bf_address');
-  if (address) { bfState.address = address; const inp = document.getElementById('bfAbujaAddress'); if (inp) inp.value = address; }
-}
-
-function openBookingFlow(preStyle, preBrand) {
-  bfRestoreState();
-  if (preStyle && !bfState.styles.includes(preStyle)) bfState.styles = [preStyle];
-  bfState.assignment = null; bfState.artist = null; bfState.authSource = 'splash'; bfState.payMethod = null;
-  bfInitTones(); bfInitDates(); bfInitTimeSlots(); bfInitPrestige(); bfInitStyles();
-  document.getElementById('bookingFlow').classList.add('open');
-  lockScroll();
-  bfGoToStep('0');
-  bfDetectLocation();
-}
-
-function closeBookingFlow() {
-  document.getElementById('bookingFlow').classList.remove('open');
-  unlockScroll();
-}
-
-function bfBackdropClick(e) {
-  if (e.target === document.getElementById('bookingFlow')) closeBookingFlow();
-}
-
-function bfGoToStep(step) {
-  document.querySelectorAll('.bf-panel').forEach(p => {
-    p.classList.remove('active');
-    p.style.display = '';
-  });
-  const panel = document.getElementById('bfStep' + step);
-  if (panel) {
-    panel.classList.add('active');
-    if (step === '0' || step === '0b' || step === 'auth') panel.style.display = 'flex';
-  }
-  const isSplash = step === '0' || step === '0b' || step === 'auth';
-  if (step === 'auth') bfSwitchAuthTab('signin');
-  document.querySelector('.bf-header').style.display = isSplash ? 'none' : '';
-  const titles = {'0':'','0b':'','auth':'',1:'Skin Tone',2:'Date & Time',3:'Brand Prestige',4:'Makeup Style',5:'Assignment',6:'Choose Artist',7:'Booking Summary',8:'Payment',9:'Receipt'};
-  document.getElementById('bfHeaderTitle').textContent = titles[step] || 'Book an Artist';
-  const dotsEl = document.getElementById('bfSteps');
-  dotsEl.innerHTML = '';
-  if (!isSplash && typeof step === 'number' && step >= 1 && step <= 5) {
-    for (let i = 1; i <= 5; i++) {
-      const d = document.createElement('div');
-      d.className = 'bf-step-dot' + (i < step ? ' done' : i === step ? ' active' : '');
-      dotsEl.appendChild(d);
-    }
-  }
-  if (step === 7) bfPrefillContactDetails();
-  document.querySelector('.bf-box').scrollTo({top:0,behavior:'smooth'});
-}
-
-function bfDetectLocation() {
-  const lbl = document.getElementById('bfLocationLabel');
-  if (!lbl) return;
-  fetch('https://ipapi.co/json/')
-    .then(r => r.json())
-    .then(d => {
-      const city = d.city || '';
-      const region = d.region || '';
-      lbl.textContent = [city, region].filter(Boolean).join(', ') || 'your location';
-    })
-    .catch(() => { lbl.textContent = 'your location'; });
-}
-
-function bfSaveAddress() {
-  const input = document.getElementById('bfAbujaAddress');
-  const addr = input.value.trim();
-  if (!addr) { showToast('Please enter your Abuja address', true); return; }
-  bfState.address = addr;
-  input.blur();
-  bfSaveState();
-  if (bfIsMobileLayout()) {
-    bfResetMobileViewport();
-    setTimeout(() => {
-      bfResetMobileViewport();
-      bfGoToStep(1);
-    }, 180);
-    return;
-  }
-  bfGoToStep(1);
-}
-
-function bfNextStep(from) {
-  if (from === 1) {
-    bfSaveState();
-    bfGoToStep(2);
-  } else if (from === 2) {
-    if (!bfState.date) { showToast('Please select a date', true); return; }
-    if (!bfState.time) { showToast('Please pick a time slot', true); return; }
-    bfSaveState();
-    bfGoToStep(3);
-  } else if (from === 3) {
-    bfSaveState();
-    bfGoToStep(4);
-  } else if (from === 4) {
-    if (!bfState.styles.length) { showToast('Select at least one style', true); return; }
-    bfSaveState();
-    bfGoToStep(5);
-  } else if (from === 6) {
-    if (!bfState.artist) { showToast('Please select an artist', true); return; }
-    bfBuildConfirmation(); bfGoToStep(7);
-  }
-}
-
-function bfPrevStep(from) {
-  if (from === 1) { bfGoToStep('0b'); return; }
-  if (from === 6) { bfGoToStep(5); return; }
-  if (from === 7) { bfGoToStep(bfState.assignment === 'custom' ? 6 : 5); return; }
-  bfGoToStep(from - 1);
-}
-
-// Step 1: Skin Tone
-function bfInitTones() {
-  document.getElementById('bfTones').innerHTML = SKIN_TONES.map(t =>
-    `<button class="bf-tone-btn${bfState.tone===t.tone?' selected':''}" style="background:${t.bg}" data-tone="${t.tone}" title="Shade ${t.tone}" onclick="bfSelectTone(this)"></button>`
-  ).join('');
-}
-
-function bfSelectTone(btn) {
-  document.querySelectorAll('.bf-tone-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  bfState.tone = +btn.dataset.tone;
-}
-
-// Step 2: Date & Time
-let _bfCalY, _bfCalM;
-function bfInitDates() {
-  const today = new Date(); today.setHours(0,0,0,0);
-  if (bfState.date) {
-    const d = new Date(bfState.date);
-    _bfCalY = d.getFullYear(); _bfCalM = d.getMonth();
-  } else {
-    _bfCalY = today.getFullYear(); _bfCalM = today.getMonth();
-    bfState.date = bfIsMobileLayout() ? null : today.toDateString();
-    bfState.dateChosen = false;
-  }
-  bfRenderCal();
-}
-function bfRenderCal() {
-  const today = new Date(); today.setHours(0,0,0,0);
-  const maxDate = new Date(today); maxDate.setFullYear(maxDate.getFullYear() + 1);
-  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const y = _bfCalY, m = _bfCalM;
-  const firstDow = new Date(y, m, 1).getDay();
-  const daysInMonth = new Date(y, m + 1, 0).getDate();
-  const canPrev = new Date(y, m - 1, 1) >= new Date(today.getFullYear(), today.getMonth(), 1);
-  const canNext = new Date(y, m + 1, 1) <= new Date(today.getFullYear() + 1, today.getMonth(), 1);
-  const sel = bfState.date ? new Date(bfState.date) : null;
-  let html = `<div class="bf-cal-header">
-    <button class="bf-cal-nav" onclick="bfCalNav(-1)" ${canPrev?'':'disabled'}>‹</button>
-    <span class="bf-cal-month-lbl">${MONTHS[m]} ${y}</span>
-    <button class="bf-cal-nav" onclick="bfCalNav(1)" ${canNext?'':'disabled'}>›</button>
-  </div>
-  <div class="bf-cal-dow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
-  <div class="bf-cal-grid">`;
-  for (let i = 0; i < firstDow; i++) html += `<div></div>`;
-  for (let day = 1; day <= daysInMonth; day++) {
-    const d = new Date(y, m, day); d.setHours(0,0,0,0);
-    const past = d < today, future = d > maxDate;
-    const isToday = d.getTime() === today.getTime();
-    const active = sel && d.toDateString() === sel.toDateString();
-    html += `<button class="bf-cal-day${isToday?' today':''}${active?' active':''}" ${past||future?'disabled':''} onclick="bfSelectCalDate('${d.toDateString()}')">${day}</button>`;
-  }
-  html += `</div>`;
-  document.getElementById('bfDateRow').innerHTML = html;
-}
-function bfCalNav(dir) {
-  _bfCalM += dir;
-  if (_bfCalM < 0) { _bfCalM = 11; _bfCalY--; }
-  if (_bfCalM > 11) { _bfCalM = 0; _bfCalY++; }
-  bfRenderCal();
-}
-function bfSelectCalDate(dateStr) {
-  bfState.date = dateStr;
-  bfState.dateChosen = true;
-  bfRenderCal();
-  if (bfIsMobileLayout()) {
-    requestAnimationFrame(() => bfScrollToTimeSection());
-  }
-}
-
-function bfInitTimeSlots() {
-  const slots = [
-    '6:00 am','7:00 am','8:00 am','9:00 am','10:00 am','11:00 am',
-    '12:00 pm','1:00 pm','2:00 pm','3:00 pm','4:00 pm','5:00 pm',
-    '6:00 pm','7:00 pm','8:00 pm','9:00 pm'
+(function renderLeaderboard() {
+  const LEADERBOARD = [
+    { rank:1,  name:'Chidinma Okafor',  area:'Maitama',      rating:4.97, bookings:47, spec:'Full Glam · Owambe',       img:'https://images.unsplash.com/photo-1591726328133-b4e2b0031cb2?w=400&q=80', badge:'🏆' },
+    { rank:2,  name:'Ada Okafor',       area:'Asokoro',      rating:4.98, bookings:39, spec:'Luxury Bridal · High Glam', img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80', badge:'🥈' },
+    { rank:3,  name:'Temi Fashola',     area:'Asokoro',      rating:4.96, bookings:38, spec:'Editorial · Full Glam',     img:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80', badge:'🥉' },
+    { rank:4,  name:'Fatima Al-Hassan', area:'Wuse 2',       rating:5.0,  bookings:34, spec:'Bridal · Traditional',      img:'https://images.unsplash.com/photo-1594465919760-441fe5908ab0?w=400&q=80', badge:'' },
+    { rank:5,  name:'Aisha Musa',       area:'Jabi',         rating:4.93, bookings:31, spec:'Natural Glow · Editorial',  img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80', badge:'' },
+    { rank:6,  name:'Amaka Okonkwo',    area:'Gwarinpa',     rating:4.94, bookings:29, spec:'Soft Glam · Bridal',        img:'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&q=80', badge:'' },
+    { rank:7,  name:'Sade Bello',       area:'Wuse 1',       rating:4.91, bookings:27, spec:'Aso-ebi · Owambe',          img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80', badge:'' },
+    { rank:8,  name:'Kemi Oduola',      area:'Central Area', rating:4.93, bookings:24, spec:'Natural Glow · Editorial',  img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80', badge:'' },
+    { rank:9,  name:'Halima Yusuf',     area:'Maitama',      rating:4.90, bookings:22, spec:'Bridal · Natural Glam',     img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80', badge:'' },
+    { rank:10, name:'Funmi Adebayo',    area:'Jabi',         rating:4.88, bookings:21, spec:'Party · Full Glam',         img:'https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?w=400&q=80', badge:'' },
   ];
-  const saved = bfState.time;
-  document.getElementById('bfTimeGrid').innerHTML = slots.map(t =>
-    `<div class="bf-t-slot${saved===t?' active':''}" onclick="bfSelectTime(this,'${t}')">${t}</div>`
-  ).join('');
-}
 
-function bfSelectTime(el, time) {
-  document.querySelectorAll('.bf-t-slot').forEach(s=>s.classList.remove('active'));
-  el.classList.add('active'); bfState.time = time;
-}
+  const top3Rings = ['linear-gradient(135deg,#C9963A,#F5D77A)','linear-gradient(135deg,#9EA8B8,#C8D4E4)','linear-gradient(135deg,#C47A3A,#E8A97A)'];
 
-function bfResetMobileViewport() {
-  if (!bfIsMobileLayout()) return;
-  const viewport = window.visualViewport;
-  if (!viewport || viewport.scale <= 1) return;
-  const meta = document.querySelector('meta[name="viewport"]');
-  const original = meta?.getAttribute('content');
-  if (!meta || !original) return;
-  meta.setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0');
-  setTimeout(() => meta.setAttribute('content', original), 120);
-}
-
-function bfScrollToTimeSection() {
-  const container = document.querySelector('#bfStep2 .bf-fill-scroll');
-  const target = document.getElementById('bfTimeSection');
-  if (!container || !target) return;
-  container.scrollTo({ top: Math.max(0, target.offsetTop - 10), behavior: 'smooth' });
-}
-
-// Step 3: Prestige
-function bfInitPrestige() {
-  document.getElementById('bfPrestigeLabels').innerHTML = PRESTIGE_DATA.map((p,i) =>
-    `<button class="bf-prestige-tab${i===bfState.prestige?' active':''}" onclick="bfSetPrestige(${i})">
-      <span class="bf-prestige-tab-name">${p.label}</span>
-      <span class="bf-prestige-tab-sub">${p.sub}</span>
-    </button>`
-  ).join('');
-  bfRenderBrandGrid();
-}
-
-function bfSetPrestige(idx) {
-  bfState.prestige = idx;
-  document.querySelectorAll('.bf-prestige-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
-  bfRenderBrandGrid();
-}
-
-function bfRenderBrandGrid() {
-  const pd = PRESTIGE_DATA[bfState.prestige];
-  document.getElementById('bfBrandGrid').innerHTML = pd.brands.map(b =>
-    `<div class="bf-brand-card" style="background-image:url('${b.img}');background-color:#111">
-      <div class="bf-brand-check">✓</div>
-      <div class="bf-brand-inner">
-        <div class="bf-brand-name">${b.name}</div>
-        <div class="bf-brand-about">${b.about}</div>
-      </div>
-    </div>`
-  ).join('');
-}
-
-// Step 4: Styles
-function bfInitStyles() {
-  document.getElementById('bfStyleGrid').innerHTML = STYLE_DATA.map(s =>
-    `<div class="bf-style-card${bfState.styles.includes(s.id)?' selected':''}" data-id="${s.id}" onclick="bfToggleStyle('${s.id}',this)"
-      style="background-image:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.38) 55%,rgba(0,0,0,.12) 100%),url('${s.img}');background-color:#111">
-      <div class="bf-style-check">${bfState.styles.includes(s.id)?'✓':''}</div>
-      <div class="bf-style-name">${s.name}</div>
-      <div class="bf-style-desc">${s.desc}</div>
-    </div>`
-  ).join('');
-}
-
-function bfToggleStyle(id, card) {
-  if (bfState.styles.includes(id)) {
-    bfState.styles = bfState.styles.filter(s=>s!==id);
-    card.classList.remove('selected'); card.querySelector('.bf-style-check').textContent='';
-  } else {
-    bfState.styles.push(id);
-    card.classList.add('selected'); card.querySelector('.bf-style-check').textContent='✓';
-  }
-}
-
-// Step 5: Assignment
-function bfChooseAssignment(type) {
-  bfState.assignment = type;
-  document.querySelectorAll('.bf-assign-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById({fastest:'assignFastest',rated:'assignRated',cheapest:'assignCheapest',costliest:'assignCostliest',custom:'assignCustom'}[type]).classList.add('selected');
-  setTimeout(() => {
-    bfState.authSource = 'step5';
-    bfGoToStep('auth');
-  }, 280);
-}
-
-// Step 6: Custom select
-function bfFilteredArtists() {
-  let list = ARTIST_DATA.filter(a => {
-    const styleOk = !bfState.styles.length || bfState.styles.some(s=>a.styles.includes(s));
-    const lvl = bfState.prestige + 1;
-    const prestigeOk = a.prestige.some(p => Math.abs(p - lvl) <= 1);
-    return styleOk && prestigeOk;
-  });
-  return list.length ? list : [...ARTIST_DATA];
-}
-
-function bfPopulateArtists(sortBy) {
-  let artists = bfFilteredArtists();
-  if (sortBy === 'rating') artists.sort((a,b)=>b.rating-a.rating);
-  else if (sortBy === 'price') artists.sort((a,b)=>a.priceNum-b.priceNum);
-  else if (sortBy === 'available') artists.sort((a,b)=>a.avail==='now'?-1:1);
-  else artists.sort((a,b)=>a.dist-b.dist);
-
-  document.getElementById('bfArtistList').innerHTML = artists.map(a => {
-    const idx = ARTIST_DATA.indexOf(a);
-    const dotColor = a.avail==='now'?'#00C48C':'#FF9500';
-    return `<div class="bf-a-card${bfState.artist===a?' selected':''}" onclick="bfSelectArtist(${idx},this)">
-      <div class="bf-a-img">
-        <img src="${a.img}" alt="${a.name}" loading="lazy"/>
-        <div class="bf-a-avail"><span style="width:6px;height:6px;border-radius:50%;background:${dotColor};flex-shrink:0;display:inline-block"></span>${a.availText}</div>
-      </div>
-      <div class="bf-a-body">
-        <div class="bf-a-top"><div class="bf-a-name">${a.name}</div><div class="bf-a-price">${a.price}</div></div>
-        <div class="bf-a-spec">${a.spec}</div>
-        <div class="bf-a-row">
-          <span class="bf-a-rating">★ ${a.rating} <span style="font-weight:400;color:var(--ink3)">(${a.revs})</span></span>
-          <span class="bf-a-dist">${a.area} · ${a.dist} km</span>
-        </div>
-        <button class="bf-a-select-btn">Select ${a.name.split(' ')[0]} →</button>
+  document.getElementById('leaderboardList').innerHTML = LEADERBOARD.map(a => {
+    const isTop3 = a.rank <= 3;
+    const badgeBg = isTop3 ? top3Rings[a.rank-1] : 'rgba(0,0,0,.52)';
+    return `<div onclick="openBookingFlow()" style="flex-shrink:0;width:150px;height:200px;border-radius:20px;overflow:hidden;position:relative;cursor:pointer;transition:transform .25s"
+      onmouseover="this.style.transform='scale(1.03)'"
+      onmouseout="this.style.transform=''">
+      <img src="${a.img}" alt="${a.name}" style="width:100%;height:100%;object-fit:cover;transition:transform .4s" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform=''"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.08) 55%,transparent 100%)"></div>
+      <div style="position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:${isTop3?'.9rem':'.72rem'};font-weight:800;background:${badgeBg};color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.3)">${a.badge || '#' + a.rank}</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px">
+        <div style="font-size:.85rem;font-weight:700;color:#fff;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${a.name}</div>
+        <div style="font-size:.68rem;color:rgba(255,255,255,.72);margin-top:2px">★ ${a.rating} · ${a.bookings} bookings</div>
       </div>
     </div>`;
   }).join('');
-}
-
-function bfSelectArtist(idx, card) {
-  document.querySelectorAll('.bf-a-card').forEach(c=>c.classList.remove('selected'));
-  card.classList.add('selected');
-  bfState.artist = ARTIST_DATA[idx];
-  document.getElementById('bfSelectArtistBtn').disabled = false;
-}
-
-function bfSort(by, btn) {
-  document.querySelectorAll('.bf-sort-chip').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); bfPopulateArtists(by);
-}
-
-function bfAutoAssign(type) {
-  let artists = bfFilteredArtists();
-  if (type === 'fastest') artists.sort((a,b)=>a.dist-b.dist);
-  else if (type === 'cheapest') artists.sort((a,b)=>a.priceNum-b.priceNum);
-  else if (type === 'costliest') artists.sort((a,b)=>b.priceNum-a.priceNum);
-  else artists.sort((a,b)=>b.rating-a.rating);
-  bfState.artist = artists[0];
-  bfBuildConfirmation(); bfGoToStep(7);
-}
-
-function bfBuildConfirmation() {
-  const a = bfState.artist; if (!a) return;
-  const styleName = bfState.styles.map(s=>STYLE_DATA.find(d=>d.id===s)?.name).filter(Boolean).join(', ') || 'Any style';
-  const toneName  = bfState.tone ? `Shade ${bfState.tone}` : 'Not specified';
-  const assignLabel = {fastest:'Fastest Arrival',rated:'Highest Rated',cheapest:'Most Affordable',costliest:'Most Expensive',custom:'Custom Select'}[bfState.assignment] || '';
-  document.getElementById('bfConfirmArtist').innerHTML = `
-    <img class="bf-confirm-img" src="${a.img}" alt="${a.name}"/>
-    <div>
-      <div class="bf-confirm-name">${a.name}</div>
-      <div class="bf-confirm-spec">${a.spec}</div>
-      <div class="bf-confirm-rating">★ ${a.rating} · ${a.area} · ${a.price}/hr</div>
-    </div>`;
-  document.getElementById('bfSummaryRows').innerHTML = [
-    {label:'Address',    val: bfState.address || 'To be confirmed'},
-    {label:'Date',       val: bfState.date || 'Today'},
-    {label:'Time',       val: bfState.time || 'Flexible'},
-    {label:'Style',      val: styleName},
-    {label:'Brand level',val: PRESTIGE_DATA[bfState.prestige]?.label},
-    {label:'Skin tone',  val: toneName},
-    {label:'Assignment', val: assignLabel}
-  ].map(r=>`<div class="bf-summary-row"><span class="bf-summary-label">${r.label}</span><span class="bf-summary-val">${r.val}</span></div>`).join('');
-}
-
-function bfAuthBack() {
-  bfGoToStep(bfState.authSource === 'step5' ? 5 : '0');
-}
-
-function bfAfterStep5Auth() {
-  if (bfState.assignment === 'custom') {
-    bfPopulateArtists();
-    bfGoToStep(6);
-  } else {
-    bfAutoAssign(bfState.assignment);
-  }
-}
-
-function bfAuthSuccess() {
-  if (bfState.authSource === 'step5') {
-    bfAfterStep5Auth();
-  } else {
-    bfGoToStep('0b');
-    showToast('Welcome! Continue your booking.');
-  }
-}
-
-function bfPrefillContactDetails() {
-  const nameEl  = document.getElementById('bfDetailName');
-  const emailEl = document.getElementById('bfDetailEmail');
-  const phoneEl = document.getElementById('bfDetailPhone');
-  if (nameEl  && bfState._signupName  && !nameEl.value)  nameEl.value  = bfState._signupName;
-  if (emailEl && bfState._signupEmail && !emailEl.value) emailEl.value = bfState._signupEmail;
-  if (phoneEl && bfState._signupPhone && !phoneEl.value) phoneEl.value = bfState._signupPhone;
-}
-
-function bfGoToPayment() {
-  const name  = document.getElementById('bfDetailName').value.trim();
-  const phone = document.getElementById('bfDetailPhone').value.trim();
-  const email = document.getElementById('bfDetailEmail').value.trim();
-  if (!name || !phone || !email) { showToast('Please fill in all your details', true); return; }
-  const a = bfState.artist; if (!a) return;
-  document.getElementById('bfPayRecap').innerHTML =
-    `<img src="${a.img}" alt="${a.name}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0"/>
-     <div style="flex:1;min-width:0">
-       <div style="font-size:.92rem;font-weight:700;color:var(--ink)">${a.name}</div>
-       <div style="font-size:.76rem;color:var(--ink3);margin-top:1px">${bfState.date || 'Today'} · ${bfState.time || 'Flexible'}</div>
-       <div style="font-size:.92rem;font-weight:800;color:var(--pink);margin-top:4px">${a.price}<span style="font-size:.72rem;font-weight:500;color:var(--ink3)">/hr</span></div>
-     </div>`;
-  bfGoToStep(8);
-}
-
-function bfSelectPayMethod(method, btn) {
-  bfState.payMethod = method;
-  document.querySelectorAll('.bf-pay-opt').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  document.getElementById('bfCardFields').style.display = method === 'card' ? '' : 'none';
-}
-
-async function bfCompletePayment() {
-  if (!bfState.payMethod) { showToast('Please select a payment method', true); return; }
-  const btn = document.getElementById('bfPayBtn');
-  btn.disabled = true; btn.textContent = 'Processing…';
-  const name  = document.getElementById('bfDetailName').value.trim();
-  const phone = document.getElementById('bfDetailPhone').value.trim();
-  const email = document.getElementById('bfDetailEmail').value.trim();
-  const a = bfState.artist;
-  await postToSheet('booking', {
-    name, phone, email,
-    artist: a.name, area: a.area, price: a.price,
-    date: bfState.date || 'Today', time: bfState.time || 'Flexible',
-    address: bfState.address || '', styles: bfState.styles.join(', '),
-    prestige: PRESTIGE_DATA[bfState.prestige]?.label,
-    payMethod: bfState.payMethod
-  });
-  btn.disabled = false; btn.textContent = 'Pay Now →';
-  bfBuildReceipt(name, a);
-  bfGoToStep(9);
-}
-
-function bfBuildReceipt(name, a) {
-  const rows = [
-    ['Artist',  a.name],
-    ['Date',    bfState.date || 'Today'],
-    ['Time',    bfState.time || 'Flexible'],
-    ['Address', bfState.address || 'To be confirmed'],
-    ['Payment', {card:'Card',transfer:'Bank Transfer',cash:'Pay on Arrival'}[bfState.payMethod]],
-    ['Total',   a.price + '/hr'],
-  ];
-  document.getElementById('bfReceiptBox').innerHTML =
-    `<div style="font-size:.78rem;font-weight:700;color:var(--ink3);letter-spacing:.4px;text-transform:uppercase;margin-bottom:12px">Booking #${Math.random().toString(36).slice(2,8).toUpperCase()}</div>`
-    + rows.map(([l,v]) =>
-      `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
-         <span style="font-size:.82rem;color:var(--ink3)">${l}</span>
-         <span style="font-size:.84rem;font-weight:600;color:var(--ink)">${v}</span>
-       </div>`).join('')
-    + `<div style="padding-top:14px;font-size:.82rem;color:var(--ink3)">Confirmation sent to <strong style="color:var(--ink)">${document.getElementById('bfDetailEmail').value.trim()}</strong></div>`;
-}
-
-// ── HEART ──
-function toggleHeart(btn) {
-  btn.classList.toggle('liked');
-  btn.textContent = btn.classList.contains('liked') ? '♥' : '♡';
-}
-
-// ── BOOKING SHEET ──
-function openSheet(name, spec, price, rating, revs, dist, brands, img) {
-  document.getElementById('sheetName').textContent = name;
-  document.getElementById('sheetSpec').textContent = spec;
-  document.getElementById('sheetDist').textContent = dist;
-  document.getElementById('sheetRating').textContent = rating;
-  document.getElementById('sheetRevs').textContent = '(' + revs + ')';
-  document.getElementById('sheetBasePrice').textContent = price;
-  document.getElementById('sheetTotal').textContent = price;
-  document.getElementById('sheetHeroImg').src = img;
-
-  const br = document.getElementById('sheetBrands');
-  br.innerHTML = brands.map(b => `<span class="a-brand lux">${b}</span>`).join('');
-
-  // build dates
-  const dr = document.getElementById('dateRow');
-  dr.innerHTML = '';
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const today = new Date();
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    const chip = document.createElement('div');
-    chip.className = 'date-chip' + (i === 0 ? ' active' : '');
-    chip.innerHTML = `<div class="dc-day">${i===0?'Today':days[d.getDay()]}</div><div class="dc-num">${d.getDate()} ${months[d.getMonth()]}</div>`;
-    chip.addEventListener('click', function() {
-      dr.querySelectorAll('.date-chip').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
-    });
-    dr.appendChild(chip);
-  }
-
-  document.getElementById('overlay').classList.add('open');
-  lockScroll();
-}
-
-function closeSheet(e) {
-  if (e.target === document.getElementById('overlay')) closeSheetDirect();
-}
-function closeSheetDirect() {
-  document.getElementById('overlay').classList.remove('open');
-  unlockScroll();
-}
-
-function selectSlot(el) {
-  document.querySelectorAll('.t-slot').forEach(s => s.classList.remove('active'));
-  el.classList.add('active');
-}
-
-function toggleSvc(row) {
-  const cb = row.querySelector('input[type=checkbox]');
-  cb.checked = !cb.checked;
-  updateTotal();
-}
-
-function updateTotal() {
-  const base = parseInt(document.getElementById('sheetBasePrice').textContent.replace(/[^\d]/g,'')) || 0;
-  let extras = 0;
-  if (document.getElementById('sv2').checked) extras += 3000;
-  if (document.getElementById('sv3').checked) extras += 4000;
-  if (document.getElementById('sv4').checked) extras += 5000;
-  document.getElementById('sheetTotal').textContent = '₦' + (base + extras).toLocaleString();
-}
-
-document.querySelectorAll('.svc-row input').forEach(cb => {
-  cb.addEventListener('change', updateTotal);
-});
-
-function selectTone(btn) {
-  document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-}
-
-function confirmBooking() {
-  const name = document.getElementById('sheetName').textContent;
-  const total = document.getElementById('sheetTotal').textContent;
-  const toneBtn = document.querySelector('.tone-btn.selected');
-  const toneNote = toneBtn ? `\nSkin tone: Shade ${toneBtn.dataset.tone}` : '';
-  closeSheetDirect();
-  setTimeout(() => {
-    alert(`Booking confirmed with ${name}!\n\nTotal: ${total}${toneNote}\n\nYou'll receive a WhatsApp confirmation shortly.`);
-  }, 300);
-}
-
-// ── MOBILE TABS ──
-function mobTab(tab, section) {
-  document.querySelectorAll('.mob-tab').forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
-  if (section === 'browse') document.getElementById('aesthetics').scrollIntoView({behavior:'smooth'});
-  if (section === 'book')   openBookingFlow();
-}
-
-// ── SHEET TAB (BOOKING MODAL) ──
-function switchSheetTab(tab) {
-  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.sheet-panel').forEach(p => p.classList.remove('active'));
-  if (tab === 'book') {
-    document.getElementById('tabBook').classList.add('active');
-    document.getElementById('panelBook').classList.add('active');
-  } else {
-    document.getElementById('tabReviews').classList.add('active');
-    document.getElementById('panelReviews').classList.add('active');
-  }
-}
-
-// ── REVIEW SUBMIT ──
-let userRating = 0;
-function setRating(n) {
-  userRating = n;
-  document.querySelectorAll('#starInput span').forEach((s,i) => s.classList.toggle('lit', i < n));
-}
-function submitReview() {
-  const name = document.getElementById('revName').value.trim();
-  const text = document.getElementById('revText').value.trim();
-  if (!name || !text || !userRating) { showToast('Fill in your name, rating, and review', true); return; }
-  showToast('Review posted, thank you!');
-  document.getElementById('revName').value = '';
-  document.getElementById('revText').value = '';
-  userRating = 0;
-  document.querySelectorAll('#starInput span').forEach(s => s.classList.remove('lit'));
-}
-
-// ── GOOGLE SHEETS URL ──
-// After deploying your Apps Script as a Web App, paste the URL here:
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxUqABXtyXizqWoIb4FCIcQpzHMGLc7E_znMDxD_XJp9LDZTwlnzJCCdaE3nwP4yXqpwA/exec';
-
-(async function loadArtists() {
-  try {
-    const res  = await fetch(SHEET_URL + '?sheet=artists', { redirect: 'follow' });
-    const data = await res.json();
-    if (data.artists && data.artists.length) {
-      ARTIST_DATA.splice(0, ARTIST_DATA.length, ...data.artists);
-    }
-  } catch (_) { /* use preset ARTIST_DATA */ }
 })();
-
-async function postToSheet(action, data) {
-  if (SHEET_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
-    console.log('Sheet submission (dev):', action, data);
-    return true;
-  }
-  try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action, ...data, timestamp: new Date().toISOString() })
-    });
-    return true;
-  } catch (e) {
-    console.warn('Sheet save failed:', e);
-    return false;
-  }
-}
-
-// ── AUTH MODAL ──
-function openAuth(mode) {
-  if (mode === 'artist') {
-    const artistModal = document.getElementById('artistModal');
-    if (!artistModal.classList.contains('open')) {
-      artistModal.classList.add('open');
-      lockScroll();
-    }
-    artistGoToStep(0);
-    return;
-  }
-  const modal = document.getElementById('authModal');
-  if (!modal.classList.contains('open')) {
-    modal.classList.add('open');
-    lockScroll();
-  }
-  switchAuthTab(mode === 'signup' ? 'signup' : 'signin');
-}
-
-function closeAuth() {
-  const modal = document.getElementById('authModal');
-  if (!modal.classList.contains('open')) return;
-  modal.classList.remove('open');
-  unlockScroll();
-}
-
-function closeArtistModal() {
-  const modal = document.getElementById('artistModal');
-  if (!modal.classList.contains('open')) return;
-  modal.classList.remove('open');
-  unlockScroll();
-}
-
-document.getElementById('authModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('authModal')) closeAuth();
-});
-window.addEventListener('scroll', () => {
-  if (document.getElementById('authModal').classList.contains('open')) closeAuth();
-}, { passive: true });
-document.getElementById('artistModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('artistModal')) closeArtistModal();
-});
-
-function switchAuthTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
-  if (tab === 'signin') {
-    document.getElementById('tabSignIn').classList.add('active');
-    document.getElementById('panelSignIn').classList.add('active');
-    document.getElementById('authTitle').textContent = 'Welcome back';
-    document.getElementById('authSub').textContent = 'Sign in to book your artist';
-  } else {
-    document.getElementById('tabSignUp').classList.add('active');
-    document.getElementById('panelSignUp').classList.add('active');
-    document.getElementById('authTitle').textContent = 'Join NoroTouch';
-    document.getElementById('authSub').textContent = 'Create your free account';
-  }
-}
-
-async function submitSignIn(e) {
-  e.preventDefault();
-  const btn = document.getElementById('siBtn');
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  await new Promise(r => setTimeout(r, 800));
-  btn.disabled = false; btn.textContent = 'Sign In →';
-  closeAuth();
-  showToast('Welcome back!');
-}
-
-async function submitSignUp(e) {
-  e.preventDefault();
-  const name  = document.getElementById('suName').value.trim();
-  const email = document.getElementById('suEmail').value.trim();
-  const phone = document.getElementById('suPhone').value.trim();
-  if (!name || !email || !phone) return;
-  const btn = document.getElementById('suBtn');
-  btn.disabled = true; btn.textContent = 'Creating account…';
-  await postToSheet('signup', { name, email, phone });
-  btn.disabled = false; btn.textContent = 'Create Account →';
-  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('panelAuthSuccess').classList.add('active');
-  document.getElementById('authSuccessTitle').textContent = `Welcome, ${name.split(' ')[0]}!`;
-  document.getElementById('authSuccessText').textContent = 'Your account is created. Check your email for a verification link.';
-}
-
-function showForgotPassword() {
-  const email = document.getElementById('siEmail').value.trim();
-  if (!email) { showToast('Enter your email address first', true); return; }
-  postToSheet('forgot_password', { email });
-  closeAuth();
-  showToast('Password reset link sent to ' + email);
-}
-
-// ── INLINE AUTH (inside booking flow card) ──
-function bfSwitchAuthTab(tab) {
-  const isSignIn = tab === 'signin';
-  document.getElementById('bfPanelSignIn').style.display = isSignIn ? '' : 'none';
-  document.getElementById('bfPanelSignUp').style.display = isSignIn ? 'none' : '';
-  document.getElementById('bfPanelAuthSuccess').style.display = 'none';
-  const tabBar = document.getElementById('bfAuthTabBar');
-  if (tabBar) tabBar.style.display = '';
-  const siTab = document.getElementById('bfTabSignIn');
-  const suTab = document.getElementById('bfTabSignUp');
-  if (siTab) { siTab.style.background = isSignIn ? '#fff' : 'transparent'; siTab.style.color = isSignIn ? 'var(--ink)' : 'rgba(255,255,255,.65)'; siTab.style.fontWeight = isSignIn ? '700' : '600'; }
-  if (suTab) { suTab.style.background = isSignIn ? 'transparent' : '#fff'; suTab.style.color = isSignIn ? 'rgba(255,255,255,.65)' : 'var(--ink)'; suTab.style.fontWeight = isSignIn ? '600' : '700'; }
-  const title = document.querySelector('#bfStepauth [style*="Instrument Serif"]');
-  if (title) title.textContent = isSignIn ? 'Welcome back.' : 'Join NoroTouch.';
-}
-
-async function bfSubmitSignIn(e) {
-  e.preventDefault();
-  const btn = document.getElementById('bfSiBtn');
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  await new Promise(r => setTimeout(r, 800));
-  btn.disabled = false; btn.textContent = 'Sign In →';
-  bfState._signupEmail = document.getElementById('bfSiEmail').value.trim();
-  showToast('Welcome back!');
-  if (bfState.authSource === 'step5') {
-    bfAfterStep5Auth();
-  } else {
-    bfGoToStep('0b');
-  }
-}
-
-async function bfSubmitSignUp(e) {
-  e.preventDefault();
-  const name  = document.getElementById('bfSuName').value.trim();
-  const email = document.getElementById('bfSuEmail').value.trim();
-  const phone = document.getElementById('bfSuPhone').value.trim();
-  if (!name || !email || !phone) return;
-  const btn = document.getElementById('bfSuBtn');
-  btn.disabled = true; btn.textContent = 'Creating account…';
-  await postToSheet('signup', { name, email, phone });
-  btn.disabled = false; btn.textContent = 'Create Account →';
-  bfState._signupName = name; bfState._signupEmail = email; bfState._signupPhone = phone;
-  document.getElementById('bfPanelSignUp').style.display = 'none';
-  document.getElementById('bfPanelSignIn').style.display = 'none';
-  document.getElementById('bfAuthTabBar').style.display = 'none';
-  document.getElementById('bfPanelAuthSuccess').style.display = '';
-  document.getElementById('bfAuthSuccessTitle').textContent = `Welcome, ${name.split(' ')[0]}!`;
-  document.getElementById('bfAuthSuccessText').textContent = bfState.authSource === 'step5'
-    ? 'Account created! Continue to finalize your booking.'
-    : 'Your account is created. Check your email for a verification link.';
-}
-
-function bfShowForgotPassword() {
-  const email = document.getElementById('bfSiEmail').value.trim();
-  if (!email) { showToast('Enter your email address first', true); return; }
-  postToSheet('forgot_password', { email });
-  bfGoToStep('0');
-  showToast('Password reset link sent to ' + email);
-}
-
-// ── INLINE CARD AUTH (inside artist modal) ──
-function artistShowAuth() {
-  document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.getElementById('artStepAuth');
-  if (panel) panel.classList.add('active');
-  const box = document.getElementById('artistBox');
-  if (box) box.classList.add('splash-active');
-  switchCardAuthTab('signin');
-  artistScrollToTop();
-}
-
-function artistHideAuth() {
-  artistGoToStep(0);
-}
-
-function switchCardAuthTab(tab) {
-  const isSignIn = tab === 'signin';
-  document.getElementById('cardPanelSignIn').style.display = isSignIn ? '' : 'none';
-  document.getElementById('cardPanelSignUp').style.display = isSignIn ? 'none' : '';
-  document.getElementById('cardPanelAuthSuccess').style.display = 'none';
-  const tabBar = document.getElementById('cardAuthTabs');
-  if (tabBar) tabBar.style.display = '';
-  const siTab = document.getElementById('cardTabSignIn');
-  const suTab = document.getElementById('cardTabSignUp');
-  if (siTab) { siTab.style.background = isSignIn ? '#fff' : 'transparent'; siTab.style.color = isSignIn ? 'var(--ink)' : 'rgba(255,255,255,.65)'; siTab.style.fontWeight = isSignIn ? '700' : '600'; }
-  if (suTab) { suTab.style.background = isSignIn ? 'transparent' : '#fff'; suTab.style.color = isSignIn ? 'rgba(255,255,255,.65)' : 'var(--ink)'; suTab.style.fontWeight = isSignIn ? '600' : '700'; }
-  const title = document.getElementById('cardAuthTitle');
-  if (title) title.textContent = isSignIn ? 'Welcome back.' : 'Join NoroTouch.';
-}
-
-async function submitCardSignIn(e) {
-  e.preventDefault();
-  const btn = document.getElementById('cardSiBtn');
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  await new Promise(r => setTimeout(r, 800));
-  btn.disabled = false; btn.textContent = 'Sign In →';
-  artistHideAuth();
-  showToast('Welcome back!');
-}
-
-async function submitCardSignUp(e) {
-  e.preventDefault();
-  const name  = document.getElementById('cardSuName').value.trim();
-  const email = document.getElementById('cardSuEmail').value.trim();
-  const phone = document.getElementById('cardSuPhone').value.trim();
-  if (!name || !email || !phone) return;
-  const btn = document.getElementById('cardSuBtn');
-  btn.disabled = true; btn.textContent = 'Creating account…';
-  await postToSheet('signup', { name, email, phone });
-  btn.disabled = false; btn.textContent = 'Create Account →';
-  document.getElementById('cardPanelSignUp').style.display = 'none';
-  document.getElementById('cardPanelSignIn').style.display = 'none';
-  document.getElementById('cardAuthTabs').style.display = 'none';
-  document.getElementById('cardPanelAuthSuccess').style.display = '';
-  document.getElementById('cardAuthSuccessTitle').textContent = `Welcome, ${name.split(' ')[0]}!`;
-  document.getElementById('cardAuthSuccessText').textContent = 'Your account is created. Check your email for a verification link.';
-}
-
-function showCardForgotPassword() {
-  const email = document.getElementById('cardSiEmail').value.trim();
-  if (!email) { showToast('Enter your email address first', true); return; }
-  postToSheet('forgot_password', { email });
-  artistHideAuth();
-  showToast('Password reset link sent to ' + email);
-}
-
-// ── ARTIST APPLICATION ──
-let currentArtistStep = 0;
-const artRadioValues = {};
-
-function artistScrollToTop() {
-  const body = document.getElementById('artistBoxBody');
-  if (body) body.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function artistGoToStep(step) {
-  currentArtistStep = step;
-  document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.getElementById('artStep' + step) || document.getElementById('artStepSuccess');
-  if (panel) panel.classList.add('active');
-  const box = document.getElementById('artistBox');
-  if (box) box.classList.toggle('splash-active', step === 0);
-  [0,1,2].forEach(i => {
-    const el  = document.getElementById('astStep' + i);
-    const sep = document.getElementById('astSep' + i);
-    if (!el) return;
-    el.classList.remove('active','done');
-    if (sep) sep.classList.remove('done');
-    if (i + 1 < step) { el.classList.add('done'); if (sep) sep.classList.add('done'); }
-    if (i + 1 === step) el.classList.add('active');
-  });
-  // scroll modal to top
-  artistScrollToTop();
-}
-
-function artistNextStep(from) {
-  if (from === 1) {
-    const name  = document.getElementById('artName').value.trim();
-    const email = document.getElementById('artEmail').value.trim();
-    const phone = document.getElementById('artPhone').value.trim();
-    const pass  = document.getElementById('artPassword').value;
-    if (!name || !email || !phone || !pass) { showToast('Please fill in all fields', true); return; }
-    if (pass.length < 8) { showToast('Password must be at least 8 characters', true); return; }
-  }
-  if (from === 2) {
-    const specialties = getChecked('specialtiesGrid');
-    if (!specialties.length) { showToast('Select at least one specialty', true); return; }
-  }
-  artistGoToStep(from + 1);
-}
-
-function artistPrevStep(from) { artistGoToStep(from - 1); }
-
-function getChecked(gridId) {
-  return [...document.querySelectorAll('#' + gridId + ' input:checked')].map(i => i.value);
-}
-
-function toggleCheck(item) {
-  const cb = item.querySelector('input');
-  cb.checked = !cb.checked;
-  item.classList.toggle('checked', cb.checked);
-}
-
-function selectRadio(groupId, el, value) {
-  document.querySelectorAll('#' + groupId + ' .a-radio-btn').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  artRadioValues[groupId] = value;
-}
-
-async function submitArtistApplication() {
-  const location = document.getElementById('artLocation').value;
-  if (!location)                  { showToast('Select your area in Abuja', true); return; }
-  if (!artRadioValues['kitRadio'])  { showToast('Tell us about your kit', true); return; }
-  if (!artRadioValues['certRadio']) { showToast('Tell us about your training', true); return; }
-
-  const btn = document.getElementById('artSubmitBtn');
-  btn.disabled = true; btn.textContent = 'Submitting…';
-
-  const data = {
-    name:          document.getElementById('artName').value.trim(),
-    email:         document.getElementById('artEmail').value.trim(),
-    phone:         document.getElementById('artPhone').value.trim(),
-    experience:    document.getElementById('artExperience').value,
-    specialties:   getChecked('specialtiesGrid').join(', '),
-    brands:        getChecked('brandsCheckGrid').join(', '),
-    location,
-    hasKit:        artRadioValues['kitRadio']  || '',
-    certification: artRadioValues['certRadio'] || '',
-    instagram:     document.getElementById('artInstagram').value.trim(),
-    referral:      document.getElementById('artReferral').value
-  };
-
-  await postToSheet('artist_application', data);
-  btn.disabled = false; btn.textContent = 'Submit Application →';
-
-  // mark all steps done
-  [0,1,2].forEach(i => {
-    const el  = document.getElementById('astStep' + i);
-    const sep = document.getElementById('astSep' + i);
-    if (el) { el.classList.add('done'); el.classList.remove('active'); }
-    if (sep) sep.classList.add('done');
-  });
-  document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('artStepSuccess').classList.add('active');
-  artistScrollToTop();
-}
-
-function scrollTo_(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-}
-
-// ── TOAST ──
-function showToast(msg, isError = false) {
-  const old = document.getElementById('mdToast');
-  if (old) old.remove();
-  const t = document.createElement('div');
-  t.id = 'mdToast';
-  t.className = 'md-toast';
-  t.textContent = msg;
-  t.style.background = isError ? '#FF3B30' : '#0A0A0A';
-  t.style.color = '#fff';
-  document.body.appendChild(t);
-  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2800);
-}
 </script>
 </body>
 </html>
