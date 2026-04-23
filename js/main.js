@@ -288,25 +288,26 @@ function scrollTo_(id) {
 }
 
 // ── MAKEUP BRUSH STROKES ──
-// Wide, slow, tapered sweeps rendered in the background via mix-blend-mode:multiply.
+// Wide, slow, tapered sweeps rendered only inside the hero, beneath the overlay/content.
 // No ctx.filter/blur — two-pass soft-edge approach instead (fast, GPU-friendly).
-// Max 2 strokes alive at once; rAF paused when a modal is open.
+// Higher concurrency keeps the hero feeling alive at a 1s spawn cadence.
 (function brushStrokes() {
+  const hero = document.getElementById('hero');
+  const heroOverlay = document.getElementById('heroOverlay');
+  if (!hero || !heroOverlay) return;
+
   const canvas = document.createElement('canvas');
-  // z-index 0 + multiply blend keeps strokes behind interactive elements
-  canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply';
-  document.body.appendChild(canvas);
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:multiply';
+  hero.insertBefore(canvas, heroOverlay);
   const ctx = canvas.getContext('2d', { willReadFrequently: false });
 
   // Half-resolution for performance — CSS scales it back up
   let W, H;
   function resize() {
-    W = Math.round(window.innerWidth  / 2);
-    H = Math.round(window.innerHeight / 2);
+    W = Math.max(1, Math.round(hero.clientWidth / 2));
+    H = Math.max(1, Math.round(hero.clientHeight / 2));
     canvas.width  = W;
     canvas.height = H;
-    canvas.style.width  = window.innerWidth  + 'px';
-    canvas.style.height = window.innerHeight + 'px';
   }
   resize();
   window.addEventListener('resize', resize, { passive: true });
@@ -318,19 +319,21 @@ function scrollTo_(id) {
     [205, 100,  80],  // coral
     [185,  60,  95],  // rose
   ];
+  const MAX_STROKES = 10;
+  const SPAWN_INTERVAL_MS = 1000;
 
   const strokes = [];
-  let lastSpawn = 0;
+  let lastSpawn = performance.now();
 
   function spawn() {
-    if (strokes.length >= 2) return;  // max 2 concurrent
+    if (strokes.length >= MAX_STROKES) return;
     const col   = COLORS[Math.floor(Math.random() * COLORS.length)];
     const angle = (Math.random() * 0.7 - 0.35) + (Math.random() > 0.5 ? 0 : Math.PI);
     const len   = (80 + Math.random() * 100) / 2;   // in canvas-space (half-res)
     const maxW  = (30 + Math.random() * 30) / 2;
     const curve = (Math.random() - 0.5) * 0.3;
-    const x     = (80 + Math.random() * (window.innerWidth  - 160)) / 2;
-    const y     = (80 + Math.random() * (window.innerHeight - 160)) / 2;
+    const x     = (80 + Math.random() * Math.max(40, hero.clientWidth - 160)) / 2;
+    const y     = (80 + Math.random() * Math.max(40, hero.clientHeight - 160)) / 2;
     // Pre-compute segment geometry so animate() never re-derives it
     const N = 40;
     const segs = [];
@@ -390,7 +393,7 @@ function scrollTo_(id) {
       drawStroke(s);
     }
 
-    if (now - lastSpawn > 4000) { spawn(); lastSpawn = now; }
+    if (now - lastSpawn > SPAWN_INTERVAL_MS) { spawn(); lastSpawn = now; }
     raf = requestAnimationFrame(animate);
   }
 
