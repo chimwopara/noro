@@ -43,6 +43,7 @@ a{text-decoration:none;color:inherit}
 .nav-logo span{color:#fff;text-shadow:inherit}
 /* solid + no buttons → centered, still glowing white */
 #nav.solid .nav-logo{opacity:1}
+#nav.solid:not(.btns-visible){background:rgba(237,231,220,.18);backdrop-filter:blur(16px);box-shadow:none;border-color:rgba(255,255,255,.22)}
 #nav.solid:not(.btns-visible) .nav-logo{color:#fff;text-shadow:0 0 8px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6),0 0 40px var(--pink),0 0 70px var(--pink)}
 #nav.solid:not(.btns-visible) .nav-logo span{color:#fff;text-shadow:inherit}
 /* solid + buttons → left-aligned, clay colour */
