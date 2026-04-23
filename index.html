@@ -49,14 +49,23 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 /* ─── NAV ─── */
 #nav{position:fixed;top:14px;left:20px;right:20px;z-index:90;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s,border-color .3s;border-radius:20px;background:rgba(237,231,220,.18);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.22)}
 #nav.solid{background:rgba(237,231,220,.88);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(10,10,10,.08);border-color:rgba(235,235,235,.8)}
-.nav-left{display:flex;align-items:center}
-.nav-logo{position:absolute;left:50%;transform:translateX(-50%);font-size:1.25rem;font-weight:700;letter-spacing:-.5px;color:var(--ink);white-space:nowrap;pointer-events:none}
-.nav-logo span{color:var(--pink)}
+.nav-logo{font-size:1.25rem;font-weight:700;letter-spacing:-.5px;color:#fff;white-space:nowrap;pointer-events:auto;text-shadow:0 0 8px rgba(255,255,255,.9),0 0 20px rgba(255,255,255,.6),0 0 40px var(--pink),0 0 70px var(--pink);transition:color .3s,text-shadow .3s,opacity .45s;opacity:0;position:relative;z-index:1}
+.nav-logo span{color:#fff;text-shadow:inherit}
+#nav.solid .nav-logo{color:var(--ink);text-shadow:none;opacity:1}
+#nav.solid .nav-logo span{color:var(--pink)}
+/* Scrolling ticker */
+.nav-ticker{position:absolute;inset:0;overflow:hidden;border-radius:20px;display:flex;align-items:center;z-index:0;opacity:1;transition:opacity .45s;pointer-events:none}
+.nav-ticker-inner{display:flex;align-items:center;white-space:nowrap;animation:noroTickerLtr 24s linear infinite}
+@keyframes noroTickerLtr{from{transform:translateX(-50%)}to{transform:translateX(0%)}}
+.nav-ticker-item{font-size:1rem;font-weight:700;letter-spacing:-.4px;color:#fff;text-shadow:0 0 6px rgba(255,255,255,.8),0 0 16px rgba(255,255,255,.5),0 0 28px var(--pink),0 0 52px var(--pink);padding:0 24px;flex-shrink:0}
+.nav-ticker-item span{color:#fff}
+.nav-ticker-sep{color:rgba(255,255,255,.3);font-size:.6rem;flex-shrink:0}
+#nav.solid .nav-ticker{opacity:0}
 .nav-loc{display:flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:7px 14px;font-size:.82rem;font-weight:500;cursor:pointer;transition:border-color .2s}
 .nav-loc:hover{border-color:var(--pink)}
 .nav-loc .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,196,140,.4);animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,196,140,.45)}70%{box-shadow:0 0 0 8px rgba(0,196,140,0)}100%{box-shadow:0 0 0 0 rgba(0,196,140,0)}}
-.nav-right{display:flex;align-items:center;gap:10px}
+.nav-right{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
 .nav-btn{background:var(--pink);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600;transition:opacity .2s,transform .2s;cursor:pointer}
 .nav-btn:hover{opacity:.88;transform:translateY(-1px)}
 .nav-arrow{animation:arrowNudge 1.4s ease-in-out infinite}
@@ -64,36 +73,6 @@ html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .nav-btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border);padding:8px 18px;border-radius:50px;font-size:.83rem;font-weight:600;cursor:pointer;transition:border-color .2s,transform .2s}
 .nav-btn-outline:hover{border-color:var(--pink);transform:translateY(-1px)}
 .nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--border);border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer}
-/* hamburger button */
-.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;background:none;border:none;cursor:pointer;gap:5px;padding:4px;border-radius:10px;transition:background .18s}
-.nav-hamburger:hover{background:rgba(0,0,0,.06)}
-.nav-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s ease,opacity .3s ease,width .3s ease}
-.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-hamburger.open span:nth-child(2){opacity:0;width:0}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-/* drawer overlay */
-#drawerOverlay{position:fixed;inset:0;z-index:180;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
-#drawerOverlay.open{opacity:1;pointer-events:all}
-/* drawer panel */
-#navDrawer{position:fixed;top:0;right:0;bottom:0;z-index:190;width:min(320px,88vw);background:#fff;box-shadow:-8px 0 40px rgba(0,0,0,.14);transform:translateX(100%);transition:transform .36s cubic-bezier(.32,0,.15,1);display:flex;flex-direction:column;overflow-y:auto}
-#navDrawer.open{transform:translateX(0)}
-.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);flex-shrink:0}
-.drawer-logo{font-size:1.15rem;font-weight:700;letter-spacing:-.4px;color:var(--ink)}
-.drawer-logo span{color:var(--pink)}
-.drawer-close{background:var(--bg);border:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;color:var(--ink3);transition:background .18s}
-.drawer-close:hover{background:var(--border)}
-.drawer-loc{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:9px 16px;margin:18px 22px 0;font-size:.84rem;font-weight:500;cursor:pointer}
-.drawer-links{display:flex;flex-direction:column;padding:10px 12px;flex:1}
-.drawer-link{display:flex;align-items:center;gap:12px;padding:13px 12px;border-radius:12px;font-size:.95rem;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .18s,color .18s;text-decoration:none;border:none;background:none;font-family:inherit;width:100%;text-align:left}
-.drawer-link:hover{background:var(--pink-bg);color:var(--pink)}
-.drawer-link svg{flex-shrink:0;color:var(--ink3);transition:color .18s}
-.drawer-link:hover svg{color:var(--pink)}
-.drawer-divider{height:1px;background:var(--border);margin:8px 12px}
-.drawer-cta{padding:18px 22px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px;flex-shrink:0}
-.drawer-cta-book{background:var(--pink);color:#fff;border:none;padding:14px;border-radius:50px;font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer;transition:opacity .2s;text-align:center}
-.drawer-cta-book:hover{opacity:.88}
-.drawer-cta-signin{background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
-.drawer-cta-signin:hover{border-color:var(--pink);color:var(--pink)}
 
 /* ─── HERO ─── */
 #hero{position:relative;height:80svh;min-height:520px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:60px;width:100vw;background:#0A0A0A;padding-top:90px;border-radius:0 0 32px 32px}
@@ -331,10 +310,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  #nav{top:10px;left:14px;right:14px;height:54px;padding:0 16px;justify-content:flex-start;gap:12px}
-  .nav-left{order:2;margin-left:auto}
-  .nav-logo{position:static;left:auto;transform:none;pointer-events:auto;order:1;font-size:1.1rem;flex-shrink:0}
-  .nav-right,.nav-hamburger{display:none}
+  #nav{top:10px;left:14px;right:14px;height:54px;padding:0 16px}
+  .nav-logo{font-size:1.1rem;flex-shrink:0}
   #navBookBtn{padding:9px 16px;font-size:.78rem;white-space:nowrap}
   #hero .hero-content{padding:0 20px}
   #aesthetics,#reviews,footer{padding-left:20px;padding-right:20px}
@@ -385,8 +362,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .auth-body{padding:24px 32px 32px;background:rgba(237,231,220,.94);backdrop-filter:blur(22px)}
 .auth-panel{display:none}
 .auth-panel.active{display:block}
-.a-field-label{font-size:.74rem;font-weight:600;color:var(--ink2);letter-spacing:.3px;margin-bottom:5px;display:block}
-.a-field{width:100%;border:1.5px solid rgba(235,235,235,.7);border-radius:12px;padding:12px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:rgba(255,255,255,.55);outline:none;transition:border-color .18s,background .18s;margin-bottom:12px;display:block}
+.a-field-label{font-size:.88rem;font-weight:700;color:var(--ink);letter-spacing:0;margin-bottom:7px;display:block}
+.a-field{width:100%;border:1.5px solid rgba(235,235,235,.7);border-radius:12px;padding:13px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:rgba(255,255,255,.55);outline:none;transition:border-color .18s,background .18s;margin-bottom:20px;display:block}
 .a-field:focus{border-color:var(--pink);background:rgba(255,255,255,.8)}
 .a-field::placeholder{color:#BCBCBC}
 .auth-forgot-link{font-size:.79rem;color:var(--pink);cursor:pointer;text-align:right;margin:-4px 0 14px;display:block}
@@ -413,8 +390,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 /* ─── ARTIST APPLICATION MODAL ─── */
 #artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 #artistModal.open{opacity:1;pointer-events:all}
-.artist-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;overflow:hidden;position:relative;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);border:1px solid rgba(255,255,255,.16);isolation:isolate}
-.artist-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
+.artist-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;overflow:hidden;position:relative;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);isolation:isolate}
+.artist-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&q=80');background-size:cover;background-position:center top;z-index:-2}
 .artist-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.22) 0%,rgba(5,5,5,.55) 24%,rgba(5,5,5,.82) 100%);z-index:-1}
 #artistModal.open .artist-box{transform:translateY(0)}
 .artist-box-header{padding:0 24px 10px;border-bottom:1px solid rgba(235,235,235,.5);position:sticky;top:0;background:rgba(237,231,220,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:2;flex-shrink:0;border-radius:28px 28px 0 0}
@@ -435,7 +412,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .artist-box-body::-webkit-scrollbar{width:3px}
 .artist-box-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .artist-step-panel{display:none}
-.artist-step-panel.active{display:block}
+.artist-step-panel.active{display:flex;flex-direction:column;min-height:100%}
 .artist-box.splash-active .artist-box-header{display:none}
 .artist-box.splash-active .artist-box-body{padding:0;background:transparent;backdrop-filter:none}
 .artist-splash-panel{height:100%;min-height:100%}
@@ -452,8 +429,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .artist-splash-copy{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:340px;margin-bottom:36px}
 .artist-splash-btn{width:100%;flex:none!important;background:#fff;color:var(--ink);font-size:1rem;padding:16px}
 .artist-splash-btn:hover{background:rgba(255,255,255,.9)}
-.artist-section-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:4px}
-.artist-section-sub{font-size:.84rem;color:var(--ink3);margin-bottom:22px;line-height:1.5}
+.artist-section-title{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:var(--ink);margin-bottom:5px}
+.artist-section-sub{font-size:.84rem;color:var(--ink3);margin-bottom:28px;line-height:1.5}
 .a-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
 .a-check-item{display:flex;align-items:center;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;cursor:pointer;transition:all .18s}
 .a-check-item:hover{border-color:var(--pink);background:var(--pink-bg)}
@@ -461,13 +438,13 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .a-check-item label{font-size:.81rem;font-weight:600;color:var(--ink2);cursor:pointer;flex:1}
 .a-check-item.checked{border-color:var(--pink);background:var(--pink-bg)}
 .a-check-item.checked label{color:var(--pink)}
-.artist-nav-btns{display:flex;gap:10px;margin-top:24px}
+.artist-nav-btns{display:flex;gap:10px;margin-top:auto;padding-top:28px;padding-bottom:4px}
 .artist-back-btn{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
 .artist-back-btn:hover{border-color:var(--ink)}
 .artist-next-btn{flex:2;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:opacity .2s}
 .artist-next-btn:hover{opacity:.88}
 .artist-next-btn:disabled{opacity:.5;cursor:default}
-.a-select{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:var(--bg);outline:none;transition:border-color .18s;margin-bottom:12px;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.a-select{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;font-family:inherit;font-size:.88rem;color:var(--ink);background:var(--bg);outline:none;transition:border-color .18s;margin-bottom:20px;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .a-select:focus{border-color:var(--pink)}
 .a-radio-group{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
 .a-radio-btn{flex:1;min-width:80px;border:1.5px solid var(--border);border-radius:10px;padding:10px 10px;text-align:center;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--ink2);transition:all .18s;white-space:nowrap}
@@ -532,15 +509,20 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .bf-t-slot{border:1.5px solid var(--border);border-radius:10px;padding:9px 6px;text-align:center;font-size:.8rem;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .18s}
 .bf-t-slot:hover,.bf-t-slot.active{border-color:var(--pink);background:var(--pink-bg);color:var(--pink)}
 /* Prestige slider */
-.bf-prestige-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
-.bf-prestige-tab{flex:1;min-width:0;background:var(--border);border:none;border-radius:50px;padding:7px 4px;font-family:inherit;font-size:.68rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;white-space:nowrap;text-align:center}
-.bf-prestige-tab.active{background:var(--pink);color:#fff}
+.bf-prestige-tabs{display:flex;gap:5px;margin-bottom:16px;flex-wrap:wrap;background:rgba(255,255,255,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:6px;border:1px solid rgba(255,255,255,.42)}
+.bf-prestige-tab{flex:1;min-width:calc(33.33% - 8px);background:transparent;border:none;border-radius:11px;padding:10px 6px;font-family:inherit;cursor:pointer;transition:all .2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.bf-prestige-tab-name{font-size:.8rem;font-weight:700;color:var(--ink2);transition:color .2s;white-space:nowrap}
+.bf-prestige-tab-sub{font-size:.62rem;font-weight:500;color:var(--ink3);transition:color .2s;line-height:1.2;white-space:nowrap}
+.bf-prestige-tab.active{background:var(--green)}
+.bf-prestige-tab.active .bf-prestige-tab-name{color:#fff}
+.bf-prestige-tab.active .bf-prestige-tab-sub{color:rgba(255,255,255,.75)}
 .bf-brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow-y:auto;flex:1;min-height:0;padding-bottom:8px}
 .bf-brand-card{border-radius:16px;min-height:160px;background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
 .bf-brand-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,rgba(5,5,5,.3) 55%,rgba(5,5,5,.05) 100%)}
 .bf-brand-inner{position:relative;z-index:1;padding:12px 12px}
 .bf-brand-name{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:4px}
 .bf-brand-about{font-size:.71rem;color:rgba(255,255,255,.65);line-height:1.45}
+.bf-brand-check{position:absolute;top:10px;right:10px;width:22px;height:22px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;font-size:.72rem;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 /* Style grid */
 .bf-style-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding-bottom:8px}
 .bf-style-card{border-radius:18px;padding:18px 16px 16px;cursor:pointer;border:2.5px solid transparent;transition:border-color .22s,box-shadow .22s,transform .22s;position:relative;overflow:hidden;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center}
@@ -591,6 +573,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .bf-summary-val{font-weight:600;color:var(--ink);text-align:right;max-width:55%}
 .bf-confirm-btn{width:100%;background:var(--pink);color:#fff;border:none;padding:16px;border-radius:50px;font-family:inherit;font-size:.95rem;font-weight:700;margin-top:22px;cursor:pointer;transition:opacity .2s}
 .bf-confirm-btn:hover{opacity:.88}
+.bf-pay-opt{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:15px 18px;font-family:inherit;font-size:.92rem;font-weight:600;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .18s,background .18s}
+.bf-pay-opt:hover{border-color:var(--pink)}
+.bf-pay-opt.selected{border-color:var(--pink);background:rgba(220,50,110,.05)}
 .bf-nav-btns{display:flex;gap:10px;margin-top:24px}
 .bf-back-btn{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--border);padding:13px;border-radius:50px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .2s}
 .bf-back-btn:hover{border-color:var(--ink)}
@@ -604,53 +589,41 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-left">
-    <button class="nav-btn" id="navBookBtn" onclick="openBookingFlow()" style="opacity:0;pointer-events:none;transition:opacity .3s;display:inline-flex;align-items:center;gap:7px">
-      Book Now <svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </button>
+  <div class="nav-ticker" aria-hidden="true">
+    <div class="nav-ticker-inner">
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+      <span class="nav-ticker-item">Noro<span>Touch</span></span><span class="nav-ticker-sep">✦</span>
+    </div>
   </div>
   <div class="nav-logo">Noro<span>Touch</span></div>
   <div class="nav-right">
+    <button class="nav-btn" id="navBookBtn" onclick="openBookingFlow()" style="opacity:0;pointer-events:none;transition:opacity .3s">
+      Book Now
+    </button>
     <button class="nav-btn" id="navJoinBtn" onclick="openAuth('artist')" style="opacity:0;pointer-events:none;transition:opacity .3s">Join as Artist</button>
   </div>
-  <button class="nav-hamburger" id="navHamburger" onclick="toggleDrawer()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- MOBILE DRAWER -->
-<div id="drawerOverlay" onclick="closeDrawer()"></div>
-<div id="navDrawer">
-  <div class="drawer-head">
-    <div class="drawer-logo">Noro<span>Touch</span></div>
-    <button class="drawer-close" onclick="closeDrawer()">✕</button>
-  </div>
-  <div class="drawer-links">
-    <a class="drawer-link" onclick="openBookingFlow();closeDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      Browse Artists
-    </a>
-    <a class="drawer-link" onclick="scrollTo_('aesthetics');closeDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      Browse by Vibe
-    </a>
-    <a class="drawer-link" onclick="scrollTo_('brands');closeDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      Browse by Brand
-    </a>
-    <div class="drawer-divider"></div>
-    <a class="drawer-link" onclick="openAuth('artist');closeDrawer()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Join as Artist
-    </a>
-  </div>
-  <div class="drawer-cta">
-    <button class="drawer-cta-book" onclick="openBookingFlow();closeDrawer()">Book an Artist →</button>
-    <button class="drawer-cta-signin" onclick="openAuth('signin');closeDrawer()">Sign In / Sign Up</button>
-  </div>
-</div>
-
 <!-- HERO -->
+<div style="background:#0A0A0A">
 <section id="hero">
   <div class="hero-slides">
     <div class="hero-slide"></div>
@@ -664,10 +637,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       Your <span class="word" id="cycleWord">Owambe</span><br/>look, sorted.
     </h1>
     <p class="hero-sub">Book a certified makeup artist near you. Pick by the brands they use, the looks they slay.</p>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <button onclick="openBookingFlow()" style="display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:#fff;border:none;padding:18px 36px;border-radius:60px;font-family:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(155,123,90,.45);transition:all .22s;letter-spacing:.2px" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(155,123,90,.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(155,123,90,.45)'">
+    <div id="heroCtas" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <button onclick="openBookingFlow()" style="background:var(--pink);color:#fff;border:none;padding:18px 36px;border-radius:60px;font-family:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(155,123,90,.45);transition:all .22s;letter-spacing:.2px" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(155,123,90,.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(155,123,90,.45)'">
         Book Now
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
       <button onclick="openAuth('artist')" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:16px 28px;border-radius:60px;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;transition:all .22s" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">
         Join as Artist
@@ -681,6 +653,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
     <div class="hero-dot"></div>
   </div>
 </section>
+</div>
 
 <!-- BROWSE BY AESTHETIC -->
 <section id="aesthetics">
@@ -689,7 +662,6 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div class="tag">Browse by vibe</div>
       <h2 class="section-title">What's the <em style="color:var(--pink)">look?</em></h2>
     </div>
-    <span class="see-all">See all →</span>
   </div>
   <div class="aesthetics-scroll" id="aesScroll">
 
@@ -911,8 +883,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <span>·</span>
         <a href="terms.html">Terms of Service</a>
       </div>
-      <p class="foot-copy">© <span id="footYear"></span> NoroTouch Ltd</p>
-      <p class="foot-copy"><a href="https://wopara.com" target="_blank" rel="noopener noreferrer">Website by Chim</a></p>
+      <p class="foot-copy">© <span id="footYear"></span> NoroTouch Ltd &nbsp;·&nbsp; <a href="https://wopara.com" target="_blank" rel="noopener noreferrer">Website by Wopara Group</a></p>
     </div>
   </div>
 </footer>
@@ -1166,61 +1137,50 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       </div>
 
       <!-- INLINE AUTH (replaces popup for artist modal) -->
-      <div class="artist-step-panel" id="artStepAuth">
-        <div class="card-auth-shell">
-          <div class="auth-header">
-            <div class="auth-brand">Noro<span>Touch</span></div>
-            <div class="auth-panel-title" id="cardAuthTitle">Welcome back</div>
-            <p class="auth-panel-sub" id="cardAuthSub">Sign in to book your artist</p>
+      <div class="artist-step-panel artist-splash-panel" id="artStepAuth">
+        <div class="artist-splash-inner">
+          <button class="artist-login-btn" style="align-self:flex-start" onclick="artistHideAuth()">← Back</button>
+          <div class="artist-splash-spacer" style="min-height:16px"></div>
+          <div class="artist-splash-brand">Noro<span>Touch</span></div>
+          <div id="cardAuthTitle" style="font-family:'Instrument Serif',serif;font-size:1.8rem;font-style:italic;color:#fff;line-height:1.2;margin-bottom:22px">Welcome back.</div>
+          <!-- Tabs -->
+          <div id="cardAuthTabs" style="display:flex;gap:4px;background:rgba(255,255,255,.12);border-radius:50px;padding:4px;margin-bottom:20px">
+            <button id="cardTabSignIn" onclick="switchCardAuthTab('signin')" style="flex:1;border:none;border-radius:46px;padding:10px;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;background:#fff;color:var(--ink)">Sign In</button>
+            <button id="cardTabSignUp" onclick="switchCardAuthTab('signup')" style="flex:1;border:none;border-radius:46px;padding:10px;font-family:inherit;font-size:.83rem;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:rgba(255,255,255,.65)">Sign Up</button>
           </div>
-          <div class="auth-tabs" id="cardAuthTabs">
-            <button class="auth-tab active" id="cardTabSignIn" onclick="switchCardAuthTab('signin')">Sign In</button>
-            <button class="auth-tab" id="cardTabSignUp" onclick="switchCardAuthTab('signup')">Sign Up</button>
+          <!-- Sign In -->
+          <div id="cardPanelSignIn">
+            <form onsubmit="submitCardSignIn(event)">
+              <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
+              <input type="email" class="a-field" id="cardSiEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
+              <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <span onclick="showCardForgotPassword()" style="font-size:.78rem;color:var(--pink);cursor:pointer;display:block;text-align:right;margin-bottom:18px">Forgot password?</span>
+              <button type="submit" class="bf-next-btn" id="cardSiBtn" style="width:100%;font-size:.92rem;padding:15px">Sign In →</button>
+            </form>
+            <p style="font-size:.8rem;color:rgba(255,255,255,.5);text-align:center;margin-top:16px">No account? <span style="color:var(--pink);cursor:pointer;font-weight:600" onclick="switchCardAuthTab('signup')">Sign up free →</span></p>
           </div>
-          <div class="auth-body" id="cardAuthBody">
-            <!-- SIGN IN -->
-            <div class="auth-panel active" id="cardPanelSignIn">
-              <form onsubmit="submitCardSignIn(event)">
-                <label class="a-field-label">Email address</label>
-                <input type="email" class="a-field" id="cardSiEmail" placeholder="you@example.com" required autocomplete="email"/>
-                <label class="a-field-label">Password</label>
-                <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required/>
-                <span class="auth-forgot-link" onclick="showCardForgotPassword()">Forgot password?</span>
-                <div class="bf-nav-btns" style="margin-top:2px">
-                  <button type="button" class="bf-back-btn" onclick="artistHideAuth()">← Back</button>
-                  <button type="submit" class="bf-next-btn" id="cardSiBtn">Sign In →</button>
-                </div>
-              </form>
-              <div class="auth-or">or</div>
-              <p style="font-size:.8rem;color:var(--ink3);text-align:center">No account? <span style="color:var(--pink);cursor:pointer;font-weight:600" onclick="switchCardAuthTab('signup')">Sign up free →</span></p>
-            </div>
-            <!-- SIGN UP -->
-            <div class="auth-panel" id="cardPanelSignUp">
-              <form onsubmit="submitCardSignUp(event)">
-                <label class="a-field-label">Full name</label>
-                <input type="text" class="a-field" id="cardSuName" placeholder="Your full name" required autocomplete="name"/>
-                <label class="a-field-label">Email address</label>
-                <input type="email" class="a-field" id="cardSuEmail" placeholder="you@example.com" required autocomplete="email"/>
-                <label class="a-field-label">Phone number</label>
-                <input type="tel" class="a-field" id="cardSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
-                <label class="a-field-label">Password</label>
-                <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8"/>
-                <div class="bf-nav-btns" style="margin-top:2px">
-                  <button type="button" class="bf-back-btn" onclick="artistHideAuth()">← Back</button>
-                  <button type="submit" class="bf-next-btn" id="cardSuBtn">Create Account →</button>
-                </div>
-              </form>
-              <p style="font-size:.75rem;color:var(--ink3);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
-            </div>
-            <!-- SUCCESS -->
-            <div class="auth-panel" id="cardPanelAuthSuccess">
-              <div class="auth-success">
-                <div class="auth-success-icon">🎉</div>
-                <div class="auth-success-title" id="cardAuthSuccessTitle">You're in!</div>
-                <p class="auth-success-text" id="cardAuthSuccessText">Welcome to NoroTouch. Check your email for a verification link.</p>
-                <button class="auth-submit-btn" style="margin-top:22px" onclick="artistHideAuth()">Start Exploring →</button>
-              </div>
-            </div>
+          <!-- Sign Up -->
+          <div id="cardPanelSignUp" style="display:none">
+            <form onsubmit="submitCardSignUp(event)">
+              <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Full name</label>
+              <input type="text" class="a-field" id="cardSuName" placeholder="Your full name" required autocomplete="name" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
+              <input type="email" class="a-field" id="cardSuEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
+              <input type="tel" class="a-field" id="cardSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
+              <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <button type="submit" class="bf-next-btn" id="cardSuBtn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
+            </form>
+            <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
+          </div>
+          <!-- Success -->
+          <div id="cardPanelAuthSuccess" style="display:none;text-align:center;padding:24px 0">
+            <div style="font-size:2.4rem;margin-bottom:14px">🎉</div>
+            <div id="cardAuthSuccessTitle" style="font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:8px">You're in!</div>
+            <p id="cardAuthSuccessText" style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:24px">Welcome to NoroTouch. Check your email for a verification link.</p>
+            <button class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px" onclick="artistHideAuth()">Start Exploring →</button>
           </div>
         </div>
       </div>
@@ -1239,7 +1199,7 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.94) 0%,rgba(5,5,5,.55) 45%,rgba(5,5,5,.18) 100%)"></div>
       <div style="position:relative;z-index:1;padding:40px 32px 40px;display:flex;flex-direction:column;height:100%">
         <div class="bf-splash-top">
-          <button class="bf-splash-signin" onclick="openAuth('signin')">
+          <button class="bf-splash-signin" onclick="bfGoToStep('auth')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             Sign In
           </button>
@@ -1267,6 +1227,57 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         <div class="bf-nav-btns" style="margin-top:auto">
           <button class="bf-back-btn" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)" onclick="bfGoToStep('0')">← Back</button>
           <button class="bf-next-btn" onclick="bfSaveAddress()">Continue →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTH STEP: inline sign in / sign up (covers entire card) -->
+    <div class="bf-panel bf-splash" id="bfStepauth" style="display:none">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80');background-size:cover;background-position:center top"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.97) 0%,rgba(5,5,5,.78) 50%,rgba(5,5,5,.38) 100%)"></div>
+      <div style="position:relative;z-index:1;padding:28px 28px 32px;display:flex;flex-direction:column;height:100%;overflow-y:auto">
+        <button class="bf-splash-back" style="align-self:flex-start" onclick="bfAuthBack()">← Back</button>
+        <div style="flex:1;min-height:16px"></div>
+        <div style="font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:4px">Noro<span style="color:var(--pink)">Touch</span></div>
+        <div style="font-family:'Instrument Serif',serif;font-size:1.8rem;font-style:italic;color:#fff;line-height:1.2;margin-bottom:22px">Welcome back.</div>
+        <!-- Tabs -->
+        <div id="bfAuthTabBar" style="display:flex;gap:4px;background:rgba(255,255,255,.12);border-radius:50px;padding:4px;margin-bottom:20px">
+          <button id="bfTabSignIn" onclick="bfSwitchAuthTab('signin')" style="flex:1;border:none;border-radius:46px;padding:10px;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;background:#fff;color:var(--ink)">Sign In</button>
+          <button id="bfTabSignUp" onclick="bfSwitchAuthTab('signup')" style="flex:1;border:none;border-radius:46px;padding:10px;font-family:inherit;font-size:.83rem;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:rgba(255,255,255,.65)">Sign Up</button>
+        </div>
+        <!-- Sign In panel -->
+        <div id="bfPanelSignIn">
+          <form onsubmit="bfSubmitSignIn(event)">
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
+            <input type="email" id="bfSiEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'" placeholder="you@example.com"/>
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
+            <input type="password" id="bfSiPassword" placeholder="••••••••" required style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <span onclick="bfShowForgotPassword()" style="font-size:.78rem;color:var(--pink);cursor:pointer;display:block;text-align:right;margin-bottom:18px">Forgot password?</span>
+            <button type="submit" id="bfSiBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Sign In →</button>
+          </form>
+          <p style="font-size:.8rem;color:rgba(255,255,255,.5);text-align:center;margin-top:16px">No account? <span style="color:var(--pink);cursor:pointer;font-weight:600" onclick="bfSwitchAuthTab('signup')">Sign up free →</span></p>
+        </div>
+        <!-- Sign Up panel -->
+        <div id="bfPanelSignUp" style="display:none">
+          <form onsubmit="bfSubmitSignUp(event)">
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Full name</label>
+            <input type="text" id="bfSuName" placeholder="Your full name" required autocomplete="name" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
+            <input type="email" id="bfSuEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
+            <input type="tel" id="bfSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
+            <input type="password" id="bfSuPassword" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <button type="submit" id="bfSuBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
+          </form>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <span style="color:var(--pink);cursor:pointer">Terms</span> and <span style="color:var(--pink);cursor:pointer">Privacy Policy</span></p>
+        </div>
+        <!-- Success panel -->
+        <div id="bfPanelAuthSuccess" style="display:none;text-align:center;padding:24px 0">
+          <div style="font-size:2.4rem;margin-bottom:14px">🎉</div>
+          <div id="bfAuthSuccessTitle" style="font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:8px">You're in!</div>
+          <p id="bfAuthSuccessText" style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:24px">Welcome to NoroTouch. Check your email for a verification link.</p>
+          <button class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px" onclick="bfAuthSuccess()">Continue →</button>
         </div>
       </div>
     </div>
@@ -1413,16 +1424,61 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
         </div>
       </div>
 
-      <!-- STEP 7: Confirmation -->
+      <!-- STEP 7: Summary + Contact Details -->
       <div class="bf-panel" id="bfStep7">
         <div class="bf-panel-title">Your booking summary</div>
         <p class="bf-panel-sub">Review everything below before confirming.</p>
         <div class="bf-confirm-artist" id="bfConfirmArtist"></div>
         <div id="bfSummaryRows"></div>
-        <div class="bf-nav-btns" style="margin-bottom:12px">
-          <button class="bf-back-btn" onclick="bfPrevStep(7)">← Back</button>
+        <div style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px">
+          <div style="font-size:.72rem;font-weight:700;color:var(--ink3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px">Your contact details</div>
+          <span class="bf-section-lbl">Full name</span>
+          <input type="text" id="bfDetailName" placeholder="Your full name" autocomplete="name" class="a-field" style="margin-top:6px;margin-bottom:14px"/>
+          <span class="bf-section-lbl">Phone number</span>
+          <input type="tel" id="bfDetailPhone" placeholder="+234 800 000 0000" autocomplete="tel" class="a-field" style="margin-top:6px;margin-bottom:14px"/>
+          <span class="bf-section-lbl">Email address</span>
+          <input type="email" id="bfDetailEmail" placeholder="you@example.com" autocomplete="email" class="a-field" style="margin-top:6px"/>
         </div>
-        <button class="bf-confirm-btn" onclick="bfConfirm()">Confirm &amp; Book →</button>
+        <div class="bf-nav-btns" style="margin-top:20px">
+          <button class="bf-back-btn" onclick="bfPrevStep(7)">← Back</button>
+          <button class="bf-confirm-btn" onclick="bfGoToPayment()">Confirm &amp; Book →</button>
+        </div>
+      </div>
+
+      <!-- STEP 8: Payment -->
+      <div class="bf-panel" id="bfStep8">
+        <div class="bf-panel-title">Payment</div>
+        <p class="bf-panel-sub">Choose how you'd like to pay for your booking.</p>
+        <div id="bfPayRecap" style="display:flex;align-items:center;gap:12px;background:var(--bg);border-radius:14px;padding:14px 16px;margin-bottom:24px"></div>
+        <div style="font-size:.72rem;font-weight:700;color:var(--ink3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px">Payment method</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <button class="bf-pay-opt" id="bfPayCard" onclick="bfSelectPayMethod('card',this)">💳&ensp;Pay with Card</button>
+          <button class="bf-pay-opt" id="bfPayTransfer" onclick="bfSelectPayMethod('transfer',this)">🏦&ensp;Bank Transfer</button>
+          <button class="bf-pay-opt" id="bfPayCash" onclick="bfSelectPayMethod('cash',this)">💵&ensp;Pay on Arrival</button>
+        </div>
+        <div id="bfCardFields" style="display:none;margin-bottom:20px">
+          <span class="bf-section-lbl">Card number</span>
+          <input type="text" inputmode="numeric" maxlength="19" placeholder="0000  0000  0000  0000" class="a-field" id="bfCardNum" style="margin-top:6px;margin-bottom:14px"/>
+          <div style="display:flex;gap:12px">
+            <div style="flex:1"><span class="bf-section-lbl">Expiry</span><input type="text" inputmode="numeric" maxlength="5" placeholder="MM/YY" class="a-field" style="margin-top:6px"/></div>
+            <div style="flex:1"><span class="bf-section-lbl">CVV</span><input type="text" inputmode="numeric" maxlength="3" placeholder="•••" class="a-field" style="margin-top:6px"/></div>
+          </div>
+        </div>
+        <div class="bf-nav-btns">
+          <button class="bf-back-btn" onclick="bfGoToStep(7)">← Back</button>
+          <button class="bf-next-btn" id="bfPayBtn" onclick="bfCompletePayment()">Pay Now →</button>
+        </div>
+      </div>
+
+      <!-- STEP 9: Receipt -->
+      <div class="bf-panel" id="bfStep9">
+        <div style="text-align:center;padding:32px 0 20px">
+          <div style="font-size:3rem;margin-bottom:10px">🎉</div>
+          <div class="bf-panel-title" style="margin-bottom:6px">Booking Confirmed!</div>
+          <p class="bf-panel-sub" style="margin-bottom:0">Your artist is confirmed. Check your email for details.</p>
+        </div>
+        <div id="bfReceiptBox" style="background:var(--bg);border-radius:16px;padding:18px 20px;margin-bottom:24px"></div>
+        <button class="bf-confirm-btn" onclick="closeBookingFlow()">Done →</button>
       </div>
 
     </div>
@@ -1625,18 +1681,19 @@ document.addEventListener('mousemove', e => {
 const nav = document.getElementById('nav');
 const navBookBtn = document.getElementById('navBookBtn');
 const navJoinBtn = document.getElementById('navJoinBtn');
+
+function setNavBtns(visible) {
+  [navBookBtn, navJoinBtn].forEach(b => { if (!b) return; b.style.opacity = visible ? '1' : '0'; b.style.pointerEvents = visible ? 'all' : 'none'; });
+}
+
+new IntersectionObserver(([entry]) => {
+  setNavBtns(!entry.isIntersecting);
+}, { threshold: 0 }).observe(document.getElementById('heroCtas'));
+
 window.addEventListener('scroll', () => {
   if (document.body.classList.contains('no-scroll')) return;
-  const s = window.scrollY;
-  nav.classList.toggle('solid', s > 40);
-  if (navBookBtn) {
-    const heroH = document.getElementById('hero').offsetHeight;
-    const past = s > heroH * 0.6;
-    navBookBtn.style.opacity = past ? '1' : '0';
-    navBookBtn.style.pointerEvents = past ? 'all' : 'none';
-    if (navJoinBtn) { navJoinBtn.style.opacity = past ? '1' : '0'; navJoinBtn.style.pointerEvents = past ? 'all' : 'none'; }
-  }
-});
+  nav.classList.toggle('solid', window.scrollY > 40);
+}, { passive: true });
 
 // ── HERO DOTS SYNC ──
 const dots = document.querySelectorAll('.hero-dot');
@@ -1739,7 +1796,17 @@ const ARTIST_DATA = [
   { name:'Blessing Eze',     spec:'Editorial · Natural Glow',         price:'₦15,000', priceNum:15000, rating:4.91, revs:243, dist:1.1, area:'Garki',   brands:['MAC','NARS','Black Opal'],               styles:['editorial','natural','everyday'],       prestige:[3],   avail:'busy', availText:'Busy · 25 min',      img:'https://images.unsplash.com/photo-1648671095483-254807669fcd?w=300&q=80' },
   { name:'Adaeze Nwachukwu', spec:'Luxury Bridal · High Glam',        price:'₦30,000', priceNum:30000, rating:4.95, revs:156, dist:1.4, area:'Asokoro', brands:['Charlotte Tilbury','Pat McGrath','Huda Beauty'], styles:['bridal','fullglam','editorial'], prestige:[4,5], avail:'now',  availText:'Available · 12 min', img:'https://images.unsplash.com/photo-1613876215075-276fd62c89a4?w=300&q=80' },
   { name:'Ngozi Adeyemi',    spec:'Aso-ebi · Soft Glam',              price:'₦12,000', priceNum:12000, rating:4.88, revs:187, dist:1.9, area:'Utako',   brands:['Zaron','NYX','House of Tara'],           styles:['asoebi','owambe','softglam'],          prestige:[1,2], avail:'now',  availText:'Available · 3 min',  img:'https://images.unsplash.com/photo-1666073090334-f2a9c8a86d14?w=300&q=80' },
-  { name:'Aisha Musa',       spec:'Natural Glow · Editorial',         price:'₦20,000', priceNum:20000, rating:4.93, revs:204, dist:2.1, area:'Jabi',    brands:['Fenty Beauty','BM Pro','Black Opal'],    styles:['natural','editorial','softglam'],      prestige:[2,3], avail:'now',  availText:'Available · 15 min', img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&q=80' }
+  { name:'Aisha Musa',       spec:'Natural Glow · Editorial',         price:'₦20,000', priceNum:20000, rating:4.93, revs:204, dist:2.1, area:'Jabi',    brands:['Fenty Beauty','BM Pro','Black Opal'],    styles:['natural','editorial','softglam'],      prestige:[2,3], avail:'now',  availText:'Available · 15 min', img:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&q=80' },
+  { name:'Amaka Okonkwo',    spec:'Soft Glam · Bridal',               price:'₦22,000', priceNum:22000, rating:4.94, revs:89,  dist:1.6, area:'Gwarinpa', brands:['Fenty Beauty','Zaron','MAC'],            styles:['softglam','bridal','owambe'],          prestige:[2,3], avail:'now',  availText:'Available · 10 min', img:'https://images.unsplash.com/photo-1531746020167-ad472685c2c8?w=300&q=80' },
+  { name:'Precious Eze',     spec:'Traditional · Owambe',             price:'₦14,000', priceNum:14000, rating:4.86, revs:203, dist:2.3, area:'Kubwa',    brands:['House of Tara','Zaron','NYX'],           styles:['traditional','owambe','asoebi'],       prestige:[1,2], avail:'now',  availText:'Available · 6 min',  img:'https://images.unsplash.com/photo-1524504388868-5f4c3dc2e97b?w=300&q=80' },
+  { name:'Temi Fashola',     spec:'Editorial · Full Glam',            price:'₦28,000', priceNum:28000, rating:4.96, revs:134, dist:0.9, area:'Asokoro',  brands:['Charlotte Tilbury','NARS','MAC'],        styles:['editorial','fullglam','party'],        prestige:[3,4], avail:'now',  availText:'Available · 9 min',  img:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&q=80' },
+  { name:'Halima Yusuf',     spec:'Bridal · Natural Glam',            price:'₦24,000', priceNum:24000, rating:4.90, revs:167, dist:1.2, area:'Maitama',  brands:['BM Pro','Inglot','MAC'],                styles:['bridal','natural','softglam'],         prestige:[2,3], avail:'busy', availText:'Busy · 20 min',      img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=300&q=80' },
+  { name:'Chisom Obi',       spec:'Everyday · Soft Glam',             price:'₦10,000', priceNum:10000, rating:4.82, revs:278, dist:2.8, area:'Garki',    brands:['NYX','Black Opal','Milani'],             styles:['everyday','softglam','natural'],       prestige:[1],   avail:'now',  availText:'Available · 4 min',  img:'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&q=80' },
+  { name:'Sade Bello',       spec:'Aso-ebi · Owambe',                 price:'₦19,000', priceNum:19000, rating:4.91, revs:145, dist:1.7, area:'Wuse 1',   brands:['Fenty Beauty','Huda Beauty','MAC'],      styles:['asoebi','owambe','party'],             prestige:[3,4], avail:'now',  availText:'Available · 7 min',  img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80' },
+  { name:'Funmi Adebayo',    spec:'Party · Full Glam',                price:'₦16,000', priceNum:16000, rating:4.88, revs:219, dist:0.8, area:'Jabi',     brands:['MAC','Morphe','Smashbox'],               styles:['party','fullglam','owambe'],           prestige:[2,3], avail:'now',  availText:'Available · 2 min',  img:'https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?w=300&q=80' },
+  { name:'Kemi Oduola',      spec:'Natural Glow · Editorial',         price:'₦17,000', priceNum:17000, rating:4.93, revs:112, dist:1.3, area:'Central Area', brands:['NARS','Fenty Beauty','Black Opal'],  styles:['natural','editorial','everyday'],      prestige:[2,3], avail:'busy', availText:'Busy · 30 min',      img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80' },
+  { name:'Zainab Mohammed',  spec:'Traditional · Bridal',             price:'₦21,000', priceNum:21000, rating:4.89, revs:198, dist:0.5, area:'Wuse 2',   brands:['Inglot','BM Pro','Zaron'],               styles:['traditional','bridal','owambe'],       prestige:[2],   avail:'now',  availText:'Available · 11 min', img:'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=300&q=80' },
+  { name:'Ada Okafor',       spec:'Luxury Bridal · High Glam',        price:'₦35,000', priceNum:35000, rating:4.98, revs:87,  dist:1.8, area:'Asokoro',  brands:['Pat McGrath','Charlotte Tilbury','Lancôme'], styles:['bridal','fullglam','editorial'],    prestige:[4,5], avail:'now',  availText:'Available · 18 min', img:'https://images.unsplash.com/photo-1531746020167-ad472685c2c8?w=300&q=80' }
 ];
 
 const SKIN_TONES = [
@@ -1750,7 +1817,7 @@ const SKIN_TONES = [
 ];
 
 // Booking flow state
-let bfState = { tone:null, date:null, dateChosen:false, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null };
+let bfState = { tone:null, date:null, dateChosen:false, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null, authSource:'splash', payMethod:null };
 
 function bfIsMobileLayout() {
   return window.matchMedia('(max-width: 900px)').matches;
@@ -1793,7 +1860,7 @@ function bfRestoreState() {
 function openBookingFlow(preStyle, preBrand) {
   bfRestoreState();
   if (preStyle && !bfState.styles.includes(preStyle)) bfState.styles = [preStyle];
-  bfState.assignment = null; bfState.artist = null;
+  bfState.assignment = null; bfState.artist = null; bfState.authSource = 'splash'; bfState.payMethod = null;
   bfInitTones(); bfInitDates(); bfInitTimeSlots(); bfInitPrestige(); bfInitStyles();
   document.getElementById('bookingFlow').classList.add('open');
   lockScroll();
@@ -1818,21 +1885,23 @@ function bfGoToStep(step) {
   const panel = document.getElementById('bfStep' + step);
   if (panel) {
     panel.classList.add('active');
-    if (step === '0' || step === '0b') panel.style.display = 'flex';
+    if (step === '0' || step === '0b' || step === 'auth') panel.style.display = 'flex';
   }
-  const isSplash = step === '0' || step === '0b';
+  const isSplash = step === '0' || step === '0b' || step === 'auth';
+  if (step === 'auth') bfSwitchAuthTab('signin');
   document.querySelector('.bf-header').style.display = isSplash ? 'none' : '';
-  const titles = {'0':'','0b':'',1:'Skin Tone',2:'Date & Time',3:'Brand Prestige',4:'Makeup Style',5:'Assignment',6:'Choose Artist',7:'Confirm Booking'};
+  const titles = {'0':'','0b':'','auth':'',1:'Skin Tone',2:'Date & Time',3:'Brand Prestige',4:'Makeup Style',5:'Assignment',6:'Choose Artist',7:'Booking Summary',8:'Payment',9:'Receipt'};
   document.getElementById('bfHeaderTitle').textContent = titles[step] || 'Book an Artist';
   const dotsEl = document.getElementById('bfSteps');
   dotsEl.innerHTML = '';
-  if (!isSplash) {
+  if (!isSplash && typeof step === 'number' && step >= 1 && step <= 5) {
     for (let i = 1; i <= 5; i++) {
       const d = document.createElement('div');
       d.className = 'bf-step-dot' + (i < step ? ' done' : i === step ? ' active' : '');
       dotsEl.appendChild(d);
     }
   }
+  if (step === 7) bfPrefillContactDetails();
   document.querySelector('.bf-box').scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1891,8 +1960,9 @@ function bfNextStep(from) {
 
 function bfPrevStep(from) {
   if (from === 1) { bfGoToStep('0b'); return; }
+  if (from === 6) { bfGoToStep(5); return; }
   if (from === 7) { bfGoToStep(bfState.assignment === 'custom' ? 6 : 5); return; }
-  bfGoToStep(from === 6 ? 5 : from - 1);
+  bfGoToStep(from - 1);
 }
 
 // Step 1: Skin Tone
@@ -2003,7 +2073,10 @@ function bfScrollToTimeSection() {
 // Step 3: Prestige
 function bfInitPrestige() {
   document.getElementById('bfPrestigeLabels').innerHTML = PRESTIGE_DATA.map((p,i) =>
-    `<button class="bf-prestige-tab${i===bfState.prestige?' active':''}" onclick="bfSetPrestige(${i})">${p.label}</button>`
+    `<button class="bf-prestige-tab${i===bfState.prestige?' active':''}" onclick="bfSetPrestige(${i})">
+      <span class="bf-prestige-tab-name">${p.label}</span>
+      <span class="bf-prestige-tab-sub">${p.sub}</span>
+    </button>`
   ).join('');
   bfRenderBrandGrid();
 }
@@ -2018,6 +2091,7 @@ function bfRenderBrandGrid() {
   const pd = PRESTIGE_DATA[bfState.prestige];
   document.getElementById('bfBrandGrid').innerHTML = pd.brands.map(b =>
     `<div class="bf-brand-card" style="background-image:url('${b.img}');background-color:#111">
+      <div class="bf-brand-check">✓</div>
       <div class="bf-brand-inner">
         <div class="bf-brand-name">${b.name}</div>
         <div class="bf-brand-about">${b.about}</div>
@@ -2054,8 +2128,8 @@ function bfChooseAssignment(type) {
   document.querySelectorAll('.bf-assign-card').forEach(c=>c.classList.remove('selected'));
   document.getElementById({fastest:'assignFastest',rated:'assignRated',cheapest:'assignCheapest',costliest:'assignCostliest',custom:'assignCustom'}[type]).classList.add('selected');
   setTimeout(() => {
-    if (type === 'custom') { bfPopulateArtists(); bfGoToStep(6); }
-    else { bfAutoAssign(type); }
+    bfState.authSource = 'step5';
+    bfGoToStep('auth');
   }, 280);
 }
 
@@ -2143,10 +2217,98 @@ function bfBuildConfirmation() {
   ].map(r=>`<div class="bf-summary-row"><span class="bf-summary-label">${r.label}</span><span class="bf-summary-val">${r.val}</span></div>`).join('');
 }
 
-function bfConfirm() {
+function bfAuthBack() {
+  bfGoToStep(bfState.authSource === 'step5' ? 5 : '0');
+}
+
+function bfAfterStep5Auth() {
+  if (bfState.assignment === 'custom') {
+    bfPopulateArtists();
+    bfGoToStep(6);
+  } else {
+    bfAutoAssign(bfState.assignment);
+  }
+}
+
+function bfAuthSuccess() {
+  if (bfState.authSource === 'step5') {
+    bfAfterStep5Auth();
+  } else {
+    bfGoToStep('0b');
+    showToast('Welcome! Continue your booking.');
+  }
+}
+
+function bfPrefillContactDetails() {
+  const nameEl  = document.getElementById('bfDetailName');
+  const emailEl = document.getElementById('bfDetailEmail');
+  const phoneEl = document.getElementById('bfDetailPhone');
+  if (nameEl  && bfState._signupName  && !nameEl.value)  nameEl.value  = bfState._signupName;
+  if (emailEl && bfState._signupEmail && !emailEl.value) emailEl.value = bfState._signupEmail;
+  if (phoneEl && bfState._signupPhone && !phoneEl.value) phoneEl.value = bfState._signupPhone;
+}
+
+function bfGoToPayment() {
+  const name  = document.getElementById('bfDetailName').value.trim();
+  const phone = document.getElementById('bfDetailPhone').value.trim();
+  const email = document.getElementById('bfDetailEmail').value.trim();
+  if (!name || !phone || !email) { showToast('Please fill in all your details', true); return; }
+  const a = bfState.artist; if (!a) return;
+  document.getElementById('bfPayRecap').innerHTML =
+    `<img src="${a.img}" alt="${a.name}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0"/>
+     <div style="flex:1;min-width:0">
+       <div style="font-size:.92rem;font-weight:700;color:var(--ink)">${a.name}</div>
+       <div style="font-size:.76rem;color:var(--ink3);margin-top:1px">${bfState.date || 'Today'} · ${bfState.time || 'Flexible'}</div>
+       <div style="font-size:.92rem;font-weight:800;color:var(--pink);margin-top:4px">${a.price}<span style="font-size:.72rem;font-weight:500;color:var(--ink3)">/hr</span></div>
+     </div>`;
+  bfGoToStep(8);
+}
+
+function bfSelectPayMethod(method, btn) {
+  bfState.payMethod = method;
+  document.querySelectorAll('.bf-pay-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('bfCardFields').style.display = method === 'card' ? '' : 'none';
+}
+
+async function bfCompletePayment() {
+  if (!bfState.payMethod) { showToast('Please select a payment method', true); return; }
+  const btn = document.getElementById('bfPayBtn');
+  btn.disabled = true; btn.textContent = 'Processing…';
+  const name  = document.getElementById('bfDetailName').value.trim();
+  const phone = document.getElementById('bfDetailPhone').value.trim();
+  const email = document.getElementById('bfDetailEmail').value.trim();
   const a = bfState.artist;
-  closeBookingFlow();
-  setTimeout(() => showToast(`Booking confirmed with ${a.name.split(' ')[0]}! WhatsApp confirmation coming shortly.`), 300);
+  await postToSheet('booking', {
+    name, phone, email,
+    artist: a.name, area: a.area, price: a.price,
+    date: bfState.date || 'Today', time: bfState.time || 'Flexible',
+    address: bfState.address || '', styles: bfState.styles.join(', '),
+    prestige: PRESTIGE_DATA[bfState.prestige]?.label,
+    payMethod: bfState.payMethod
+  });
+  btn.disabled = false; btn.textContent = 'Pay Now →';
+  bfBuildReceipt(name, a);
+  bfGoToStep(9);
+}
+
+function bfBuildReceipt(name, a) {
+  const rows = [
+    ['Artist',  a.name],
+    ['Date',    bfState.date || 'Today'],
+    ['Time',    bfState.time || 'Flexible'],
+    ['Address', bfState.address || 'To be confirmed'],
+    ['Payment', {card:'Card',transfer:'Bank Transfer',cash:'Pay on Arrival'}[bfState.payMethod]],
+    ['Total',   a.price + '/hr'],
+  ];
+  document.getElementById('bfReceiptBox').innerHTML =
+    `<div style="font-size:.78rem;font-weight:700;color:var(--ink3);letter-spacing:.4px;text-transform:uppercase;margin-bottom:12px">Booking #${Math.random().toString(36).slice(2,8).toUpperCase()}</div>`
+    + rows.map(([l,v]) =>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+         <span style="font-size:.82rem;color:var(--ink3)">${l}</span>
+         <span style="font-size:.84rem;font-weight:600;color:var(--ink)">${v}</span>
+       </div>`).join('')
+    + `<div style="padding-top:14px;font-size:.82rem;color:var(--ink3)">Confirmation sent to <strong style="color:var(--ink)">${document.getElementById('bfDetailEmail').value.trim()}</strong></div>`;
 }
 
 // ── HEART ──
@@ -2282,6 +2444,16 @@ function submitReview() {
 // After deploying your Apps Script as a Web App, paste the URL here:
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxUqABXtyXizqWoIb4FCIcQpzHMGLc7E_znMDxD_XJp9LDZTwlnzJCCdaE3nwP4yXqpwA/exec';
 
+(async function loadArtists() {
+  try {
+    const res  = await fetch(SHEET_URL + '?sheet=artists', { redirect: 'follow' });
+    const data = await res.json();
+    if (data.artists && data.artists.length) {
+      ARTIST_DATA.splice(0, ARTIST_DATA.length, ...data.artists);
+    }
+  } catch (_) { /* use preset ARTIST_DATA */ }
+})();
+
 async function postToSheet(action, data) {
   if (SHEET_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
     console.log('Sheet submission (dev):', action, data);
@@ -2395,41 +2567,94 @@ function showForgotPassword() {
   showToast('Password reset link sent to ' + email);
 }
 
+// ── INLINE AUTH (inside booking flow card) ──
+function bfSwitchAuthTab(tab) {
+  const isSignIn = tab === 'signin';
+  document.getElementById('bfPanelSignIn').style.display = isSignIn ? '' : 'none';
+  document.getElementById('bfPanelSignUp').style.display = isSignIn ? 'none' : '';
+  document.getElementById('bfPanelAuthSuccess').style.display = 'none';
+  const tabBar = document.getElementById('bfAuthTabBar');
+  if (tabBar) tabBar.style.display = '';
+  const siTab = document.getElementById('bfTabSignIn');
+  const suTab = document.getElementById('bfTabSignUp');
+  if (siTab) { siTab.style.background = isSignIn ? '#fff' : 'transparent'; siTab.style.color = isSignIn ? 'var(--ink)' : 'rgba(255,255,255,.65)'; siTab.style.fontWeight = isSignIn ? '700' : '600'; }
+  if (suTab) { suTab.style.background = isSignIn ? 'transparent' : '#fff'; suTab.style.color = isSignIn ? 'rgba(255,255,255,.65)' : 'var(--ink)'; suTab.style.fontWeight = isSignIn ? '600' : '700'; }
+  const title = document.querySelector('#bfStepauth [style*="Instrument Serif"]');
+  if (title) title.textContent = isSignIn ? 'Welcome back.' : 'Join NoroTouch.';
+}
+
+async function bfSubmitSignIn(e) {
+  e.preventDefault();
+  const btn = document.getElementById('bfSiBtn');
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  await new Promise(r => setTimeout(r, 800));
+  btn.disabled = false; btn.textContent = 'Sign In →';
+  bfState._signupEmail = document.getElementById('bfSiEmail').value.trim();
+  showToast('Welcome back!');
+  if (bfState.authSource === 'step5') {
+    bfAfterStep5Auth();
+  } else {
+    bfGoToStep('0b');
+  }
+}
+
+async function bfSubmitSignUp(e) {
+  e.preventDefault();
+  const name  = document.getElementById('bfSuName').value.trim();
+  const email = document.getElementById('bfSuEmail').value.trim();
+  const phone = document.getElementById('bfSuPhone').value.trim();
+  if (!name || !email || !phone) return;
+  const btn = document.getElementById('bfSuBtn');
+  btn.disabled = true; btn.textContent = 'Creating account…';
+  await postToSheet('signup', { name, email, phone });
+  btn.disabled = false; btn.textContent = 'Create Account →';
+  bfState._signupName = name; bfState._signupEmail = email; bfState._signupPhone = phone;
+  document.getElementById('bfPanelSignUp').style.display = 'none';
+  document.getElementById('bfPanelSignIn').style.display = 'none';
+  document.getElementById('bfAuthTabBar').style.display = 'none';
+  document.getElementById('bfPanelAuthSuccess').style.display = '';
+  document.getElementById('bfAuthSuccessTitle').textContent = `Welcome, ${name.split(' ')[0]}!`;
+  document.getElementById('bfAuthSuccessText').textContent = bfState.authSource === 'step5'
+    ? 'Account created! Continue to finalize your booking.'
+    : 'Your account is created. Check your email for a verification link.';
+}
+
+function bfShowForgotPassword() {
+  const email = document.getElementById('bfSiEmail').value.trim();
+  if (!email) { showToast('Enter your email address first', true); return; }
+  postToSheet('forgot_password', { email });
+  bfGoToStep('0');
+  showToast('Password reset link sent to ' + email);
+}
+
 // ── INLINE CARD AUTH (inside artist modal) ──
 function artistShowAuth() {
   document.querySelectorAll('.artist-step-panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('artStepAuth');
   if (panel) panel.classList.add('active');
   const box = document.getElementById('artistBox');
-  if (box) box.classList.remove('splash-active');
-  // hide step track header when showing auth
-  const header = document.querySelector('.artist-box-header');
-  if (header) header.style.display = 'none';
+  if (box) box.classList.add('splash-active');
   switchCardAuthTab('signin');
   artistScrollToTop();
 }
 
 function artistHideAuth() {
-  // show step track header again
-  const header = document.querySelector('.artist-box-header');
-  if (header) header.style.display = '';
   artistGoToStep(0);
 }
 
 function switchCardAuthTab(tab) {
-  document.querySelectorAll('#artStepAuth .auth-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('#artStepAuth .auth-panel').forEach(p => p.classList.remove('active'));
-  if (tab === 'signin') {
-    document.getElementById('cardTabSignIn').classList.add('active');
-    document.getElementById('cardPanelSignIn').classList.add('active');
-    document.getElementById('cardAuthTitle').textContent = 'Welcome back';
-    document.getElementById('cardAuthSub').textContent = 'Sign in to book your artist';
-  } else {
-    document.getElementById('cardTabSignUp').classList.add('active');
-    document.getElementById('cardPanelSignUp').classList.add('active');
-    document.getElementById('cardAuthTitle').textContent = 'Join NoroTouch';
-    document.getElementById('cardAuthSub').textContent = 'Create your free account';
-  }
+  const isSignIn = tab === 'signin';
+  document.getElementById('cardPanelSignIn').style.display = isSignIn ? '' : 'none';
+  document.getElementById('cardPanelSignUp').style.display = isSignIn ? 'none' : '';
+  document.getElementById('cardPanelAuthSuccess').style.display = 'none';
+  const tabBar = document.getElementById('cardAuthTabs');
+  if (tabBar) tabBar.style.display = '';
+  const siTab = document.getElementById('cardTabSignIn');
+  const suTab = document.getElementById('cardTabSignUp');
+  if (siTab) { siTab.style.background = isSignIn ? '#fff' : 'transparent'; siTab.style.color = isSignIn ? 'var(--ink)' : 'rgba(255,255,255,.65)'; siTab.style.fontWeight = isSignIn ? '700' : '600'; }
+  if (suTab) { suTab.style.background = isSignIn ? 'transparent' : '#fff'; suTab.style.color = isSignIn ? 'rgba(255,255,255,.65)' : 'var(--ink)'; suTab.style.fontWeight = isSignIn ? '600' : '700'; }
+  const title = document.getElementById('cardAuthTitle');
+  if (title) title.textContent = isSignIn ? 'Welcome back.' : 'Join NoroTouch.';
 }
 
 async function submitCardSignIn(e) {
@@ -2452,14 +2677,12 @@ async function submitCardSignUp(e) {
   btn.disabled = true; btn.textContent = 'Creating account…';
   await postToSheet('signup', { name, email, phone });
   btn.disabled = false; btn.textContent = 'Create Account →';
-  document.querySelectorAll('#artStepAuth .auth-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('#artStepAuth .auth-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('cardPanelAuthSuccess').classList.add('active');
+  document.getElementById('cardPanelSignUp').style.display = 'none';
+  document.getElementById('cardPanelSignIn').style.display = 'none';
+  document.getElementById('cardAuthTabs').style.display = 'none';
+  document.getElementById('cardPanelAuthSuccess').style.display = '';
   document.getElementById('cardAuthSuccessTitle').textContent = `Welcome, ${name.split(' ')[0]}!`;
   document.getElementById('cardAuthSuccessText').textContent = 'Your account is created. Check your email for a verification link.';
-  // hide tabs on success
-  const tabs = document.getElementById('cardAuthTabs');
-  if (tabs) tabs.style.display = 'none';
 }
 
 function showCardForgotPassword() {
@@ -2571,23 +2794,6 @@ async function submitArtistApplication() {
   artistScrollToTop();
 }
 
-// ── MOBILE DRAWER ──
-function toggleDrawer() {
-  const open = document.getElementById('navDrawer').classList.contains('open');
-  open ? closeDrawer() : openDrawer();
-}
-function openDrawer() {
-  document.getElementById('navDrawer').classList.add('open');
-  document.getElementById('drawerOverlay').classList.add('open');
-  document.getElementById('navHamburger').classList.add('open');
-  lockScroll();
-}
-function closeDrawer() {
-  document.getElementById('navDrawer').classList.remove('open');
-  document.getElementById('drawerOverlay').classList.remove('open');
-  document.getElementById('navHamburger').classList.remove('open');
-  unlockScroll();
-}
 function scrollTo_(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
