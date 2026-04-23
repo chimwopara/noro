@@ -444,3 +444,122 @@ function scrollTo_(id) {
   spawn();
   raf = requestAnimationFrame(animate);
 })();
+
+// ── MOBILE CARD STACK (Testimonials) ──
+(function reviewCardStack() {
+  const grid = document.querySelector('.reviews-grid');
+  const cards = Array.from(document.querySelectorAll('.reviews-grid .r-card'));
+  if (!grid || cards.length < 2) return;
+
+  let currentIndex = 0;
+  const totalCards = cards.length;
+  let isAnimating = false;
+
+  function isMobile() { return window.innerWidth <= 600; }
+
+  function stripReveal() {
+    if (isMobile()) cards.forEach(c => { c.classList.remove('reveal'); c.classList.add('visible'); });
+  }
+
+  // Set grid height to tallest card + peek room
+  function setGridHeight() {
+    if (!isMobile()) { grid.style.height = ''; return; }
+    cards.forEach(c => { c.style.position = 'relative'; c.style.visibility = 'hidden'; });
+    let maxH = 0;
+    cards.forEach(c => { maxH = Math.max(maxH, c.offsetHeight); });
+    cards.forEach(c => { c.style.position = ''; c.style.visibility = ''; });
+    grid.style.height = (maxH + 32) + 'px';
+  }
+
+  function assignPositions() {
+    const cls = ['card-front','card-mid','card-back','card-hidden','card-out'];
+    cards.forEach((card, i) => {
+      cls.forEach(c => card.classList.remove(c));
+      // Calculate position relative to current, wrapping around
+      const rel = (i - currentIndex + totalCards) % totalCards;
+      if (rel === 0) card.classList.add('card-front');
+      else if (rel === 1) card.classList.add('card-mid');
+      else if (rel === 2) card.classList.add('card-back');
+      else card.classList.add('card-hidden');
+    });
+  }
+
+  function goToNext() {
+    if (isAnimating) return;
+    isAnimating = true;
+    // Swipe out the current front card
+    cards[currentIndex].classList.remove('card-front');
+    cards[currentIndex].classList.add('card-out');
+    // After animation, reassign all positions
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % totalCards;
+      assignPositions();
+      isAnimating = false;
+    }, 450);
+  }
+
+  // Touch handling
+  let touchStartY = 0;
+  let touchStartX = 0;
+  let touchStartTime = 0;
+
+  grid.addEventListener('touchstart', (e) => {
+    if (!isMobile()) return;
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  grid.addEventListener('touchend', (e) => {
+    if (!isMobile()) return;
+    const dy = touchStartY - e.changedTouches[0].clientY;
+    const dx = Math.abs(touchStartX - e.changedTouches[0].clientX);
+    const dt = Date.now() - touchStartTime;
+    // Swipe up: vertical distance > 40px, more vertical than horizontal, within 500ms
+    if (dy > 40 && dy > dx && dt < 500) {
+      e.preventDefault();
+      goToNext();
+    }
+  }, { passive: false });
+
+  // Mouse wheel on the cards (for desktop testing)
+  grid.addEventListener('wheel', (e) => {
+    if (!isMobile()) return;
+    if (e.deltaY > 30) {
+      e.preventDefault();
+      goToNext();
+    }
+  }, { passive: false });
+
+  function init() {
+    if (!isMobile()) {
+      grid.style.height = '';
+      const cls = ['card-front','card-mid','card-back','card-hidden','card-out'];
+      cards.forEach(card => cls.forEach(c => card.classList.remove(c)));
+      currentIndex = 0;
+      return;
+    }
+    stripReveal();
+    setGridHeight();
+    currentIndex = 0;
+    assignPositions();
+  }
+
+  window.addEventListener('resize', init);
+  init();
+})();
+
+// ── BRAND SCROLL DYNAMIC PADDING ──
+(function brandEdgeScroll() {
+  const brandScroll = document.getElementById('brandsGrid');
+  if (!brandScroll) return;
+
+  const PAD_MAX = 32; // matches the container padding
+
+  brandScroll.addEventListener('scroll', () => {
+    const scrollLeft = brandScroll.scrollLeft;
+    // Fade the left padding from 32px to 0px over the first 32px of scroll
+    const newPad = Math.max(0, PAD_MAX - scrollLeft);
+    brandScroll.style.paddingLeft = newPad + 'px';
+  }, { passive: true });
+})();

@@ -138,9 +138,9 @@ a{text-decoration:none;color:inherit}
 
 /* ─── BRANDS ─── */
 .brands-wrap{background:#D9CFC0;padding:40px 20px}
-#brands{padding:60px 32px;background:rgba(255,255,255,.24);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.42);border-radius:28px;box-shadow:0 8px 40px rgba(10,10,10,.07)}
+#brands{padding:60px 32px;background:rgba(255,255,255,.24);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.42);border-radius:28px;box-shadow:0 8px 40px rgba(10,10,10,.07);overflow:hidden}
 .brands-head{margin-bottom:32px}
-.brand-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
+.brand-scroll{display:flex;gap:12px;overflow-x:auto;padding:6px 32px 8px;margin:0 -32px;-ms-overflow-style:none;scrollbar-width:none;scroll-padding-inline:32px;transition:padding-left .3s ease}
 .brand-scroll::-webkit-scrollbar{display:none}
 .brand-tile{flex-shrink:0;background:#D9CFC0;border:1.5px solid rgba(0,0,0,.06);border-radius:18px;overflow:hidden;cursor:pointer;text-align:center;transition:all .22s;width:110px}
 .brand-tile:hover,.brand-tile.active{border-color:var(--pink);box-shadow:0 6px 20px rgba(155,123,90,.14);transform:translateY(-3px)}
@@ -338,7 +338,17 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 }
 @media(max-width:600px){
   .how-grid{grid-template-columns:1fr}
-  .reviews-grid{grid-template-columns:1fr}
+  /* ── Reviews card stack (mobile) ── */
+  .reviews-grid{grid-template-columns:1fr;display:block;position:relative;perspective:600px}
+  .reviews-grid .r-card{position:absolute;top:0;left:0;right:0;background:#E8E0D4;border-color:rgba(200,190,175,.5);transition:transform .5s cubic-bezier(.32,.72,.45,1),opacity .4s ease;transform-origin:center top;will-change:transform,opacity}
+  .reviews-grid .r-card:nth-child(1){z-index:3;transform:translateY(0) scale(1);opacity:1}
+  .reviews-grid .r-card:nth-child(2){z-index:2;transform:translateY(14px) scale(.97);opacity:1}
+  .reviews-grid .r-card:nth-child(3){z-index:1;transform:translateY(28px) scale(.94);opacity:1}
+  .reviews-grid .r-card.card-out{transform:translateX(-110%) rotate(-8deg)!important;opacity:0!important;z-index:0!important;pointer-events:none}
+  .reviews-grid .r-card.card-front{z-index:3!important;transform:translateY(0) scale(1)!important;opacity:1!important}
+  .reviews-grid .r-card.card-mid{z-index:2!important;transform:translateY(14px) scale(.97)!important;opacity:1!important}
+  .reviews-grid .r-card.card-back{z-index:1!important;transform:translateY(28px) scale(.94)!important;opacity:1!important}
+  .reviews-grid .r-card.card-hidden{z-index:0!important;transform:translateY(36px) scale(.91)!important;opacity:0!important}
   .artists-grid{grid-template-columns:1fr}
   input,select,textarea{font-size:16px!important}
   .auth-box{max-height:96svh}
