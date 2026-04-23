@@ -16,6 +16,7 @@ function doPost(e) {
     const action = data.action;
 
     if (action === 'signup')             handleSignup(data);
+    else if (action === 'booking')            handleBooking(data);
     else if (action === 'artist_application') handleArtistApplication(data);
     else if (action === 'forgot_password')    handleForgotPassword(data);
 
@@ -29,8 +30,41 @@ function doPost(e) {
   }
 }
 
-function doGet() {
-  return ContentService.createTextOutput('NoroCare API is running.');
+function doGet(e) {
+  if (e && e.parameter && e.parameter.sheet === 'artists') return getArtistsJson();
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function getArtistsJson() {
+  const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName('Artists');
+  if (!sheet) return ContentService.createTextOutput(JSON.stringify({ artists: [] })).setMimeType(ContentService.MimeType.JSON);
+  const rows    = sheet.getDataRange().getValues();
+  const headers = rows[0].map(h => h.toString().toLowerCase().trim());
+  const artists = rows.slice(1).filter(r => r[0]).map(r => {
+    const get = k => { const i = headers.indexOf(k); return i >= 0 ? r[i] : ''; };
+    return {
+      name:      get('name'),
+      spec:      get('spec'),
+      price:     get('price'),
+      priceNum:  Number(get('pricenum')) || 0,
+      rating:    Number(get('rating'))   || 4.9,
+      revs:      Number(get('reviews'))  || 0,
+      dist:      Number(get('distance')) || 1.0,
+      area:      get('area'),
+      brands:    get('brands').toString().split(',').map(b => b.trim()).filter(Boolean),
+      styles:    get('styles').toString().split(',').map(s => s.trim()).filter(Boolean),
+      prestige:  get('prestige').toString().split(',').map(Number).filter(Boolean),
+      avail:     get('availability') || 'now',
+      availText: get('availtext')    || 'Available',
+      img:       get('image')
+    };
+  });
+  return ContentService
+    .createTextOutput(JSON.stringify({ artists }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // ── SHEET HELPERS ─────────────────────────────────────────────
@@ -74,6 +108,19 @@ function handleArtistApplication(data) {
   ]);
   sendArtistWelcomeEmail(data.email, data.name);
   sendVerifyEmail(data.email, data.name);
+}
+
+function handleBooking(data) {
+  const headers = ['Timestamp','Name','Phone','Email','Artist','Area','Price','Date','Time','Address','Styles','Brand Level','Status'];
+  const sheet   = getOrCreateSheet('Bookings', headers);
+  sheet.appendRow([
+    data.timestamp || new Date().toISOString(),
+    data.name, data.phone, data.email,
+    data.artist, data.area, data.price,
+    data.date, data.time, data.address,
+    data.styles, data.prestige, 'Pending'
+  ]);
+  sendBookingConfirmEmail(data.email, data.name, data);
 }
 
 function handleForgotPassword(data) {
@@ -227,6 +274,48 @@ function sendArtistWelcomeEmail(email, name) {
     `Hi ${firstName}, your NoroCare artist application has been received. We'll review it within 48 hours.`,
     { htmlBody: html, name: `${PLATFORM_NAME} Artist Program` }
   );
+}
+
+// ── EMAIL: BOOKING CONFIRMATION ──────────────────────────────
+function sendBookingConfirmEmail(email, name, d) {
+  const firstName = firstName_(name);
+  const subject   = `Booking confirmed — ${d.artist} · ${PLATFORM_NAME}`;
+
+  const html = `<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#F7F5F2;font-family:'Helvetica Neue',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px">
+<tr><td align="center">
+<table width="100%" style="max-width:520px;background:#fff;border-radius:20px;overflow:hidden">
+  <tr><td style="background:#0A0A0A;padding:28px 32px;text-align:center">
+    <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px">Noro<span style="color:#9B7B5A">Touch</span></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:4px">Abuja's Makeup Artist Platform</div>
+  </td></tr>
+  <tr><td style="padding:32px 32px 0">
+    <p style="font-size:22px;color:#0A0A0A;font-weight:700;margin:0 0 6px">You're booked, ${firstName}! ✨</p>
+    <p style="font-size:14px;color:#3C3C3C;line-height:1.65;margin:0 0 24px">Your artist is being notified. Here's a summary of your booking:</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#F7F5F2;border-radius:14px;margin-bottom:24px">
+      <tr><td style="padding:20px 24px">
+        <p style="font-size:12px;font-weight:700;color:#9B7B5A;letter-spacing:.5px;text-transform:uppercase;margin:0 0 14px">Booking Summary</p>
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr><td style="font-size:13px;color:#8A8A8A;padding:5px 0;width:40%">Artist</td><td style="font-size:13px;color:#0A0A0A;font-weight:600;padding:5px 0">${d.artist}</td></tr>
+          <tr><td style="font-size:13px;color:#8A8A8A;padding:5px 0">Date</td><td style="font-size:13px;color:#0A0A0A;font-weight:600;padding:5px 0">${d.date}</td></tr>
+          <tr><td style="font-size:13px;color:#8A8A8A;padding:5px 0">Time</td><td style="font-size:13px;color:#0A0A0A;font-weight:600;padding:5px 0">${d.time}</td></tr>
+          <tr><td style="font-size:13px;color:#8A8A8A;padding:5px 0">Address</td><td style="font-size:13px;color:#0A0A0A;font-weight:600;padding:5px 0">${d.address || d.area}</td></tr>
+          <tr><td style="font-size:13px;color:#8A8A8A;padding:5px 0">Price</td><td style="font-size:13px;color:#9B7B5A;font-weight:700;padding:5px 0">${d.price}</td></tr>
+        </table>
+      </td></tr>
+    </table>
+    <p style="font-size:13px;color:#3C3C3C;line-height:1.65;margin:0 0 24px">We'll send you a WhatsApp confirmation shortly with your artist's contact details. If you have questions, just reply to this email.</p>
+  </td></tr>
+  <tr><td style="padding:24px 32px;border-top:1px solid #EBEBEB">
+    <p style="font-size:11px;color:#8A8A8A;margin:0;text-align:center">© 2026 NoroTouch Ltd · Abuja, Nigeria</p>
+  </td></tr>
+</table>
+</td></tr>
+</table>
+</body></html>`;
+
+  GmailApp.sendEmail(email, subject, `Hi ${firstName}, your booking with ${d.artist} on ${d.date} at ${d.time} is confirmed. We'll WhatsApp you shortly.`, { htmlBody: html, name: PLATFORM_NAME });
 }
 
 // ── HELPERS ───────────────────────────────────────────────────
