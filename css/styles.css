@@ -4,6 +4,7 @@
   --gold:#C9963A;--gold-bg:#FDF5E6;
   --green:#00C48C;--red:#FF3B30;
   --bg:#EDE7DC;--white:#FFFFFF;--border:#DDD5C5;
+  --page-gutter:clamp(16px,2.8vw,28px);
   --r:18px;--r2:28px;
   --shadow:0 4px 24px rgba(10,10,10,.08);
   --shadow2:0 16px 56px rgba(10,10,10,.14);
@@ -120,10 +121,10 @@ a{text-decoration:none;color:inherit}
 /* ─── QUICK BOOK ─── */
 
 /* ─── AESTHETICS ─── */
-#aesthetics{position:relative;z-index:1;margin-top:-32px;padding:92px 0 60px 32px;background:#D9CFC0}
-.aesthetics-head{padding-right:32px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end}
+#aesthetics{position:relative;z-index:1;margin-top:-32px;padding:92px 0 60px;background:#D9CFC0}
+.aesthetics-head{padding-inline:var(--page-gutter);margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end}
 .see-all{font-size:.83rem;font-weight:600;color:var(--pink);cursor:pointer}
-.aesthetics-scroll{display:flex;gap:14px;overflow-x:auto;padding-right:32px;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
+.aesthetics-scroll{display:flex;gap:14px;overflow-x:auto;padding:0 var(--page-gutter) 8px;-ms-overflow-style:none;scrollbar-width:none;scroll-padding-inline:var(--page-gutter)}
 .aesthetics-scroll::-webkit-scrollbar{display:none}
 .aes-card{flex-shrink:0;width:150px;height:200px;border-radius:20px;overflow:hidden;position:relative;cursor:pointer;transition:transform .25s}
 .aes-card:hover{transform:scale(1.03)}
@@ -194,6 +195,10 @@ a{text-decoration:none;color:inherit}
 .how-num{font-family:'Instrument Serif',serif;font-size:4rem;font-style:italic;color:var(--border);font-weight:400;line-height:1;margin-bottom:14px}
 .how-step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .how-step p{font-size:.85rem;color:var(--ink3);line-height:1.65}
+
+/* ─── LEADERBOARD ─── */
+#leaderboard{padding:60px 0;background:#D9CFC0}
+.leaderboard-head{padding-inline:var(--page-gutter);margin-bottom:28px}
 
 /* ─── TESTIMONIALS ─── */
 #reviews{padding:80px 32px;background:#D9CFC0;color:var(--ink)}
@@ -325,12 +330,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
   .nav-logo{font-size:1.1rem;flex-shrink:0}
   #navBookBtn{padding:9px 16px;font-size:.78rem;white-space:nowrap}
   #hero .hero-content{padding:0 20px}
-  #aesthetics,#reviews,footer{padding-left:20px;padding-right:20px}
+  #reviews,footer{padding-left:20px;padding-right:20px}
   .brands-wrap{padding:28px 12px}
   #brands{padding-left:20px;padding-right:20px}
-  #aesthetics{padding-left:0}
-  .aesthetics-head{padding:0 20px}
-  .aesthetics-scroll{padding-right:20px}
   .how-grid{grid-template-columns:1fr}
   .mob-nav{display:none}
 }
