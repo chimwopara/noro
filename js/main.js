@@ -318,12 +318,55 @@ function scrollTo_(id) {
     [212, 184, 150],  // champagne
     [205, 100,  80],  // coral
     [185,  60,  95],  // rose
+    [173, 106,  84],  // cinnamon
+    [227, 142,  98],  // apricot
+    [166,  76, 102],  // mauve
+    [154, 103,  56],  // caramel
+    [142,  52,  74],  // berry
+    [236, 167, 133],  // peach
+    [126,  74,  98],  // plum
+    [190, 118,  92],  // terracotta
+    [215, 196, 166],  // ivory beige
+    [119,  58,  44],  // cocoa
+    [230, 120, 150],  // petal pink
+    [176,  86,  34],  // copper
+    [160, 122, 132],  // dusty rose
+    [142,  32,  58],  // burgundy
+    [183, 156, 126],  // warm sand
   ];
   const MAX_STROKES = 10;
   const SPAWN_INTERVAL_MS = 1000;
+  const RECENT_ANCHOR_LIMIT = 8;
 
   const strokes = [];
+  const recentAnchors = [];
   let lastSpawn = performance.now();
+
+  function pickSpawnAnchor() {
+    const padX = Math.min(40, W * 0.18);
+    const padY = Math.min(40, H * 0.18);
+    const usableW = Math.max(20, W - padX * 2);
+    const usableH = Math.max(20, H - padY * 2);
+    const minDist = Math.max(50, Math.min(W, H) * 0.24);
+    let best = null;
+    let bestDist = -1;
+
+    for (let i = 0; i < 18; i++) {
+      const x = padX + Math.random() * usableW;
+      const y = padY + Math.random() * usableH;
+      const nearest = recentAnchors.length
+        ? Math.min(...recentAnchors.map(p => Math.hypot(p.x - x, p.y - y)))
+        : Infinity;
+
+      if (nearest >= minDist) return { x, y };
+      if (nearest > bestDist) {
+        best = { x, y };
+        bestDist = nearest;
+      }
+    }
+
+    return best || { x: W / 2, y: H / 2 };
+  }
 
   function spawn() {
     if (strokes.length >= MAX_STROKES) return;
@@ -332,8 +375,9 @@ function scrollTo_(id) {
     const len   = (80 + Math.random() * 100) / 2;   // in canvas-space (half-res)
     const maxW  = (30 + Math.random() * 30) / 2;
     const curve = (Math.random() - 0.5) * 0.3;
-    const x     = (80 + Math.random() * Math.max(40, hero.clientWidth - 160)) / 2;
-    const y     = (80 + Math.random() * Math.max(40, hero.clientHeight - 160)) / 2;
+    const { x, y } = pickSpawnAnchor();
+    recentAnchors.unshift({ x, y });
+    if (recentAnchors.length > RECENT_ANCHOR_LIMIT) recentAnchors.length = RECENT_ANCHOR_LIMIT;
     // Pre-compute segment geometry so animate() never re-derives it
     const N = 40;
     const segs = [];
