@@ -1,5 +1,5 @@
 // Booking flow state
-let bfState = { tone:null, date:null, dateChosen:false, time:null, prestige:2, styles:[], assignment:null, artist:null, address:null, authSource:'splash', payMethod:null };
+let bfState = { tone:null, date:null, dateChosen:false, time:null, prestige:2, styles:[], assignment:null, artist:null, artists:[], peopleCount:1, bringOwnProducts:false, address:null, authSource:'splash', payMethod:null };
 
 function bfIsMobileLayout() {
   return window.matchMedia('(max-width: 900px)').matches;
@@ -42,7 +42,7 @@ function bfRestoreState() {
 function openBookingFlow(preStyle, preBrand) {
   bfRestoreState();
   if (preStyle && !bfState.styles.includes(preStyle)) bfState.styles = [preStyle];
-  bfState.assignment = null; bfState.artist = null; bfState.authSource = 'splash'; bfState.payMethod = null;
+  bfState.assignment = null; bfState.artist = null; bfState.artists = []; bfState.authSource = 'splash'; bfState.payMethod = null; bfState.bringOwnProducts = false;
   bfInitTones(); bfInitDates(); bfInitTimeSlots(); bfInitPrestige(); bfInitStyles();
   document.getElementById('bookingFlow').classList.add('open');
   lockScroll();
@@ -82,6 +82,9 @@ function bfGoToStep(step) {
       d.className = 'bf-step-dot' + (i < step ? ' done' : i === step ? ' active' : '');
       dotsEl.appendChild(d);
     }
+  }
+  if (step === 5) {
+    bfInitStep5();
   }
   if (step === 7) {
     bfPrefillContactDetails();
@@ -147,7 +150,9 @@ function bfNextStep(from) {
     bfSaveState();
     bfGoToStep(5);
   } else if (from === 6) {
+    const need = bfState.peopleCount || 1;
     if (!bfState.artist) { showToast('Please select an artist', true); return; }
+    if (need > 1 && bfState.artists.length < need) { showToast(`Please select ${need} artists`, true); return; }
     bfBuildConfirmation(); bfGoToStep(7);
   }
 }
@@ -269,7 +274,15 @@ function bfScrollToTimeSection() {
 }
 
 // Step 3: Prestige
+function bfInitByo() {
+  const row = document.getElementById('bfByoRow');
+  const check = document.getElementById('bfByoCheck');
+  if (row) row.classList.toggle('on', !!bfState.bringOwnProducts);
+  if (check) check.textContent = bfState.bringOwnProducts ? '✓' : '';
+}
+
 function bfInitPrestige() {
+  bfInitByo();
   document.getElementById('bfPrestigeLabels').innerHTML = PRESTIGE_DATA.map((p,i) =>
     `<button class="bf-prestige-tab${i===bfState.prestige?' active':''}" onclick="bfSetPrestige(${i})">
       <span class="bf-prestige-tab-name">${p.label}</span>
@@ -319,6 +332,21 @@ function bfToggleStyle(id, card) {
   }
 }
 
+// People counter
+function bfChangePeople(delta) {
+  bfState.peopleCount = Math.max(1, Math.min(10, (bfState.peopleCount || 1) + delta));
+  const el = document.getElementById('bfPeopleNum');
+  if (el) el.textContent = bfState.peopleCount;
+}
+
+// Bring own products toggle
+function bfToggleByo(row) {
+  bfState.bringOwnProducts = !bfState.bringOwnProducts;
+  row.classList.toggle('on', bfState.bringOwnProducts);
+  const check = document.getElementById('bfByoCheck');
+  if (check) check.textContent = bfState.bringOwnProducts ? '✓' : '';
+}
+
 // Step 5: Assignment
 function bfChooseAssignment(type) {
   bfState.assignment = type;
@@ -328,6 +356,12 @@ function bfChooseAssignment(type) {
     bfState.authSource = 'step5';
     bfGoToStep('auth');
   }, 280);
+}
+
+// Reset people counter display when step 5 opens
+function bfInitStep5() {
+  const el = document.getElementById('bfPeopleNum');
+  if (el) el.textContent = bfState.peopleCount || 1;
 }
 
 // Step 6: Custom select
@@ -348,10 +382,16 @@ function bfPopulateArtists(sortBy) {
   else if (sortBy === 'available') artists.sort((a,b)=>a.avail==='now'?-1:1);
   else artists.sort((a,b)=>a.dist-b.dist);
 
+  const need = bfState.peopleCount || 1;
+  const sub = document.getElementById('bfStep6Sub');
+  if (sub) sub.textContent = need > 1 ? `Select ${need} artists — one per person. Filtered by your style and brand preferences.` : 'Filtered by your style and brand preferences.';
+
   document.getElementById('bfArtistList').innerHTML = artists.map(a => {
     const idx = ARTIST_DATA.indexOf(a);
+    const isSelected = bfState.artists.includes(a) || bfState.artist === a;
     const dotColor = a.avail==='now'?'#00C48C':'#FF9500';
-    return `<div class="bf-a-card${bfState.artist===a?' selected':''}" onclick="bfSelectArtist(${idx},this)">
+    const brandsHtml = a.brands.slice(0,3).map(b=>`<span style="font-size:.65rem;background:var(--bg);color:var(--ink3);padding:2px 8px;border-radius:20px">${b}</span>`).join('');
+    return `<div class="bf-a-card${isSelected?' selected':''}" onclick="bfSelectArtist(${idx},this)">
       <div class="bf-a-img">
         <img src="${a.img}" alt="${a.name}" loading="lazy"/>
         <div class="bf-a-avail"><span style="width:6px;height:6px;border-radius:50%;background:${dotColor};flex-shrink:0;display:inline-block"></span>${a.availText}</div>
@@ -363,17 +403,48 @@ function bfPopulateArtists(sortBy) {
           <span class="bf-a-rating">★ ${a.rating} <span style="font-weight:400;color:var(--ink3)">(${a.revs})</span></span>
           <span class="bf-a-dist">${a.area} · ${a.dist} km</span>
         </div>
-        <button class="bf-a-select-btn">Select ${a.name.split(' ')[0]} →</button>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">${brandsHtml}</div>
+        <button class="bf-a-select-btn">${isSelected ? '✓ Selected' : 'Select ' + a.name.split(' ')[0] + ' →'}</button>
       </div>
     </div>`;
   }).join('');
 }
 
 function bfSelectArtist(idx, card) {
-  document.querySelectorAll('.bf-a-card').forEach(c=>c.classList.remove('selected'));
-  card.classList.add('selected');
-  bfState.artist = ARTIST_DATA[idx];
-  document.getElementById('bfSelectArtistBtn').disabled = false;
+  const a = ARTIST_DATA[idx];
+  const need = bfState.peopleCount || 1;
+  if (need === 1) {
+    // Single select — repopulate to reset all cards cleanly
+    bfState.artists = [a];
+    bfState.artist = a;
+    bfPopulateArtists();
+    const confirmBtn = document.getElementById('bfSelectArtistBtn');
+    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = 'Confirm Artist →'; }
+  } else {
+    // Multi select — toggle
+    const pos = bfState.artists.indexOf(a);
+    if (pos >= 0) {
+      bfState.artists.splice(pos, 1);
+      card.classList.remove('selected');
+      const btn = card.querySelector('.bf-a-select-btn');
+      if (btn) btn.textContent = 'Select ' + a.name.split(' ')[0] + ' →';
+    } else if (bfState.artists.length < need) {
+      bfState.artists.push(a);
+      card.classList.add('selected');
+      const btn = card.querySelector('.bf-a-select-btn');
+      if (btn) btn.textContent = '✓ Selected';
+    } else {
+      showToast(`You've already selected ${need} artist${need>1?'s':''}`, true);
+      return;
+    }
+    bfState.artist = bfState.artists[0] || null;
+  }
+  const selectedCount = bfState.artists.length;
+  const confirmBtn = document.getElementById('bfSelectArtistBtn');
+  confirmBtn.disabled = selectedCount === 0;
+  confirmBtn.textContent = need > 1
+    ? `Confirm ${selectedCount} / ${need} Artist${selectedCount!==1?'s':''} →`
+    : 'Confirm Artist →';
 }
 
 function bfSort(by, btn) {
@@ -382,36 +453,61 @@ function bfSort(by, btn) {
 }
 
 function bfAutoAssign(type) {
-  let artists = bfFilteredArtists();
-  if (type === 'fastest') artists.sort((a,b)=>a.dist-b.dist);
-  else if (type === 'cheapest') artists.sort((a,b)=>a.priceNum-b.priceNum);
-  else if (type === 'costliest') artists.sort((a,b)=>b.priceNum-a.priceNum);
-  else artists.sort((a,b)=>b.rating-a.rating);
-  bfState.artist = artists[0];
+  let pool = bfFilteredArtists();
+  if (type === 'fastest') pool.sort((a,b)=>a.dist-b.dist);
+  else if (type === 'cheapest') pool.sort((a,b)=>a.priceNum-b.priceNum);
+  else if (type === 'costliest') pool.sort((a,b)=>b.priceNum-a.priceNum);
+  else pool.sort((a,b)=>b.rating-a.rating);
+  const need = bfState.peopleCount || 1;
+  bfState.artists = pool.slice(0, need);
+  bfState.artist = bfState.artists[0];
   bfBuildConfirmation(); bfGoToStep(7);
 }
 
 function bfBuildConfirmation() {
   const a = bfState.artist; if (!a) return;
+  const artists = bfState.artists.length ? bfState.artists : [a];
   const styleName = bfState.styles.map(s=>STYLE_DATA.find(d=>d.id===s)?.name).filter(Boolean).join(', ') || 'Any style';
   const toneName  = bfState.tone ? `Shade ${bfState.tone}` : 'Not specified';
   const assignLabel = {fastest:'Fastest Arrival',rated:'Highest Rated',cheapest:'Most Affordable',costliest:'Most Expensive',custom:'Custom Select'}[bfState.assignment] || '';
-  document.getElementById('bfConfirmArtist').innerHTML = `
-    <img class="bf-confirm-img" src="${a.img}" alt="${a.name}"/>
-    <div>
-      <div class="bf-confirm-name">${a.name}</div>
-      <div class="bf-confirm-spec">${a.spec}</div>
-      <div class="bf-confirm-rating">★ ${a.rating} · ${a.area} · ${a.price}/hr</div>
-    </div>`;
-  document.getElementById('bfSummaryRows').innerHTML = [
+  const totalNum = artists.reduce((sum, ar) => sum + ar.priceNum, 0);
+  const depositNum = Math.round(totalNum * 0.5);
+  const fmt = n => '₦' + n.toLocaleString();
+
+  // Show artist(s) in confirm area
+  const confirmEl = document.getElementById('bfConfirmArtist');
+  confirmEl.style.flexDirection = artists.length > 1 ? 'column' : '';
+  confirmEl.innerHTML = artists.map(ar =>
+    `<div style="display:flex;align-items:center;gap:14px${artists.length>1?';border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:4px':''}">
+       <img class="bf-confirm-img" src="${ar.img}" alt="${ar.name}"/>
+       <div>
+         <div class="bf-confirm-name">${ar.name}</div>
+         <div class="bf-confirm-spec">${ar.spec}</div>
+         <div class="bf-confirm-rating">★ ${ar.rating} · ${ar.area} · ${ar.price}</div>
+       </div>
+     </div>`
+  ).join('');
+
+  const rows = [
     {label:'Address',    val: bfState.address || 'To be confirmed'},
     {label:'Date',       val: bfState.date || 'Today'},
     {label:'Time',       val: bfState.time || 'Flexible'},
     {label:'Style',      val: styleName},
     {label:'Brand level',val: PRESTIGE_DATA[bfState.prestige]?.label},
     {label:'Skin tone',  val: toneName},
-    {label:'Assignment', val: assignLabel}
-  ].map(r=>`<div class="bf-summary-row"><span class="bf-summary-label">${r.label}</span><span class="bf-summary-val">${r.val}</span></div>`).join('');
+    ...(bfState.peopleCount > 1 ? [{label:'People', val: bfState.peopleCount + ' people · ' + artists.length + ' artist' + (artists.length!==1?'s':'')}] : []),
+    ...(bfState.bringOwnProducts ? [{label:'Products', val: 'Client bringing own products'}] : []),
+    {label:'Total',      val: fmt(totalNum)},
+    {label:'Deposit due today (50%)', val: fmt(depositNum)},
+    {label:'Balance on day', val: fmt(totalNum - depositNum)},
+  ];
+  document.getElementById('bfSummaryRows').innerHTML = rows.map(r=>
+    `<div class="bf-summary-row"><span class="bf-summary-label">${r.label}</span><span class="bf-summary-val">${r.val}</span></div>`
+  ).join('');
+
+  // Store deposit for payment step
+  bfState._totalNum = totalNum;
+  bfState._depositNum = depositNum;
 }
 
 function bfAuthBack() {
@@ -451,12 +547,20 @@ function bfGoToPayment() {
   const email = document.getElementById('bfDetailEmail').value.trim();
   if (!name || !phone || !email) { showToast('Please fill in all your details', true); return; }
   const a = bfState.artist; if (!a) return;
+  const artists = bfState.artists.length ? bfState.artists : [a];
+  const depositNum = bfState._depositNum || Math.round(a.priceNum * 0.5);
+  const totalNum = bfState._totalNum || a.priceNum;
+  const fmt = n => '₦' + n.toLocaleString();
+  const artistNames = artists.map(ar => ar.name.split(' ')[0]).join(' + ');
   document.getElementById('bfPayRecap').innerHTML =
     `<img src="${a.img}" alt="${a.name}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0"/>
      <div style="flex:1;min-width:0">
-       <div style="font-size:.92rem;font-weight:700;color:var(--ink)">${a.name}</div>
+       <div style="font-size:.92rem;font-weight:700;color:var(--ink)">${artistNames}</div>
        <div style="font-size:.76rem;color:var(--ink3);margin-top:1px">${bfState.date || 'Today'} · ${bfState.time || 'Flexible'}</div>
-       <div style="font-size:.92rem;font-weight:800;color:var(--pink);margin-top:4px">${a.price}<span style="font-size:.72rem;font-weight:500;color:var(--ink3)">/hr</span></div>
+       <div style="margin-top:4px;display:flex;align-items:center;gap:8px">
+         <span style="font-size:.92rem;font-weight:800;color:var(--pink)">${fmt(depositNum)} <span style="font-size:.72rem;font-weight:500;color:var(--ink3)">deposit</span></span>
+         <span style="font-size:.72rem;color:var(--ink3)">of ${fmt(totalNum)} total</span>
+       </div>
      </div>`;
   bfGoToStep(8);
 }
@@ -476,27 +580,39 @@ async function bfCompletePayment() {
   const phone = document.getElementById('bfDetailPhone').value.trim();
   const email = document.getElementById('bfDetailEmail').value.trim();
   const a = bfState.artist;
+  const artists = bfState.artists.length ? bfState.artists : [a];
+  const depositNum = bfState._depositNum || Math.round(a.priceNum * 0.5);
+  const totalNum = bfState._totalNum || a.priceNum;
   await postToSheet('booking', {
     name, phone, email,
-    artist: a.name, area: a.area, price: a.price,
+    artist: artists.map(ar=>ar.name).join(', '), area: a.area, price: a.price,
     date: bfState.date || 'Today', time: bfState.time || 'Flexible',
     address: bfState.address || '', styles: bfState.styles.join(', '),
     prestige: PRESTIGE_DATA[bfState.prestige]?.label,
-    payMethod: bfState.payMethod
+    payMethod: bfState.payMethod,
+    peopleCount: bfState.peopleCount || 1,
+    bringOwnProducts: bfState.bringOwnProducts,
+    depositAmount: '₦' + depositNum.toLocaleString(),
+    totalAmount: '₦' + totalNum.toLocaleString(),
   });
-  btn.disabled = false; btn.textContent = 'Pay Now →';
+  btn.disabled = false; btn.textContent = 'Pay Deposit →';
   bfBuildReceipt(name, a);
   bfGoToStep(9);
 }
 
 function bfBuildReceipt(name, a) {
+  const artists = bfState.artists.length ? bfState.artists : [a];
+  const depositNum = bfState._depositNum || Math.round(a.priceNum * 0.5);
+  const totalNum = bfState._totalNum || a.priceNum;
+  const fmt = n => '₦' + n.toLocaleString();
   const rows = [
-    ['Artist',  a.name],
-    ['Date',    bfState.date || 'Today'],
-    ['Time',    bfState.time || 'Flexible'],
-    ['Address', bfState.address || 'To be confirmed'],
-    ['Payment', {card:'Card',transfer:'Bank Transfer',cash:'Pay on Arrival'}[bfState.payMethod]],
-    ['Total',   a.price + '/hr'],
+    ['Artist',        artists.map(ar=>ar.name).join(' · ')],
+    ['Date',          bfState.date || 'Today'],
+    ['Time',          bfState.time || 'Flexible'],
+    ['Address',       bfState.address || 'To be confirmed'],
+    ['Payment method',{card:'Card',transfer:'Bank Transfer',cash:'Pay on Arrival'}[bfState.payMethod]],
+    ['Deposit paid',  fmt(depositNum)],
+    ['Balance on day',fmt(totalNum - depositNum)],
   ];
   document.getElementById('bfReceiptBox').innerHTML =
     `<div style="font-size:.78rem;font-weight:700;color:var(--ink3);letter-spacing:.4px;text-transform:uppercase;margin-bottom:12px">Booking #${Math.random().toString(36).slice(2,8).toUpperCase()}</div>`

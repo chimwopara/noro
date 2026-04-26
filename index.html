@@ -470,7 +470,7 @@
           <label class="a-field-label">Email address</label>
           <input type="email" class="a-field" id="siEmail" placeholder="you@example.com" required autocomplete="email"/>
           <label class="a-field-label">Password</label>
-          <input type="password" class="a-field" id="siPassword" placeholder="••••••••" required/>
+          <input type="password" class="a-field" id="siPassword" placeholder="••••••••" required autocomplete="current-password"/>
           <span class="auth-forgot-link" onclick="showForgotPassword()">Forgot password?</span>
           <button type="submit" class="auth-submit-btn" id="siBtn">Sign In →</button>
         </form>
@@ -488,7 +488,7 @@
           <label class="a-field-label">Phone number</label>
           <input type="tel" class="a-field" id="suPhone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
           <label class="a-field-label">Password</label>
-          <input type="password" class="a-field" id="suPassword" placeholder="At least 8 characters" required minlength="8"/>
+          <input type="password" class="a-field" id="suPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password"/>
           <button type="submit" class="auth-submit-btn" id="suBtn">Create Account →</button>
         </form>
         <p style="font-size:.75rem;color:var(--ink3);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <a href="terms.html" style="color:var(--pink);font-weight:600">Terms</a> and <a href="privacy.html" style="color:var(--pink);font-weight:600">Privacy</a></p>
@@ -550,7 +550,7 @@
         <label class="a-field-label">Phone number</label>
         <input type="tel" class="a-field" id="artPhone" placeholder="+234 800 000 0000" autocomplete="tel"/>
         <label class="a-field-label">Password</label>
-        <input type="password" class="a-field" id="artPassword" placeholder="At least 8 characters" minlength="8"/>
+        <input type="password" class="a-field" id="artPassword" placeholder="At least 8 characters" minlength="8" autocomplete="new-password"/>
         <div class="artist-nav-btns">
           <button class="artist-next-btn" onclick="artistNextStep(1)">Next: Your Craft →</button>
         </div>
@@ -678,7 +678,7 @@
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
               <input type="email" class="a-field" id="cardSiEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-              <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required autocomplete="current-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <span onclick="showCardForgotPassword()" style="font-size:.78rem;color:var(--pink);cursor:pointer;display:block;text-align:right;margin-bottom:18px">Forgot password?</span>
               <button type="submit" class="bf-next-btn" id="cardSiBtn" style="width:100%;font-size:.92rem;padding:15px">Sign In →</button>
             </form>
@@ -694,7 +694,7 @@
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
               <input type="tel" class="a-field" id="cardSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-              <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <button type="submit" class="bf-next-btn" id="cardSuBtn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
             </form>
             <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <a href="terms.html" style="color:var(--pink);font-weight:600">Terms</a> and <a href="privacy.html" style="color:var(--pink);font-weight:600">Privacy</a></p>
@@ -775,7 +775,7 @@
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
             <input type="email" id="bfSiEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'" placeholder="you@example.com"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-            <input type="password" id="bfSiPassword" placeholder="••••••••" required style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <input type="password" id="bfSiPassword" placeholder="••••••••" required autocomplete="current-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <span onclick="bfShowForgotPassword()" style="font-size:.78rem;color:var(--pink);cursor:pointer;display:block;text-align:right;margin-bottom:18px">Forgot password?</span>
             <button type="submit" id="bfSiBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Sign In →</button>
           </form>
@@ -791,7 +791,7 @@
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
             <input type="tel" id="bfSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-            <input type="password" id="bfSuPassword" placeholder="At least 8 characters" required minlength="8" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <input type="password" id="bfSuPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <button type="submit" id="bfSuBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
           </form>
           <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <a href="terms.html" style="color:var(--pink);font-weight:600">Terms</a> and <a href="privacy.html" style="color:var(--pink);font-weight:600">Privacy</a></p>
@@ -879,6 +879,14 @@
         <p class="bf-panel-sub">Pick a tier to filter artists by kit quality.</p>
         <div class="bf-prestige-tabs" id="bfPrestigeLabels"></div>
         <div class="bf-brand-grid" id="bfBrandGrid"></div>
+        <div class="bf-byo-row" id="bfByoRow" onclick="bfToggleByo(this)">
+          <div class="bf-byo-icon">🧴</div>
+          <div class="bf-byo-text">
+            <div class="bf-byo-title">I'll bring my own products</div>
+            <div class="bf-byo-sub">Let your artist know you're supplying the products. Some artists may adjust their rate.</div>
+          </div>
+          <div class="bf-byo-check" id="bfByoCheck"></div>
+        </div>
         <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(3)">← Back</button>
           <button class="bf-next-btn" onclick="bfNextStep(3)">Next: Style →</button>
@@ -902,6 +910,14 @@
       <div class="bf-panel bf-panel-fill" id="bfStep5">
         <div class="bf-panel-title">How should we pick your artist?</div>
         <p class="bf-panel-sub">Let us find someone perfect, or browse and pick yourself.</p>
+        <div class="bf-people-counter">
+          <div class="bf-people-label">How many people?<span>Number of clients needing makeup</span></div>
+          <div class="bf-people-btns">
+            <button class="bf-people-btn" onclick="bfChangePeople(-1)">−</button>
+            <div class="bf-people-num" id="bfPeopleNum">1</div>
+            <button class="bf-people-btn" onclick="bfChangePeople(1)">+</button>
+          </div>
+        </div>
         <div class="bf-fill-scroll">
           <div class="bf-assign-grid">
             <div class="bf-assign-card" id="assignFastest" onclick="bfChooseAssignment('fastest')" style="background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=700&q=80');background-color:#1a1a1a">
@@ -944,7 +960,7 @@
       <!-- STEP 6: Custom Artist Select -->
       <div class="bf-panel bf-panel-fill" id="bfStep6">
         <div class="bf-panel-title">Choose your artist</div>
-        <p class="bf-panel-sub">Filtered by your style and brand preferences.</p>
+        <p class="bf-panel-sub" id="bfStep6Sub">Filtered by your style and brand preferences.</p>
         <div class="bf-sort-row">
           <button class="bf-sort-chip active" onclick="bfSort('nearest',this)">Nearest</button>
           <button class="bf-sort-chip" onclick="bfSort('rating',this)">Top Rated</button>
@@ -957,6 +973,7 @@
         <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfPrevStep(6)">← Back</button>
           <button class="bf-next-btn" id="bfSelectArtistBtn" onclick="bfNextStep(6)" disabled>Confirm Artist →</button>
+
         </div>
       </div>
 
@@ -981,11 +998,12 @@
         </div>
       </div>
 
-      <!-- STEP 8: Payment -->
+      <!-- STEP 8: Deposit Payment -->
       <div class="bf-panel" id="bfStep8">
-        <div class="bf-panel-title">Payment</div>
-        <p class="bf-panel-sub">Choose how you'd like to pay for your booking.</p>
-        <div id="bfPayRecap" style="display:flex;align-items:center;gap:12px;background:var(--bg);border-radius:14px;padding:14px 16px;margin-bottom:24px"></div>
+        <div class="bf-panel-title">Deposit Payment</div>
+        <p class="bf-panel-sub">Pay a 50% deposit to confirm your booking. The remaining balance is paid to the artist on the day.</p>
+        <div id="bfPayRecap" style="display:flex;align-items:center;gap:12px;background:var(--bg);border-radius:14px;padding:14px 16px;margin-bottom:16px"></div>
+        <div class="bf-deposit-note">You're paying a <strong>50% deposit</strong> today. The balance is paid directly to your artist after the session.</div>
         <div style="font-size:.72rem;font-weight:700;color:var(--ink3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px">Payment method</div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
           <button class="bf-pay-opt" id="bfPayCard" onclick="bfSelectPayMethod('card',this)">💳&ensp;Pay with Card</button>
@@ -1002,7 +1020,7 @@
         </div>
         <div class="bf-nav-btns">
           <button class="bf-back-btn" onclick="bfGoToStep(7)">← Back</button>
-          <button class="bf-next-btn" id="bfPayBtn" onclick="bfCompletePayment()">Pay Now →</button>
+          <button class="bf-next-btn" id="bfPayBtn" onclick="bfCompletePayment()">Pay Deposit →</button>
         </div>
       </div>
 
