@@ -466,11 +466,11 @@
 
       <!-- SIGN IN -->
       <div class="auth-panel active" id="panelSignIn">
-        <form onsubmit="submitSignIn(event)">
+        <form onsubmit="submitSignIn(event)" autocomplete="off">
           <label class="a-field-label">Email address</label>
           <input type="email" class="a-field" id="siEmail" placeholder="you@example.com" required autocomplete="email"/>
           <label class="a-field-label">Password</label>
-          <input type="password" class="a-field" id="siPassword" placeholder="••••••••" required autocomplete="current-password"/>
+          <input type="password" class="a-field" id="siPassword" placeholder="••••••••" required autocomplete="off"/>
           <span class="auth-forgot-link" onclick="showForgotPassword()">Forgot password?</span>
           <button type="submit" class="auth-submit-btn" id="siBtn">Sign In →</button>
         </form>
@@ -480,7 +480,7 @@
 
       <!-- SIGN UP -->
       <div class="auth-panel" id="panelSignUp">
-        <form onsubmit="submitSignUp(event)">
+        <form onsubmit="submitSignUp(event)" autocomplete="off">
           <label class="a-field-label">Full name</label>
           <input type="text" class="a-field" id="suName" placeholder="Your full name" required autocomplete="name"/>
           <label class="a-field-label">Email address</label>
@@ -488,7 +488,7 @@
           <label class="a-field-label">Phone number</label>
           <input type="tel" class="a-field" id="suPhone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
           <label class="a-field-label">Password</label>
-          <input type="password" class="a-field" id="suPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password"/>
+          <input type="password" class="a-field" id="suPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="off"/>
           <button type="submit" class="auth-submit-btn" id="suBtn">Create Account →</button>
         </form>
         <p style="font-size:.75rem;color:var(--ink3);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <a href="terms.html" style="color:var(--pink);font-weight:600">Terms</a> and <a href="privacy.html" style="color:var(--pink);font-weight:600">Privacy</a></p>
@@ -550,7 +550,7 @@
         <label class="a-field-label">Phone number</label>
         <input type="tel" class="a-field" id="artPhone" placeholder="+234 800 000 0000" autocomplete="tel"/>
         <label class="a-field-label">Password</label>
-        <input type="password" class="a-field" id="artPassword" placeholder="At least 8 characters" minlength="8" autocomplete="new-password"/>
+        <input type="password" class="a-field" id="artPassword" placeholder="At least 8 characters" minlength="8" autocomplete="off"/>
         <div class="artist-nav-btns">
           <button class="artist-next-btn" onclick="artistNextStep(1)">Next: Your Craft →</button>
         </div>
@@ -674,11 +674,11 @@
           </div>
           <!-- Sign In -->
           <div id="cardPanelSignIn">
-            <form onsubmit="submitCardSignIn(event)">
+            <form onsubmit="submitCardSignIn(event)" autocomplete="off">
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
               <input type="email" class="a-field" id="cardSiEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-              <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required autocomplete="current-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <input type="password" class="a-field" id="cardSiPassword" placeholder="••••••••" required autocomplete="off" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <span onclick="showCardForgotPassword()" style="font-size:.78rem;color:var(--pink);cursor:pointer;display:block;text-align:right;margin-bottom:18px">Forgot password?</span>
               <button type="submit" class="bf-next-btn" id="cardSiBtn" style="width:100%;font-size:.92rem;padding:15px">Sign In →</button>
             </form>
@@ -686,7 +686,7 @@
           </div>
           <!-- Sign Up -->
           <div id="cardPanelSignUp" style="display:none">
-            <form onsubmit="submitCardSignUp(event)">
+            <form onsubmit="submitCardSignUp(event)" autocomplete="off">
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Full name</label>
               <input type="text" class="a-field" id="cardSuName" placeholder="Your full name" required autocomplete="name" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
@@ -694,7 +694,7 @@
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
               <input type="tel" class="a-field" id="cardSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-              <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+              <input type="password" class="a-field" id="cardSuPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="off" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
               <button type="submit" class="bf-next-btn" id="cardSuBtn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
             </form>
             <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <a href="terms.html" style="color:var(--pink);font-weight:600">Terms</a> and <a href="privacy.html" style="color:var(--pink);font-weight:600">Privacy</a></p>
@@ -771,11 +771,11 @@
         </div>
         <!-- Sign In panel -->
         <div id="bfPanelSignIn">
-          <form onsubmit="bfSubmitSignIn(event)">
+          <form onsubmit="bfSubmitSignIn(event)" autocomplete="off">
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
             <input type="email" id="bfSiEmail" placeholder="you@example.com" required autocomplete="email" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'" placeholder="you@example.com"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-            <input type="password" id="bfSiPassword" placeholder="••••••••" required autocomplete="current-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <input type="password" id="bfSiPassword" placeholder="••••••••" required autocomplete="off" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:6px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <span onclick="bfShowForgotPassword()" style="font-size:.78rem;color:var(--pink);cursor:pointer;display:block;text-align:right;margin-bottom:18px">Forgot password?</span>
             <button type="submit" id="bfSiBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Sign In →</button>
           </form>
@@ -783,7 +783,7 @@
         </div>
         <!-- Sign Up panel -->
         <div id="bfPanelSignUp" style="display:none">
-          <form onsubmit="bfSubmitSignUp(event)">
+          <form onsubmit="bfSubmitSignUp(event)" autocomplete="off">
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Full name</label>
             <input type="text" id="bfSuName" placeholder="Your full name" required autocomplete="name" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Email address</label>
@@ -791,7 +791,7 @@
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Phone number</label>
             <input type="tel" id="bfSuPhone" placeholder="+234 800 000 0000" required autocomplete="tel" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:14px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Password</label>
-            <input type="password" id="bfSuPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
+            <input type="password" id="bfSuPassword" placeholder="At least 8 characters" required minlength="8" autocomplete="off" style="width:100%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:16px;color:#fff;outline:none;transition:border-color .18s;margin-bottom:18px;box-sizing:border-box" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <button type="submit" id="bfSuBtn" class="bf-next-btn" style="width:100%;font-size:.92rem;padding:15px">Create Account →</button>
           </form>
           <p style="font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-top:14px;line-height:1.5">By signing up you agree to our <a href="terms.html" style="color:var(--pink);font-weight:600">Terms</a> and <a href="privacy.html" style="color:var(--pink);font-weight:600">Privacy</a></p>
@@ -799,7 +799,7 @@
         <!-- OTP Reset panel -->
         <div id="bfPanelOtpReset" style="display:none">
           <p style="font-size:.84rem;color:rgba(255,255,255,.7);margin:0 0 20px;line-height:1.55">Enter the 6-digit code we sent to your email, then choose a new password.</p>
-          <form onsubmit="bfSubmitOtpReset(event)">
+          <form onsubmit="bfSubmitOtpReset(event)" autocomplete="off">
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">Reset code</label>
             <input type="text" id="bfOtpCode" inputmode="numeric" maxlength="6" placeholder="000000" required style="width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:22px;letter-spacing:8px;color:#fff;outline:none;margin-bottom:14px;box-sizing:border-box;text-align:center" onfocus="this.style.borderColor='rgba(155,123,90,.8)'" onblur="this.style.borderColor='rgba(255,255,255,.2)'"/>
             <label style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:6px">New password</label>
