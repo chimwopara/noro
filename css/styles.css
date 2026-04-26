@@ -338,14 +338,11 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 }
 @media(max-width:600px){
   .how-grid{grid-template-columns:1fr}
-  /* ── Reviews stack (mobile) ── */
-  #reviews{padding-left:20px;padding-right:20px}
-  .reviews-stack-wrap{position:relative;touch-action:pan-y;padding:0 4px}
-  .reviews-grid{display:block;position:relative;overflow:visible;margin:0;padding:0}
-  .reviews-grid .r-card{position:absolute;top:0;left:0;right:0;width:100%;margin:0;max-width:none;transition:transform .42s cubic-bezier(.32,0,.15,1),opacity .42s}
-  .rev-stack-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
-  .rev-stack-dot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .3s,width .3s;cursor:pointer}
-  .rev-stack-dot.active{background:var(--pink);width:18px;border-radius:4px}
+  #reviews{padding-left:0;padding-right:0}
+  .reviews-head{padding-left:20px;padding-right:20px}
+  .reviews-grid{display:flex;overflow-x:auto;gap:16px;padding:0 20px 12px;scroll-snap-type:x mandatory;scroll-padding-inline:20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .reviews-grid::-webkit-scrollbar{display:none}
+  .reviews-grid .r-card{flex:0 0 78vw;max-width:290px;scroll-snap-align:start}
   .artists-grid{grid-template-columns:1fr}
   input,select,textarea{font-size:16px!important}
   .auth-box{max-height:96svh}

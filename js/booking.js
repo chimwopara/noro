@@ -419,7 +419,7 @@ function bfSelectArtist(idx, card) {
     bfState.artist = a;
     bfPopulateArtists();
     const confirmBtn = document.getElementById('bfSelectArtistBtn');
-    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = 'Confirm Artist →'; }
+    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = 'Confirm MUA →'; }
   } else {
     // Multi select — toggle
     const pos = bfState.artists.indexOf(a);
@@ -434,7 +434,7 @@ function bfSelectArtist(idx, card) {
       const btn = card.querySelector('.bf-a-select-btn');
       if (btn) btn.textContent = '✓ Selected';
     } else {
-      showToast(`You've already selected ${need} artist${need>1?'s':''}`, true);
+      showToast(`You've already selected ${need} MUA${need>1?'s':''}`, true);
       return;
     }
     bfState.artist = bfState.artists[0] || null;
@@ -443,8 +443,8 @@ function bfSelectArtist(idx, card) {
   const confirmBtn = document.getElementById('bfSelectArtistBtn');
   confirmBtn.disabled = selectedCount === 0;
   confirmBtn.textContent = need > 1
-    ? `Confirm ${selectedCount} / ${need} Artist${selectedCount!==1?'s':''} →`
-    : 'Confirm Artist →';
+    ? `Confirm ${selectedCount} / ${need} MUA${selectedCount!==1?'s':''} →`
+    : 'Confirm MUA →';
 }
 
 function bfSort(by, btn) {
