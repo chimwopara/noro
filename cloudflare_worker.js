@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════
-//  NoroTouch — Cloudflare Worker (API proxy)
+//  HomeMUA — Cloudflare Worker (API proxy)
 //
 //  Deploy at: Cloudflare Dashboard → Workers → Create
-//  Bind to:   api.norotouch.com  (or workers.dev subdomain)
+//  Bind to:   api.homemua.com  (or workers.dev subdomain)
 //
 //  Environment variables to set in Worker settings:
 //    GAS_URL    — your full Google Apps Script web app URL
@@ -13,8 +13,8 @@
 // ═══════════════════════════════════════════════════════════
 
 const ALLOWED_ORIGINS = [
-  'https://norotouch.com',
-  'https://www.norotouch.com',
+  'https://homemua.com',
+  'https://www.homemua.com',
 ];
 
 export default {

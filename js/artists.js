@@ -25,7 +25,7 @@ function switchCardAuthTab(tab) {
   if (siTab) { siTab.style.background = isSignIn ? '#fff' : 'transparent'; siTab.style.color = isSignIn ? 'var(--ink)' : 'rgba(255,255,255,.65)'; siTab.style.fontWeight = isSignIn ? '700' : '600'; }
   if (suTab) { suTab.style.background = isSignIn ? 'transparent' : '#fff'; suTab.style.color = isSignIn ? 'rgba(255,255,255,.65)' : 'var(--ink)'; suTab.style.fontWeight = isSignIn ? '600' : '700'; }
   const title = document.getElementById('cardAuthTitle');
-  if (title) title.textContent = isSignIn ? 'Welcome back.' : 'Join NoroTouch.';
+  if (title) title.textContent = isSignIn ? 'Welcome back.' : 'Join HomeMUA.';
 }
 
 async function submitCardSignIn(e) {
