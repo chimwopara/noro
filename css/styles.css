@@ -354,8 +354,9 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 }
 
 /* ─── AUTH MODAL ─── */
-#authModal{position:fixed;inset:0;z-index:340;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s}
-#authModal.open{opacity:1;pointer-events:all}
+#authModal{position:fixed;inset:0;z-index:340;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:16px;display:none}
+#authModal.open{display:flex;animation:modalFadeIn .3s ease both}
+@keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
 .auth-box{background:rgba(237,231,220,.14);border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 72px rgba(10,10,10,.32);border-radius:28px;width:100%;max-width:520px;max-height:92svh;position:relative;overflow-y:auto;transform:translateY(22px);transition:transform .32s cubic-bezier(.32,0,.15,1);isolation:isolate}
 .auth-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80');background-size:cover;background-position:center;z-index:-2}
 .auth-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.24) 0%,rgba(5,5,5,.58) 28%,rgba(5,5,5,.82) 100%);z-index:-1}
@@ -405,8 +406,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .card-auth-shell.show-success .auth-header{padding-bottom:28px}
 
 /* ─── ARTIST APPLICATION MODAL ─── */
-#artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-#artistModal.open{opacity:1;pointer-events:all}
+#artistModal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.62);backdrop-filter:blur(12px);align-items:flex-end;justify-content:center;display:none}
+#artistModal.open{display:flex;animation:modalFadeIn .3s ease both}
 .artist-box{background:rgba(237,231,220,.92);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;overflow:hidden;position:relative;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);isolation:isolate}
 .artist-box::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&q=80');background-size:cover;background-position:center top;z-index:-2}
 .artist-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.22) 0%,rgba(5,5,5,.55) 24%,rgba(5,5,5,.82) 100%);z-index:-1}
@@ -472,8 +473,8 @@ textarea.rev-field{resize:none;height:88px;margin-bottom:14px}
 .md-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);padding:11px 22px;border-radius:50px;font-size:.84rem;font-weight:600;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.18);pointer-events:none;transition:opacity .3s}
 
 /* ─── BOOKING FLOW MODAL ─── */
-#bookingFlow{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-#bookingFlow.open{opacity:1;pointer-events:all}
+#bookingFlow{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);align-items:flex-end;justify-content:center;display:none}
+#bookingFlow.open{display:flex;animation:modalFadeIn .3s ease both}
 .bf-box{border-radius:28px 28px 0 0;width:100%;max-width:620px;height:88svh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,0,.15,1);position:relative;overflow:hidden;isolation:isolate}
 .bf-box::before{content:'';position:absolute;inset:0;border-radius:inherit;background:rgba(237,231,220,.9);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);z-index:0}
 .bf-box::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(237,231,220,.04) 24%,rgba(237,231,220,.18) 100%);pointer-events:none;z-index:0}
